@@ -1,0 +1,11 @@
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\Projet_PURPLE.exe.config
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\Projet_PURPLE.exe
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\Projet_PURPLE.pdb
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet PURPLE.csproj.AssemblyReference.cache
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet PURPLE.csproj.SuggestedBindingRedirects.cache
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.Properties.Resources.resources
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet PURPLE.csproj.GenerateResource.cache
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet PURPLE.csproj.CoreCompileInputs.cache
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.exe
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.pdb
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.Form1.resources
