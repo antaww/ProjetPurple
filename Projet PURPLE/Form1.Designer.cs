@@ -73,6 +73,8 @@
             this.pictureBox23 = new System.Windows.Forms.PictureBox();
             this.pictureBox29 = new System.Windows.Forms.PictureBox();
             this.pictureBox27 = new System.Windows.Forms.PictureBox();
+            this.pictureBox24 = new System.Windows.Forms.PictureBox();
+            this.endLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -115,6 +117,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -574,6 +577,30 @@
             this.pictureBox27.TabStop = false;
             this.pictureBox27.Tag = "platform";
             // 
+            // pictureBox24
+            // 
+            this.pictureBox24.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox24.Image")));
+            this.pictureBox24.Location = new System.Drawing.Point(65, 635);
+            this.pictureBox24.Name = "pictureBox24";
+            this.pictureBox24.Size = new System.Drawing.Size(42, 41);
+            this.pictureBox24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox24.TabIndex = 90;
+            this.pictureBox24.TabStop = false;
+            this.pictureBox24.Tag = "platform";
+            // 
+            // endLabel
+            // 
+            this.endLabel.AutoSize = true;
+            this.endLabel.BackColor = System.Drawing.Color.Transparent;
+            this.endLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endLabel.Location = new System.Drawing.Point(738, 673);
+            this.endLabel.Name = "endLabel";
+            this.endLabel.Size = new System.Drawing.Size(60, 69);
+            this.endLabel.TabIndex = 91;
+            this.endLabel.Text = "x";
+            this.endLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.endLabel.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -582,6 +609,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 737);
+            this.Controls.Add(this.endLabel);
+            this.Controls.Add(this.pictureBox24);
             this.Controls.Add(this.pictureBox27);
             this.Controls.Add(this.pictureBox21);
             this.Controls.Add(this.pictureBox22);
@@ -676,9 +705,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox23)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox27)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox24)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label endLabel;
+
+        private System.Windows.Forms.PictureBox pictureBox24;
 
         private System.Windows.Forms.PictureBox pictureBox27;
 

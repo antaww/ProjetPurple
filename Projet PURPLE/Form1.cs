@@ -20,35 +20,40 @@ namespace Projet_PURPLE
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            marioLocation = mario.Location;
+            enemyOneLocation = enemy1.Location;
+            enemyTwoLocation = enemy2.Location;
+            enemyThreeLocation = enemy3.Location;
         }
 
         bool isLeft, isRight, isUp, isGameOver;
-        
+
         int jumpSpeed, force;
-        int jumpHeight = -5;
-        int gravity = 5;
+        int jumpHeight = -6;
+        int gravity = 6;
         int score = 0;
         int marioSpeed = 3;
-        int horizontalSpeed = 8;
-        private int verticalSpeed = 3;
         int enemyOneSpeed = 5;
         int enemyTwoSpeed = 5;
         int enemyThreeSpeed = 5;
+
+        Point marioLocation;
+        Point enemyOneLocation;
+        Point enemyTwoLocation;
+        Point enemyThreeLocation;
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
             {
                 isLeft = true;
-                mario.Image = Properties.Resources.mario_run_left;
+                // mario.Image = Properties.Resources.mario_run_left;
             }
 
             if (e.KeyCode == Keys.Right)
             {
                 isRight = true;
-                mario.Image = Properties.Resources.mario_run;
-                mario.Refresh();
-                mario.Visible = true;
+                // mario.Image = Properties.Resources.mario_run;
             }
 
             if (e.KeyCode == Keys.Up && !isUp)
@@ -63,7 +68,6 @@ namespace Projet_PURPLE
             {
                 isLeft = false;
                 mario.Image = Properties.Resources.mario_left;
-                mario.Refresh();
             }
 
             if (e.KeyCode == Keys.Right)
@@ -76,6 +80,7 @@ namespace Projet_PURPLE
             {
                 isUp = false;
             }
+
             if (!isUp)
             {
                 jumpSpeed = jumpHeight;
@@ -94,53 +99,73 @@ namespace Projet_PURPLE
 
         private void ResetGame()
         {
-            isGameOver = false;
-            score = 0;
-            isLeft = false;
-            isRight = false;
-            isUp = false;
-            scoreLabel.Text = "Score : " + score;
-
+            endLabel.Visible = false;
             foreach (Control x in this.Controls)
             {
-                if (x is PictureBox && x.Visible == false)
+                if (x is PictureBox)
                 {
                     x.Visible = true;
                 }
             }
 
-            mario.Left = 5;
-            mario.Top = 612;
-            enemy1.Left = 289;
-            enemy2.Top = 527;
-            enemy2.Left = 638;
-            enemy2.Top = 391;
-            enemy3.Left = 25;
-            enemy3.Top = 33;
-
+            //todo:respawn every coins
+            isGameOver = false;
+            score = 0;
+            mario.Location = marioLocation;
+            enemy1.Location = enemyOneLocation;
+            enemy2.Location = enemyTwoLocation;
+            enemy3.Location = enemyThreeLocation;
+            scoreLabel.Text = "Score: " + score;
             plateformTimer.Start();
         }
 
 
+        private int index;
+
         private void plateformTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
+            index++;
+
             scoreLabel.Text = "Score : " + score;
             mario.Top += jumpSpeed;
 
-            
+
+            if (mario.Top < 0 || mario.Top + mario.Height > this.ClientSize.Height)
+            {
+                isGameOver = true;
+                EndGame();
+            }
+
             if (isLeft)
             {
-                mario.Left -= marioSpeed;
+                if (mario.Left > 0)
+                {
+                    mario.Left -= marioSpeed;
+                    if (index % 12 == 0)
+                    {
+                        mario.Image = Properties.Resources.mario_run_left;
+                    }
+                }
             }
-            if(isRight)
+
+            if (isRight)
             {
-                mario.Left += marioSpeed;
+                if (mario.Right < this.ClientSize.Width)
+                {
+                    mario.Left += marioSpeed;
+                    if (index % 12 == 0)
+                    {
+                        mario.Image = Properties.Resources.mario_run;
+                    }
+                }
             }
-            if(isUp && force < 0)
+
+            if (isUp && force < 0)
             {
                 isUp = false;
             }
-            if(isUp) 
+
+            if (isUp)
             {
                 mario.Top += jumpSpeed;
                 jumpSpeed = jumpHeight;
@@ -153,16 +178,18 @@ namespace Projet_PURPLE
 
             foreach (Control x in this.Controls)
             {
-                if(x is PictureBox && x.Tag == "platform")
+                if (x is PictureBox && x.Tag == "platform")
                 {
                     if (mario.Bounds.IntersectsWith(x.Bounds) && !isUp)
                     {
-                        force = 8;
-                        mario.Top = x.Top+1 - mario.Height;
+                        force = 7;
+                        mario.Top = x.Top + 1 - mario.Height;
                         jumpSpeed = 0;
                     }
+
                     x.BringToFront();
                 }
+
                 if (x is PictureBox && x.Tag == "coin")
                 {
                     if (mario.Bounds.IntersectsWith(x.Bounds))
@@ -172,6 +199,24 @@ namespace Projet_PURPLE
                     }
                 }
             }
+        }
+
+        private void EndGame()
+        {
+            foreach (Control x in this.Controls)
+            {
+                if (x is PictureBox)
+                {
+                    x.Visible = false;
+                }
+            }
+
+            plateformTimer.Stop();
+            endLabel.Visible = true;
+            endLabel.AutoSize = false;
+            endLabel.TextAlign = ContentAlignment.MiddleCenter;
+            endLabel.Dock = DockStyle.Fill;
+            endLabel.Text = "Game Over ! \n Your score is : " + score + "\n Press Space to restart";
         }
     }
 }
