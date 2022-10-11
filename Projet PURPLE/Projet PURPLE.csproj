@@ -79,5 +79,11 @@
     <ItemGroup>
         <None Include="App.config" />
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="Resources\mario_left.png" />
+      <Content Include="Resources\mario_right.png" />
+      <Content Include="Resources\mario_run.gif" />
+      <Content Include="Resources\mario_run_left.gif" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

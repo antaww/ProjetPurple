@@ -13,18 +13,6 @@ namespace Projet_PURPLE
 {
     public partial class Form1 : Form
     {
-        bool isLeft, isRight, isUp, isGameOver;
-
-        int jumpSpeed;
-        int score = 0;
-        int force;
-        int marioSpeed = 6;
-        int horizontalSpeed = 8;
-        int enemyOneSpeed = 5;
-        int enemyTwoSpeed = 5;
-        int enemyThreeSpeed = 5;
-
-
         public Form1()
         {
             InitializeComponent();
@@ -33,6 +21,17 @@ namespace Projet_PURPLE
         private void Form1_Load(object sender, EventArgs e)
         {
         }
+
+        bool isLeft, isRight, isUp, isGameOver;
+
+        int jumpSpeed, force;
+        int score = 0;
+        int marioSpeed = 6;
+        int horizontalSpeed = 8;
+        private int verticalSpeed = 3;
+        int enemyOneSpeed = 5;
+        int enemyTwoSpeed = 5;
+        int enemyThreeSpeed = 5;
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
@@ -49,7 +48,6 @@ namespace Projet_PURPLE
             if (e.KeyCode == Keys.Up && !isUp)
             {
                 isUp = true;
-                jumpSpeed = 5;
             }
         }
 
@@ -68,6 +66,10 @@ namespace Projet_PURPLE
             if (isUp)
             {
                 isUp = false;
+            }
+            if (!isUp)
+            {
+                jumpSpeed = 15;
             }
 
             if (e.KeyCode == Keys.Escape)
@@ -114,74 +116,55 @@ namespace Projet_PURPLE
         private void plateformTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             scoreLabel.Text = "Score : " + score;
+
             mario.Top += jumpSpeed;
+            
             if (isLeft)
             {
                 mario.Left -= marioSpeed;
+                mario.Image = Properties.Resources.mario_left;
             }
-
-            if (isRight)
+            if(isRight)
             {
                 mario.Left += marioSpeed;
+                mario.Image = Properties.Resources.mario_right;
             }
-
-            if (isUp && force < 0)
+            if(isUp && force < 0)
             {
                 isUp = false;
             }
-
-            if (isUp)
+            //mario transparent background bug
+            if(isUp) 
             {
-                jumpSpeed = -8;
+                jumpSpeed = -15;
                 force -= 1;
             }
             else
             {
-                jumpSpeed = 20;
+                jumpSpeed = 15;
             }
 
             foreach (Control x in this.Controls)
             {
-                if (x is PictureBox && x.Tag == "platform")
+                if(x is PictureBox && x.Tag == "platform")
                 {
                     if (mario.Bounds.IntersectsWith(x.Bounds) && !isUp)
                     {
-                        if (mario.Top + mario.Height < x.Top + (x.Height / 2))
-                        {
-                            force = 8;
-                            mario.Top = x.Top - mario.Height;
-                        }
-                        else
-                        {
-                            mario.Top = x.Top + x.Height;
-                        }
+                        force = 8;
+                        mario.Top = x.Top - mario.Height;
+                        jumpSpeed = 0;
                     }
-
                     x.BringToFront();
                 }
-                if(x is PictureBox && x.Tag == "coin")
+                if (x is PictureBox && x.Tag == "coin")
                 {
-                    if(mario.Bounds.IntersectsWith(x.Bounds))
+                    if (mario.Bounds.IntersectsWith(x.Bounds))
                     {
                         this.Controls.Remove(x);
                         score++;
                     }
                 }
-                //if mario touches the enemy or is out of the screen then game over
-                if (x is PictureBox && x.Tag == "enemy")
-                {
-                    if (mario.Bounds.IntersectsWith(x.Bounds))
-                    {
-                        ResetGame();
-                    }
-                    if (mario.Top + mario.Height > this.ClientSize.Height + 50)
-                    {
-                        ResetGame();
-                    }
-                }
             }
-
         }
-
     }
 }

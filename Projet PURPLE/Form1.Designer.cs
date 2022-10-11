@@ -184,9 +184,9 @@
             // mario
             // 
             this.mario.BackColor = System.Drawing.Color.Transparent;
-            this.mario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.mario.Image = ((System.Drawing.Image)(resources.GetObject("mario.Image")));
-            this.mario.Location = new System.Drawing.Point(-1, 591);
+            this.mario.BackgroundImage = global::Projet_PURPLE.Properties.Resources.mario_right;
+            this.mario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.mario.Location = new System.Drawing.Point(-1, 617);
             this.mario.Name = "mario";
             this.mario.Size = new System.Drawing.Size(54, 70);
             this.mario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -399,7 +399,7 @@
             // enemy3
             // 
             this.enemy3.BackColor = System.Drawing.Color.Red;
-            this.enemy3.Location = new System.Drawing.Point(25, 33);
+            this.enemy3.Location = new System.Drawing.Point(25, 43);
             this.enemy3.Name = "enemy3";
             this.enemy3.Size = new System.Drawing.Size(28, 50);
             this.enemy3.TabIndex = 44;
