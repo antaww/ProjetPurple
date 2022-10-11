@@ -184,11 +184,11 @@
             // mario
             // 
             this.mario.BackColor = System.Drawing.Color.Transparent;
-            this.mario.BackgroundImage = global::Projet_PURPLE.Properties.Resources.mario_right;
             this.mario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.mario.Location = new System.Drawing.Point(-1, 617);
+            this.mario.Image = global::Projet_PURPLE.Properties.Resources.mario_right;
+            this.mario.Location = new System.Drawing.Point(18, 616);
             this.mario.Name = "mario";
-            this.mario.Size = new System.Drawing.Size(54, 70);
+            this.mario.Size = new System.Drawing.Size(41, 70);
             this.mario.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.mario.TabIndex = 20;
             this.mario.TabStop = false;
@@ -207,7 +207,7 @@
             // pictureBox20
             // 
             this.pictureBox20.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox20.Image")));
-            this.pictureBox20.Location = new System.Drawing.Point(67, 303);
+            this.pictureBox20.Location = new System.Drawing.Point(54, 303);
             this.pictureBox20.Name = "pictureBox20";
             this.pictureBox20.Size = new System.Drawing.Size(60, 60);
             this.pictureBox20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -218,7 +218,7 @@
             // pictureBox17
             // 
             this.pictureBox17.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox17.Image")));
-            this.pictureBox17.Location = new System.Drawing.Point(672, 303);
+            this.pictureBox17.Location = new System.Drawing.Point(680, 303);
             this.pictureBox17.Name = "pictureBox17";
             this.pictureBox17.Size = new System.Drawing.Size(60, 60);
             this.pictureBox17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

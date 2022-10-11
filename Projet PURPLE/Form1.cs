@@ -23,10 +23,10 @@ namespace Projet_PURPLE
         }
 
         bool isLeft, isRight, isUp, isGameOver;
-
+        
         int jumpSpeed, force;
         int score = 0;
-        int marioSpeed = 6;
+        int marioSpeed = 3;
         int horizontalSpeed = 8;
         private int verticalSpeed = 3;
         int enemyOneSpeed = 5;
@@ -38,11 +38,15 @@ namespace Projet_PURPLE
             if (e.KeyCode == Keys.Left)
             {
                 isLeft = true;
+                mario.Image = Properties.Resources.mario_run_left;
             }
 
             if (e.KeyCode == Keys.Right)
             {
                 isRight = true;
+                mario.Image = Properties.Resources.mario_run;
+                mario.Refresh();
+                mario.Visible = true;
             }
 
             if (e.KeyCode == Keys.Up && !isUp)
@@ -56,11 +60,14 @@ namespace Projet_PURPLE
             if (e.KeyCode == Keys.Left)
             {
                 isLeft = false;
+                mario.Image = Properties.Resources.mario_left;
+                mario.Refresh();
             }
 
             if (e.KeyCode == Keys.Right)
             {
                 isRight = false;
+                mario.Image = Properties.Resources.mario_right;
             }
 
             if (isUp)
@@ -69,7 +76,7 @@ namespace Projet_PURPLE
             }
             if (!isUp)
             {
-                jumpSpeed = 15;
+                jumpSpeed = 3;
             }
 
             if (e.KeyCode == Keys.Escape)
@@ -116,32 +123,30 @@ namespace Projet_PURPLE
         private void plateformTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             scoreLabel.Text = "Score : " + score;
-
             mario.Top += jumpSpeed;
+
             
             if (isLeft)
             {
                 mario.Left -= marioSpeed;
-                mario.Image = Properties.Resources.mario_left;
             }
             if(isRight)
             {
                 mario.Left += marioSpeed;
-                mario.Image = Properties.Resources.mario_right;
             }
             if(isUp && force < 0)
             {
                 isUp = false;
             }
-            //mario transparent background bug
             if(isUp) 
             {
-                jumpSpeed = -15;
+                mario.Top += jumpSpeed;
+                jumpSpeed = -5;
                 force -= 1;
             }
             else
             {
-                jumpSpeed = 15;
+                jumpSpeed = 3;
             }
 
             foreach (Control x in this.Controls)
@@ -151,7 +156,7 @@ namespace Projet_PURPLE
                     if (mario.Bounds.IntersectsWith(x.Bounds) && !isUp)
                     {
                         force = 8;
-                        mario.Top = x.Top - mario.Height;
+                        mario.Top = x.Top+1 - mario.Height;
                         jumpSpeed = 0;
                     }
                     x.BringToFront();
