@@ -25,6 +25,8 @@ namespace Projet_PURPLE
         bool isLeft, isRight, isUp, isGameOver;
         
         int jumpSpeed, force;
+        int jumpHeight = -5;
+        int gravity = 5;
         int score = 0;
         int marioSpeed = 3;
         int horizontalSpeed = 8;
@@ -76,7 +78,7 @@ namespace Projet_PURPLE
             }
             if (!isUp)
             {
-                jumpSpeed = 3;
+                jumpSpeed = jumpHeight;
             }
 
             if (e.KeyCode == Keys.Escape)
@@ -141,12 +143,12 @@ namespace Projet_PURPLE
             if(isUp) 
             {
                 mario.Top += jumpSpeed;
-                jumpSpeed = -5;
+                jumpSpeed = jumpHeight;
                 force -= 1;
             }
             else
             {
-                jumpSpeed = 3;
+                jumpSpeed = gravity;
             }
 
             foreach (Control x in this.Controls)
