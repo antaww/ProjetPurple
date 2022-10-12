@@ -33,7 +33,7 @@ namespace Projet_PURPLE
         int gravity = 6;
         int score = 0;
         int marioSpeed = 3;
-        int enemyOneSpeed = 2, enemyTwoSpeed = 2, enemyThreeSpeed = 2;
+        int enemySpeed1 = 2, enemySpeed2 = 2, enemySpeed3 = 2;
 
         Point marioLocation;
         Point enemyOneLocation;
@@ -199,33 +199,31 @@ namespace Projet_PURPLE
                 {
                     if (mario.Bounds.IntersectsWith(x.Bounds) && !isUp)
                     {
-                        // force = 7;
-                        // mario.Top = x.Top + 1 - mario.Height;
-                        // jumpSpeed = 0;
-                        
+                        //Mario is on the platform
                         if(mario.Bottom > x.Top && mario.Bottom < x.Top + 10)
                         {
                             force = 7;
                             mario.Top = x.Top + 1 - mario.Height;
                             jumpSpeed = 0;
                         }
+                        //Mario is under the platform
                         else if(mario.Top < x.Bottom && mario.Top > x.Bottom - 10)
                         {
-                            mario.Top = x.Bottom + 10;
                             jumpSpeed = 0;
-                            force = 7;
+                            mario.Top = x.Bottom + 10;
+                            // force = 7;
                         }
                         else if(mario.Right > x.Left && mario.Right < x.Left + 10)
                         {
-                            mario.Left = x.Left - mario.Width;
-                            force = 7;
+                            mario.Left = x.Left-5 - mario.Width;
+                            // force = 7;
                             jumpSpeed = 0;
 
                         }
                         else if(mario.Left < x.Right && mario.Left > x.Right - 10)
                         {
-                            mario.Left = x.Right + 1;
-                            force = 7;
+                            mario.Left = x.Right+5;
+                            // force = 7;
                             jumpSpeed = 0;
 
                         }
@@ -248,35 +246,35 @@ namespace Projet_PURPLE
 
         private void MoveEnemies()
         {
-            if (enemy1.Left - 2 >= enemy1Platform.Left && enemy1.Right + 2 <= enemy1Platform.Right)
+            if (enemy1.Left - 2 >= enemyPlatform1.Left && enemy1.Right + 2 <= enemyPlatform1.Right)
             {
-                enemy1.Left += enemyOneSpeed;
+                enemy1.Left += enemySpeed1;
             }
             else
             {
-                enemyOneSpeed = -enemyOneSpeed;
-                enemy1.Left += enemyOneSpeed;
-            }
-
-            if (enemy2.Left - 2 >= enemy2Platform.Left && enemy2.Right + 2 <= enemy2Platform.Right)
-            {
-                enemy2.Left += enemyTwoSpeed;
-            }
-            else
-            {
-                enemyTwoSpeed = -enemyTwoSpeed;
-                enemy2.Left += enemyTwoSpeed;
+                enemySpeed1 = -enemySpeed1;
+                enemy1.Left += enemySpeed1;
             }
             
-            if (enemy3.Left - 2 >= enemy3Platform.Left && enemy3.Right + 2 <= enemy3Platform.Right)
-            {
-                enemy3.Left += enemyThreeSpeed;
-            }
-            else
-            {
-                enemyThreeSpeed = -enemyThreeSpeed;
-                enemy3.Left += enemyThreeSpeed;
-            }
+            // if (enemy2.Left - 2 >= enemyPlatform2.Left && enemy2.Right + 2 <= enemyPlatform2.Right)
+            // {
+            //     enemy2.Left += enemySpeed2;
+            // }
+            // else
+            // {
+            //     enemySpeed2 = -enemySpeed2;
+            //     enemy2.Left += enemySpeed2;
+            // }
+            //
+            // if (enemy3.Left - 2 >= enemyPlatform3.Left && enemy3.Right + 2 <= enemyPlatform3.Right)
+            // {
+            //     enemy3.Left += enemySpeed3;
+            // }
+            // else
+            // {
+            //     enemySpeed3 = -enemySpeed3;
+            //     enemy3.Left += enemySpeed3;
+            // }
         }
 
         private void EndGame()

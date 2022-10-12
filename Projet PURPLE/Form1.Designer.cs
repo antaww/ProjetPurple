@@ -47,11 +47,11 @@
             this.enemy1 = new System.Windows.Forms.PictureBox();
             this.plateformTimer = new System.Timers.Timer();
             this.enemy3 = new System.Windows.Forms.PictureBox();
-            this.enemy1Platform = new System.Windows.Forms.PictureBox();
+            this.enemyPlatform1 = new System.Windows.Forms.PictureBox();
             this.pictureBox28 = new System.Windows.Forms.PictureBox();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.enemy2Platform = new System.Windows.Forms.PictureBox();
-            this.enemy3Platform = new System.Windows.Forms.PictureBox();
+            this.enemyPlatform2 = new System.Windows.Forms.PictureBox();
+            this.enemyPlatform3 = new System.Windows.Forms.PictureBox();
             this.endLabel = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -77,11 +77,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.enemy1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.plateformTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enemy1Platform)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enemy2Platform)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enemy3Platform)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -271,7 +271,7 @@
             // plateformTimer
             // 
             this.plateformTimer.Enabled = true;
-            this.plateformTimer.Interval = 1D;
+            this.plateformTimer.Interval = 10D;
             this.plateformTimer.SynchronizingObject = this;
             this.plateformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.plateformTimer_Elapsed);
             // 
@@ -285,17 +285,17 @@
             this.enemy3.TabStop = false;
             this.enemy3.Tag = "enemy";
             // 
-            // enemy1Platform
+            // enemyPlatform1
             // 
-            this.enemy1Platform.BackColor = System.Drawing.Color.Transparent;
-            this.enemy1Platform.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
-            this.enemy1Platform.Location = new System.Drawing.Point(39, 479);
-            this.enemy1Platform.Name = "enemy1Platform";
-            this.enemy1Platform.Size = new System.Drawing.Size(165, 41);
-            this.enemy1Platform.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.enemy1Platform.TabIndex = 64;
-            this.enemy1Platform.TabStop = false;
-            this.enemy1Platform.Tag = "platform";
+            this.enemyPlatform1.BackColor = System.Drawing.Color.Transparent;
+            this.enemyPlatform1.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
+            this.enemyPlatform1.Location = new System.Drawing.Point(39, 479);
+            this.enemyPlatform1.Name = "enemyPlatform1";
+            this.enemyPlatform1.Size = new System.Drawing.Size(165, 41);
+            this.enemyPlatform1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.enemyPlatform1.TabIndex = 64;
+            this.enemyPlatform1.TabStop = false;
+            this.enemyPlatform1.Tag = "platform";
             // 
             // pictureBox28
             // 
@@ -321,29 +321,29 @@
             this.pictureBox7.TabStop = false;
             this.pictureBox7.Tag = "platform";
             // 
-            // enemy2Platform
+            // enemyPlatform2
             // 
-            this.enemy2Platform.BackColor = System.Drawing.Color.Transparent;
-            this.enemy2Platform.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
-            this.enemy2Platform.Location = new System.Drawing.Point(620, 438);
-            this.enemy2Platform.Name = "enemy2Platform";
-            this.enemy2Platform.Size = new System.Drawing.Size(160, 41);
-            this.enemy2Platform.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.enemy2Platform.TabIndex = 75;
-            this.enemy2Platform.TabStop = false;
-            this.enemy2Platform.Tag = "platform";
+            this.enemyPlatform2.BackColor = System.Drawing.Color.Transparent;
+            this.enemyPlatform2.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
+            this.enemyPlatform2.Location = new System.Drawing.Point(620, 438);
+            this.enemyPlatform2.Name = "enemyPlatform2";
+            this.enemyPlatform2.Size = new System.Drawing.Size(160, 41);
+            this.enemyPlatform2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.enemyPlatform2.TabIndex = 75;
+            this.enemyPlatform2.TabStop = false;
+            this.enemyPlatform2.Tag = "platform";
             // 
-            // enemy3Platform
+            // enemyPlatform3
             // 
-            this.enemy3Platform.BackColor = System.Drawing.Color.Transparent;
-            this.enemy3Platform.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
-            this.enemy3Platform.Location = new System.Drawing.Point(18, 87);
-            this.enemy3Platform.Name = "enemy3Platform";
-            this.enemy3Platform.Size = new System.Drawing.Size(186, 41);
-            this.enemy3Platform.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.enemy3Platform.TabIndex = 85;
-            this.enemy3Platform.TabStop = false;
-            this.enemy3Platform.Tag = "platform";
+            this.enemyPlatform3.BackColor = System.Drawing.Color.Transparent;
+            this.enemyPlatform3.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
+            this.enemyPlatform3.Location = new System.Drawing.Point(18, 87);
+            this.enemyPlatform3.Name = "enemyPlatform3";
+            this.enemyPlatform3.Size = new System.Drawing.Size(186, 41);
+            this.enemyPlatform3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.enemyPlatform3.TabIndex = 85;
+            this.enemyPlatform3.TabStop = false;
+            this.enemyPlatform3.Tag = "platform";
             // 
             // endLabel
             // 
@@ -471,11 +471,11 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.endLabel);
-            this.Controls.Add(this.enemy3Platform);
-            this.Controls.Add(this.enemy2Platform);
+            this.Controls.Add(this.enemyPlatform3);
+            this.Controls.Add(this.enemyPlatform2);
             this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.pictureBox28);
-            this.Controls.Add(this.enemy1Platform);
+            this.Controls.Add(this.enemyPlatform1);
             this.Controls.Add(this.enemy3);
             this.Controls.Add(this.enemy1);
             this.Controls.Add(this.enemy2);
@@ -518,11 +518,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.enemy1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.plateformTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enemy1Platform)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enemy2Platform)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.enemy3Platform)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
@@ -555,15 +555,15 @@
 
         private System.Windows.Forms.PictureBox pictureBox24;
 
-        private System.Windows.Forms.PictureBox enemy3Platform;
+        private System.Windows.Forms.PictureBox enemyPlatform3;
 
-        private System.Windows.Forms.PictureBox enemy2Platform;
+        private System.Windows.Forms.PictureBox enemyPlatform2;
 
         private System.Windows.Forms.PictureBox pictureBox7;
 
         private System.Windows.Forms.PictureBox pictureBox28;
 
-        private System.Windows.Forms.PictureBox enemy1Platform;
+        private System.Windows.Forms.PictureBox enemyPlatform1;
 
         private System.Windows.Forms.PictureBox enemy3;
 
