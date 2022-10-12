@@ -21,7 +21,6 @@ namespace Projet_PURPLE
         private void Form1_Load(object sender, EventArgs e)
         {
             marioLocation = mario.Location;
-            enemyOneLocation = enemy1.Location;
             enemyTwoLocation = enemy2.Location;
             enemyThreeLocation = enemy3.Location;
         }
@@ -113,7 +112,6 @@ namespace Projet_PURPLE
             force = 0;
             score = 0;
             mario.Location = marioLocation;
-            enemy1.Location = enemyOneLocation;
             enemy2.Location = enemyTwoLocation;
             enemy3.Location = enemyThreeLocation;
             scoreLabel.Text = "Score: " + score;
@@ -127,13 +125,17 @@ namespace Projet_PURPLE
         {
             index++;
 
-            MoveEnemies();
-
             scoreLabel.Text = "Score : " + score;
 
             foreach (Control x in this.Controls)
             {
                 if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "enemy")
+                {
+                    isGameOver = true;
+                    EndGame();
+                }
+
+                if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "spike")
                 {
                     isGameOver = true;
                     EndGame();
@@ -173,7 +175,7 @@ namespace Projet_PURPLE
             if (!isOnGround)
             {
                 mario.Top -= force;
-                if (index % 3 == 0)
+                if (index % 3 == 0 && force > -10)
                 {
                     force -= 1;
                 }
@@ -229,36 +231,25 @@ namespace Projet_PURPLE
 
         private void MoveEnemies()
         {
-            if (enemy1.Left - 2 >= enemyPlatform1.Left && enemy1.Right + 2 <= enemyPlatform1.Right)
+            if (enemy2.Left - 2 >= enemyPlatform2.Left && enemy2.Right + 2 <= enemyPlatform2.Right)
             {
-                enemy1.Left += enemySpeed1;
+                enemy2.Left += enemySpeed2;
             }
             else
             {
-                enemySpeed1 = -enemySpeed1;
-                enemy1.Left += enemySpeed1;
+                enemySpeed2 = -enemySpeed2;
+                enemy2.Left += enemySpeed2;
             }
-
-            //TODO:FIX MOVEMENTS IF ENEMIES MOVING
-            // if (enemy2.Left - 2 >= enemyPlatform2.Left && enemy2.Right + 2 <= enemyPlatform2.Right)
-            // {
-            //     enemy2.Left += enemySpeed2;
-            // }
-            // else
-            // {
-            //     enemySpeed2 = -enemySpeed2;
-            //     enemy2.Left += enemySpeed2;
-            // }
-            //
-            // if (enemy3.Left - 2 >= enemyPlatform3.Left && enemy3.Right + 2 <= enemyPlatform3.Right)
-            // {
-            //     enemy3.Left += enemySpeed3;
-            // }
-            // else
-            // {
-            //     enemySpeed3 = -enemySpeed3;
-            //     enemy3.Left += enemySpeed3;
-            // }
+            
+            if (enemy3.Left - 2 >= enemyPlatform3.Left && enemy3.Right + 2 <= enemyPlatform3.Right)
+            {
+                enemy3.Left += enemySpeed3;
+            }
+            else
+            {
+                enemySpeed3 = -enemySpeed3;
+                enemy3.Left += enemySpeed3;
+            }
         }
 
         private void EndGame()
@@ -277,6 +268,11 @@ namespace Projet_PURPLE
             endLabel.TextAlign = ContentAlignment.MiddleCenter;
             endLabel.Dock = DockStyle.Fill;
             endLabel.Text = "Game Over ! \n Your score is : " + score + "\n Press Space to restart";
+        }
+
+        private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            MoveEnemies();
         }
     }
 }
