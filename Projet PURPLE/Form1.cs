@@ -26,11 +26,12 @@ namespace Projet_PURPLE
             enemyThreeLocation = enemy3.Location;
         }
 
-        bool isLeft, isRight, isUp, isGameOver;
+        bool isLeft, isRight, isJumping, isGameOver, isOnGround;
 
-        int jumpSpeed, force;
-        int jumpHeight = -6;
-        int gravity = 6;
+        int jumpSpeed;
+        int force;
+
+        int gravity = 10;
         int score = 0;
         int marioSpeed = 3;
         int enemySpeed1 = 2, enemySpeed2 = 2, enemySpeed3 = 2;
@@ -39,25 +40,25 @@ namespace Projet_PURPLE
         Point enemyOneLocation;
         Point enemyTwoLocation;
         Point enemyThreeLocation;
-        
+
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
             {
                 isLeft = true;
-                // mario.Image = Properties.Resources.mario_run_left;
             }
 
             if (e.KeyCode == Keys.Right)
             {
                 isRight = true;
-                // mario.Image = Properties.Resources.mario_run;
             }
 
-            if (e.KeyCode == Keys.Up && !isUp)
+            if (e.KeyCode == Keys.Up && !isJumping && isOnGround)
             {
-                isUp = true;
+                isJumping = true;
+                isOnGround = false;
+                force = gravity;
             }
         }
 
@@ -73,16 +74,6 @@ namespace Projet_PURPLE
             {
                 isRight = false;
                 mario.Image = Properties.Resources.mario_right;
-            }
-
-            if (isUp)
-            {
-                isUp = false;
-            }
-
-            if (!isUp)
-            {
-                jumpSpeed = jumpHeight;
             }
 
             if (e.KeyCode == Keys.Escape)
@@ -114,7 +105,12 @@ namespace Projet_PURPLE
                     x.Visible = true;
                 }
             }
+
             isGameOver = false;
+            isRight = false;
+            isLeft = false;
+            isJumping = false;
+            force = 0;
             score = 0;
             mario.Location = marioLocation;
             enemy1.Location = enemyOneLocation;
@@ -130,13 +126,11 @@ namespace Projet_PURPLE
         private void plateformTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             index++;
-            
+
             MoveEnemies();
 
-            
             scoreLabel.Text = "Score : " + score;
-            mario.Top += jumpSpeed;
-            
+
             foreach (Control x in this.Controls)
             {
                 if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "enemy")
@@ -145,7 +139,6 @@ namespace Projet_PURPLE
                     EndGame();
                 }
             }
-
 
             if (mario.Top > this.ClientSize.Height)
             {
@@ -177,57 +170,45 @@ namespace Projet_PURPLE
                 }
             }
 
-            if (isUp && force < 0)
+            if (!isOnGround)
             {
-                isUp = false;
-            }
-
-            if (isUp)
-            {
-                mario.Top += jumpSpeed;
-                jumpSpeed = jumpHeight;
-                force -= 1;
+                mario.Top -= force;
+                if (index % 3 == 0)
+                {
+                    force -= 1;
+                }
             }
             else
             {
-                jumpSpeed = gravity;
+                force = 0;
             }
 
+            var isOnTemporaryGround = false;
             foreach (Control x in this.Controls)
             {
                 if (x is PictureBox && x.Tag == "platform")
                 {
-                    if (mario.Bounds.IntersectsWith(x.Bounds) && !isUp)
+                    if (mario.Bounds.IntersectsWith(x.Bounds))
                     {
-                        //Mario is on the platform
-                        if(mario.Bottom > x.Top && mario.Bottom < x.Top + 10)
+                        if (mario.Bottom > x.Top && mario.Bottom < x.Top + 10)
                         {
-                            force = 7;
+                            isOnTemporaryGround = true;
                             mario.Top = x.Top + 1 - mario.Height;
-                            jumpSpeed = 0;
+                            isJumping = false;
                         }
-                        //Mario is under the platform
-                        else if(mario.Top < x.Bottom && mario.Top > x.Bottom - 10)
+                        else if (mario.Top < x.Bottom && mario.Top > x.Bottom - 10)
                         {
-                            jumpSpeed = 0;
-                            mario.Top = x.Bottom + 10;
-                            // force = 7;
+                            mario.Top = x.Bottom + 1;
+                            force = 0;
                         }
-                        else if(mario.Right > x.Left && mario.Right < x.Left + 10)
+                        else if (mario.Right > x.Left && mario.Right < x.Left + 10)
                         {
-                            mario.Left = x.Left-5 - mario.Width;
-                            // force = 7;
-                            jumpSpeed = 0;
-
+                            mario.Left = x.Left - 5 - mario.Width;
                         }
-                        else if(mario.Left < x.Right && mario.Left > x.Right - 10)
+                        else if (mario.Left < x.Right && mario.Left > x.Right - 10)
                         {
-                            mario.Left = x.Right+5;
-                            // force = 7;
-                            jumpSpeed = 0;
-
+                            mario.Left = x.Right + 5;
                         }
-                        
                     }
 
                     x.BringToFront();
@@ -242,6 +223,8 @@ namespace Projet_PURPLE
                     }
                 }
             }
+
+            this.isOnGround = isOnTemporaryGround;
         }
 
         private void MoveEnemies()
@@ -255,7 +238,8 @@ namespace Projet_PURPLE
                 enemySpeed1 = -enemySpeed1;
                 enemy1.Left += enemySpeed1;
             }
-            
+
+            //TODO:FIX MOVEMENTS IF ENEMIES MOVING
             // if (enemy2.Left - 2 >= enemyPlatform2.Left && enemy2.Right + 2 <= enemyPlatform2.Right)
             // {
             //     enemy2.Left += enemySpeed2;
@@ -294,6 +278,5 @@ namespace Projet_PURPLE
             endLabel.Dock = DockStyle.Fill;
             endLabel.Text = "Game Over ! \n Your score is : " + score + "\n Press Space to restart";
         }
-
     }
 }
