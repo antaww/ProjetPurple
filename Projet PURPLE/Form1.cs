@@ -130,7 +130,7 @@ namespace Projet_PURPLE
             mario.Top += jumpSpeed;
 
 
-            if (mario.Top < 0 || mario.Top + mario.Height > this.ClientSize.Height)
+            if (mario.Top > this.ClientSize.Height)
             {
                 isGameOver = true;
                 EndGame();
