@@ -33,14 +33,13 @@ namespace Projet_PURPLE
         int gravity = 6;
         int score = 0;
         int marioSpeed = 3;
-        int enemyOneSpeed = 5;
-        int enemyTwoSpeed = 5;
-        int enemyThreeSpeed = 5;
+        int enemyOneSpeed = 2, enemyTwoSpeed = 2, enemyThreeSpeed = 2;
 
         Point marioLocation;
         Point enemyOneLocation;
         Point enemyTwoLocation;
         Point enemyThreeLocation;
+        
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
@@ -108,7 +107,13 @@ namespace Projet_PURPLE
                 }
             }
 
-            //todo:respawn every coins
+            foreach (Control x in this.Controls)
+            {
+                if (x is PictureBox && x.Tag == "coin")
+                {
+                    x.Visible = true;
+                }
+            }
             isGameOver = false;
             score = 0;
             mario.Location = marioLocation;
@@ -125,9 +130,21 @@ namespace Projet_PURPLE
         private void plateformTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             index++;
+            
+            MoveEnemies();
 
+            
             scoreLabel.Text = "Score : " + score;
             mario.Top += jumpSpeed;
+            
+            foreach (Control x in this.Controls)
+            {
+                if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "enemy")
+                {
+                    isGameOver = true;
+                    EndGame();
+                }
+            }
 
 
             if (mario.Top > this.ClientSize.Height)
@@ -182,9 +199,37 @@ namespace Projet_PURPLE
                 {
                     if (mario.Bounds.IntersectsWith(x.Bounds) && !isUp)
                     {
-                        force = 7;
-                        mario.Top = x.Top + 1 - mario.Height;
-                        jumpSpeed = 0;
+                        // force = 7;
+                        // mario.Top = x.Top + 1 - mario.Height;
+                        // jumpSpeed = 0;
+                        
+                        if(mario.Bottom > x.Top && mario.Bottom < x.Top + 10)
+                        {
+                            force = 7;
+                            mario.Top = x.Top + 1 - mario.Height;
+                            jumpSpeed = 0;
+                        }
+                        else if(mario.Top < x.Bottom && mario.Top > x.Bottom - 10)
+                        {
+                            mario.Top = x.Bottom + 10;
+                            jumpSpeed = 0;
+                            force = 7;
+                        }
+                        else if(mario.Right > x.Left && mario.Right < x.Left + 10)
+                        {
+                            mario.Left = x.Left - mario.Width;
+                            force = 7;
+                            jumpSpeed = 0;
+
+                        }
+                        else if(mario.Left < x.Right && mario.Left > x.Right - 10)
+                        {
+                            mario.Left = x.Right + 1;
+                            force = 7;
+                            jumpSpeed = 0;
+
+                        }
+                        
                     }
 
                     x.BringToFront();
@@ -192,12 +237,45 @@ namespace Projet_PURPLE
 
                 if (x is PictureBox && x.Tag == "coin")
                 {
-                    if (mario.Bounds.IntersectsWith(x.Bounds))
+                    if (mario.Bounds.IntersectsWith(x.Bounds) && x.Visible)
                     {
-                        this.Controls.Remove(x);
+                        x.Visible = false;
                         score++;
                     }
                 }
+            }
+        }
+
+        private void MoveEnemies()
+        {
+            if (enemy1.Left - 2 >= enemy1Platform.Left && enemy1.Right + 2 <= enemy1Platform.Right)
+            {
+                enemy1.Left += enemyOneSpeed;
+            }
+            else
+            {
+                enemyOneSpeed = -enemyOneSpeed;
+                enemy1.Left += enemyOneSpeed;
+            }
+
+            if (enemy2.Left - 2 >= enemy2Platform.Left && enemy2.Right + 2 <= enemy2Platform.Right)
+            {
+                enemy2.Left += enemyTwoSpeed;
+            }
+            else
+            {
+                enemyTwoSpeed = -enemyTwoSpeed;
+                enemy2.Left += enemyTwoSpeed;
+            }
+            
+            if (enemy3.Left - 2 >= enemy3Platform.Left && enemy3.Right + 2 <= enemy3Platform.Right)
+            {
+                enemy3.Left += enemyThreeSpeed;
+            }
+            else
+            {
+                enemyThreeSpeed = -enemyThreeSpeed;
+                enemy3.Left += enemyThreeSpeed;
             }
         }
 
@@ -218,5 +296,6 @@ namespace Projet_PURPLE
             endLabel.Dock = DockStyle.Fill;
             endLabel.Text = "Game Over ! \n Your score is : " + score + "\n Press Space to restart";
         }
+
     }
 }
