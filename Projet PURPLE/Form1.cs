@@ -23,7 +23,7 @@ namespace Projet_PURPLE
             marioLocation = mario.Location;
             enemyTwoLocation = enemy2.Location;
             enemyThreeLocation = enemy3.Location;
-            this.Controls.SetChildIndex(movingPlatformArea, 100000);
+            scoreLabel.Location = new Point((this.Width - scoreLabel.Width) / 2, scoreLabel.Location.Y);
         }
 
         bool isLeft, isRight, isJumping, isGameOver, isOnGround;
@@ -162,7 +162,7 @@ namespace Projet_PURPLE
                 if (mario.Left > 0)
                 {
                     mario.Left -= marioSpeed;
-                    if (index % 12 == 0)
+                    if (index % 9 == 0)
                     {
                         mario.Image = Properties.Resources.mario_run_left;
                     }
@@ -218,9 +218,6 @@ namespace Projet_PURPLE
                                     questionBlock.Image = Properties.Resources.question_block_empty;
                                     questionBlock.BackgroundImage = Properties.Resources.question_block_empty;
                                     x.BackgroundImageLayout = ImageLayout.Stretch;
-                                }
-                                {
-                                    
                                 }
                             }
                             mario.Top = x.Bottom + 1;

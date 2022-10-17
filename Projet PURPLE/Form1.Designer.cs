@@ -54,7 +54,6 @@
             this.endLabel = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.enemiesTimer = new System.Timers.Timer();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
@@ -67,6 +66,7 @@
             this.platformTimer = new System.Timers.Timer();
             this.questionBlock = new System.Windows.Forms.PictureBox();
             this.coinBlock = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -89,7 +89,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemiesTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
@@ -102,6 +101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.platformTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionBlock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinBlock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -109,7 +109,7 @@
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreLabel.Location = new System.Drawing.Point(680, 9);
+            this.scoreLabel.Location = new System.Drawing.Point(442, 9);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(100, 25);
             this.scoreLabel.TabIndex = 0;
@@ -272,7 +272,6 @@
             // 
             // plateformTimer
             // 
-            this.plateformTimer.Enabled = true;
             this.plateformTimer.Interval = 18D;
             this.plateformTimer.SynchronizingObject = this;
             this.plateformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.plateformTimer_Elapsed);
@@ -384,18 +383,6 @@
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Tag = "platform";
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox5.Image = global::Projet_PURPLE.Properties.Resources.platform_short;
-            this.pictureBox5.Location = new System.Drawing.Point(756, 256);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(42, 41);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 96;
-            this.pictureBox5.TabStop = false;
-            this.pictureBox5.Tag = "platform";
-            // 
             // pictureBox9
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
@@ -410,7 +397,6 @@
             // 
             // enemiesTimer
             // 
-            this.enemiesTimer.Enabled = true;
             this.enemiesTimer.Interval = 30D;
             this.enemiesTimer.SynchronizingObject = this;
             this.enemiesTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.enemiesTimer_Elapsed);
@@ -492,9 +478,9 @@
             // movingPlatformArea
             // 
             this.movingPlatformArea.BackColor = System.Drawing.Color.Transparent;
-            this.movingPlatformArea.Location = new System.Drawing.Point(838, 12);
+            this.movingPlatformArea.Location = new System.Drawing.Point(838, 438);
             this.movingPlatformArea.Name = "movingPlatformArea";
-            this.movingPlatformArea.Size = new System.Drawing.Size(21, 713);
+            this.movingPlatformArea.Size = new System.Drawing.Size(21, 287);
             this.movingPlatformArea.TabIndex = 106;
             this.movingPlatformArea.TabStop = false;
             this.movingPlatformArea.Tag = "movingPlatformArea";
@@ -502,7 +488,6 @@
             // 
             // platformTimer
             // 
-            this.platformTimer.Enabled = true;
             this.platformTimer.Interval = 30D;
             this.platformTimer.SynchronizingObject = this;
             this.platformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.platformTimer_Elapsed);
@@ -530,6 +515,18 @@
             this.coinBlock.TabStop = false;
             this.coinBlock.Tag = "coin";
             // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox8.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
+            this.pictureBox8.Location = new System.Drawing.Point(737, 256);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(95, 41);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 109;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Tag = "platform";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -538,6 +535,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.coinBlock);
             this.Controls.Add(this.questionBlock);
             this.Controls.Add(this.movingPlatformArea);
@@ -548,7 +546,6 @@
             this.Controls.Add(this.door1);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.endLabel);
@@ -578,7 +575,6 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Mario";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
@@ -604,7 +600,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemiesTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
@@ -617,9 +612,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.platformTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.questionBlock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinBlock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox pictureBox8;
 
         private System.Windows.Forms.PictureBox coinBlock;
 
@@ -644,8 +642,6 @@
         private System.Timers.Timer enemiesTimer;
 
         private System.Windows.Forms.PictureBox pictureBox9;
-
-        private System.Windows.Forms.PictureBox pictureBox5;
 
         private System.Windows.Forms.PictureBox pictureBox3;
 
