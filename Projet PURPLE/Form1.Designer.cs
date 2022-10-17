@@ -65,6 +65,8 @@
             this.movingPlatform = new System.Windows.Forms.PictureBox();
             this.movingPlatformArea = new System.Windows.Forms.PictureBox();
             this.platformTimer = new System.Timers.Timer();
+            this.questionBlock = new System.Windows.Forms.PictureBox();
+            this.coinBlock = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -98,6 +100,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.movingPlatform)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movingPlatformArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.platformTimer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionBlock)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinBlock)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -465,7 +469,7 @@
             // 
             this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox6.Image = global::Projet_PURPLE.Properties.Resources.spike;
-            this.pictureBox6.Location = new System.Drawing.Point(535, 294);
+            this.pictureBox6.Location = new System.Drawing.Point(537, 292);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(34, 31);
             this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -503,6 +507,29 @@
             this.platformTimer.SynchronizingObject = this;
             this.platformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.platformTimer_Elapsed);
             // 
+            // questionBlock
+            // 
+            this.questionBlock.BackColor = System.Drawing.Color.Transparent;
+            this.questionBlock.Image = global::Projet_PURPLE.Properties.Resources.question_block;
+            this.questionBlock.Location = new System.Drawing.Point(762, 149);
+            this.questionBlock.Name = "questionBlock";
+            this.questionBlock.Size = new System.Drawing.Size(36, 36);
+            this.questionBlock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.questionBlock.TabIndex = 107;
+            this.questionBlock.TabStop = false;
+            this.questionBlock.Tag = "platform";
+            // 
+            // coinBlock
+            // 
+            this.coinBlock.BackColor = System.Drawing.Color.Transparent;
+            this.coinBlock.Location = new System.Drawing.Point(775, 165);
+            this.coinBlock.Name = "coinBlock";
+            this.coinBlock.Size = new System.Drawing.Size(10, 11);
+            this.coinBlock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.coinBlock.TabIndex = 108;
+            this.coinBlock.TabStop = false;
+            this.coinBlock.Tag = "coin";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -511,6 +538,8 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.coinBlock);
+            this.Controls.Add(this.questionBlock);
             this.Controls.Add(this.movingPlatformArea);
             this.Controls.Add(this.movingPlatform);
             this.Controls.Add(this.pictureBox6);
@@ -586,9 +615,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.movingPlatform)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movingPlatformArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.platformTimer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.questionBlock)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.coinBlock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox coinBlock;
+
+        private System.Windows.Forms.PictureBox questionBlock;
 
         private System.Timers.Timer platformTimer;
 

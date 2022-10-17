@@ -182,6 +182,16 @@ namespace Projet_PURPLE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap question_block_empty {
+            get {
+                object obj = ResourceManager.GetObject("question_block_empty", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap simple_door {
             get {
                 object obj = ResourceManager.GetObject("simple_door", resourceCulture);

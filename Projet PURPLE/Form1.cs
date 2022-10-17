@@ -107,6 +107,7 @@ namespace Projet_PURPLE
         private void ResetGame()
         {
             endLabel.Visible = false;
+            scoreLabel.Visible = true;
 
             foreach (Control x in this.Controls)
             {
@@ -116,6 +117,8 @@ namespace Projet_PURPLE
                 }
             }
 
+            questionBlock.Image = Properties.Resources.question_block;
+            questionBlock.BackgroundImage = null;
             isGameOver = false;
             isRight = false;
             isLeft = false;
@@ -206,6 +209,20 @@ namespace Projet_PURPLE
                         }
                         else if (mario.Top < x.Bottom && mario.Top > x.Bottom - 10)
                         {
+                            if (x == questionBlock)
+                            {
+                                if(x.BackgroundImage == null)
+                                {
+                                    score += 1;
+                                    coinBlock.Visible = false;
+                                    questionBlock.Image = Properties.Resources.question_block_empty;
+                                    questionBlock.BackgroundImage = Properties.Resources.question_block_empty;
+                                    x.BackgroundImageLayout = ImageLayout.Stretch;
+                                }
+                                {
+                                    
+                                }
+                            }
                             mario.Top = x.Bottom + 1;
                             force = 0;
                         }
@@ -309,6 +326,7 @@ namespace Projet_PURPLE
 
         private void EndGame()
         {
+            scoreLabel.Visible = false;
             isGameOver = true;
             foreach (Control x in this.Controls)
             {

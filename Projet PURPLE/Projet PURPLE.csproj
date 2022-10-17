@@ -92,6 +92,7 @@
       <Content Include="Resources\platform_long.png" />
       <Content Include="Resources\platform_short.png" />
       <Content Include="Resources\question_block.png" />
+      <Content Include="Resources\question_block_empty.png" />
       <Content Include="Resources\simple_door.png" />
       <Content Include="Resources\spike.png" />
       <Content Include="Resources\water.png" />
