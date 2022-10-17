@@ -54,14 +54,17 @@
             this.endLabel = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.enemiesTimer = new System.Timers.Timer();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.door1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.movingPlatform = new System.Windows.Forms.PictureBox();
+            this.movingPlatformArea = new System.Windows.Forms.PictureBox();
+            this.platformTimer = new System.Timers.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -84,14 +87,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemiesTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.door1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movingPlatform)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movingPlatformArea)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.platformTimer)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -134,7 +140,7 @@
             // 
             this.coin7.BackColor = System.Drawing.Color.Transparent;
             this.coin7.Image = global::Projet_PURPLE.Properties.Resources.coin;
-            this.coin7.Location = new System.Drawing.Point(434, 118);
+            this.coin7.Location = new System.Drawing.Point(957, 655);
             this.coin7.Name = "coin7";
             this.coin7.Size = new System.Drawing.Size(34, 31);
             this.coin7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -158,7 +164,7 @@
             // 
             this.coin8.BackColor = System.Drawing.Color.Transparent;
             this.coin8.Image = global::Projet_PURPLE.Properties.Resources.coin;
-            this.coin8.Location = new System.Drawing.Point(25, 177);
+            this.coin8.Location = new System.Drawing.Point(82, 266);
             this.coin8.Name = "coin8";
             this.coin8.Size = new System.Drawing.Size(34, 31);
             this.coin8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -182,7 +188,7 @@
             // 
             this.coin10.BackColor = System.Drawing.Color.Transparent;
             this.coin10.Image = global::Projet_PURPLE.Properties.Resources.coin;
-            this.coin10.Location = new System.Drawing.Point(12, 6);
+            this.coin10.Location = new System.Drawing.Point(1, 3);
             this.coin10.Name = "coin10";
             this.coin10.Size = new System.Drawing.Size(34, 31);
             this.coin10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -194,7 +200,7 @@
             // 
             this.coin11.BackColor = System.Drawing.Color.Transparent;
             this.coin11.Image = global::Projet_PURPLE.Properties.Resources.coin;
-            this.coin11.Location = new System.Drawing.Point(82, 50);
+            this.coin11.Location = new System.Drawing.Point(148, 50);
             this.coin11.Name = "coin11";
             this.coin11.Size = new System.Drawing.Size(34, 31);
             this.coin11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -206,7 +212,7 @@
             // 
             this.coin6.BackColor = System.Drawing.Color.Transparent;
             this.coin6.Image = global::Projet_PURPLE.Properties.Resources.coin;
-            this.coin6.Location = new System.Drawing.Point(689, 266);
+            this.coin6.Location = new System.Drawing.Point(1029, 24);
             this.coin6.Name = "coin6";
             this.coin6.Size = new System.Drawing.Size(34, 31);
             this.coin6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -218,7 +224,7 @@
             // 
             this.coin1.BackColor = System.Drawing.Color.Transparent;
             this.coin1.Image = global::Projet_PURPLE.Properties.Resources.coin;
-            this.coin1.Location = new System.Drawing.Point(122, 645);
+            this.coin1.Location = new System.Drawing.Point(189, 583);
             this.coin1.Name = "coin1";
             this.coin1.Size = new System.Drawing.Size(34, 31);
             this.coin1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -230,7 +236,7 @@
             // 
             this.coin2.BackColor = System.Drawing.Color.Transparent;
             this.coin2.Image = global::Projet_PURPLE.Properties.Resources.coin;
-            this.coin2.Location = new System.Drawing.Point(434, 536);
+            this.coin2.Location = new System.Drawing.Point(375, 149);
             this.coin2.Name = "coin2";
             this.coin2.Size = new System.Drawing.Size(34, 31);
             this.coin2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -242,7 +248,7 @@
             // 
             this.coin3.BackColor = System.Drawing.Color.Transparent;
             this.coin3.Image = global::Projet_PURPLE.Properties.Resources.coin;
-            this.coin3.Location = new System.Drawing.Point(501, 536);
+            this.coin3.Location = new System.Drawing.Point(469, 536);
             this.coin3.Name = "coin3";
             this.coin3.Size = new System.Drawing.Size(34, 31);
             this.coin3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -366,7 +372,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
-            this.pictureBox3.Location = new System.Drawing.Point(344, 411);
+            this.pictureBox3.Location = new System.Drawing.Point(305, 423);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(146, 41);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -374,53 +380,17 @@
             this.pictureBox3.TabStop = false;
             this.pictureBox3.Tag = "platform";
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.Image = global::Projet_PURPLE.Properties.Resources.platform_short;
-            this.pictureBox4.Location = new System.Drawing.Point(226, 362);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(42, 41);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 95;
-            this.pictureBox4.TabStop = false;
-            this.pictureBox4.Tag = "platform";
-            // 
             // pictureBox5
             // 
             this.pictureBox5.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox5.Image = global::Projet_PURPLE.Properties.Resources.platform_short;
-            this.pictureBox5.Location = new System.Drawing.Point(558, 332);
+            this.pictureBox5.Location = new System.Drawing.Point(756, 256);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(42, 41);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox5.TabIndex = 96;
             this.pictureBox5.TabStop = false;
             this.pictureBox5.Tag = "platform";
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox6.Image = global::Projet_PURPLE.Properties.Resources.platform_short;
-            this.pictureBox6.Location = new System.Drawing.Point(344, 285);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(42, 41);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 97;
-            this.pictureBox6.TabStop = false;
-            this.pictureBox6.Tag = "platform";
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox8.Image = global::Projet_PURPLE.Properties.Resources.platform_short;
-            this.pictureBox8.Location = new System.Drawing.Point(322, 167);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(42, 41);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox8.TabIndex = 98;
-            this.pictureBox8.TabStop = false;
-            this.pictureBox8.Tag = "platform";
             // 
             // pictureBox9
             // 
@@ -467,6 +437,72 @@
             this.door1.Tag = "door";
             this.door1.Visible = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
+            this.pictureBox1.Location = new System.Drawing.Point(316, 186);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(146, 41);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 102;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Tag = "platform";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Image = global::Projet_PURPLE.Properties.Resources.platform_long;
+            this.pictureBox4.Location = new System.Drawing.Point(505, 322);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(95, 41);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 103;
+            this.pictureBox4.TabStop = false;
+            this.pictureBox4.Tag = "platform";
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox6.Image = global::Projet_PURPLE.Properties.Resources.spike;
+            this.pictureBox6.Location = new System.Drawing.Point(535, 294);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(34, 31);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 104;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Tag = "spike";
+            // 
+            // movingPlatform
+            // 
+            this.movingPlatform.BackColor = System.Drawing.Color.Transparent;
+            this.movingPlatform.Image = global::Projet_PURPLE.Properties.Resources.moving_platform;
+            this.movingPlatform.Location = new System.Drawing.Point(885, 462);
+            this.movingPlatform.Name = "movingPlatform";
+            this.movingPlatform.Size = new System.Drawing.Size(160, 23);
+            this.movingPlatform.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.movingPlatform.TabIndex = 105;
+            this.movingPlatform.TabStop = false;
+            this.movingPlatform.Tag = "platform";
+            // 
+            // movingPlatformArea
+            // 
+            this.movingPlatformArea.BackColor = System.Drawing.Color.Transparent;
+            this.movingPlatformArea.Location = new System.Drawing.Point(838, 12);
+            this.movingPlatformArea.Name = "movingPlatformArea";
+            this.movingPlatformArea.Size = new System.Drawing.Size(174, 713);
+            this.movingPlatformArea.TabIndex = 106;
+            this.movingPlatformArea.TabStop = false;
+            this.movingPlatformArea.Tag = "movingPlatformArea";
+            this.movingPlatformArea.Visible = false;
+            // 
+            // platformTimer
+            // 
+            this.platformTimer.Enabled = true;
+            this.platformTimer.Interval = 30D;
+            this.platformTimer.SynchronizingObject = this;
+            this.platformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.platformTimer_Elapsed);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -474,14 +510,16 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 737);
+            this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.movingPlatformArea);
+            this.Controls.Add(this.movingPlatform);
+            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.door1);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.pictureBox9);
-            this.Controls.Add(this.pictureBox8);
-            this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.endLabel);
@@ -537,17 +575,32 @@
             ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemiesTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.door1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movingPlatform)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.movingPlatformArea)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.platformTimer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Timers.Timer platformTimer;
+
+        private System.Windows.Forms.PictureBox movingPlatformArea;
+
+        private System.Windows.Forms.PictureBox movingPlatform;
+
+        private System.Windows.Forms.PictureBox pictureBox6;
+
+        private System.Windows.Forms.PictureBox pictureBox4;
+
+        private System.Windows.Forms.PictureBox pictureBox1;
 
         private System.Windows.Forms.PictureBox door1;
 
@@ -557,13 +610,7 @@
 
         private System.Windows.Forms.PictureBox pictureBox9;
 
-        private System.Windows.Forms.PictureBox pictureBox8;
-
-        private System.Windows.Forms.PictureBox pictureBox6;
-
         private System.Windows.Forms.PictureBox pictureBox5;
-
-        private System.Windows.Forms.PictureBox pictureBox4;
 
         private System.Windows.Forms.PictureBox pictureBox3;
 

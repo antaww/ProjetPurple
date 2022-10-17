@@ -23,6 +23,7 @@ namespace Projet_PURPLE
             marioLocation = mario.Location;
             enemyTwoLocation = enemy2.Location;
             enemyThreeLocation = enemy3.Location;
+            this.Controls.SetChildIndex(movingPlatformArea, 100000);
         }
 
         bool isLeft, isRight, isJumping, isGameOver, isOnGround;
@@ -37,6 +38,7 @@ namespace Projet_PURPLE
         int score = 0;
         int marioSpeed = 5;
         int enemySpeed1 = 2, enemySpeed2 = 2, enemySpeed3 = 2;
+        int movingPlatformSpeed = 2;
 
         Point marioLocation;
         Point enemyOneLocation;
@@ -71,6 +73,7 @@ namespace Projet_PURPLE
                             isGameWon = true;
                             EndGame();
                         }
+                        x.BringToFront();
                     }
                 }
             }
@@ -168,7 +171,7 @@ namespace Projet_PURPLE
                 if (mario.Right < this.ClientSize.Width)
                 {
                     mario.Left += marioSpeed;
-                    if (index % 12 == 0)
+                    if (index % 9 == 0)
                     {
                         mario.Image = Properties.Resources.mario_run;
                     }
@@ -178,7 +181,7 @@ namespace Projet_PURPLE
             if (!isOnGround)
             {
                 mario.Top -= force;
-                if (index % 2 == 0 && force > -5)
+                if (index % 2 == 0 && force > -9)
                 {
                     force -= 1;
                 }
@@ -208,11 +211,11 @@ namespace Projet_PURPLE
                         }
                         else if (mario.Right > x.Left && mario.Right < x.Left + 10)
                         {
-                            mario.Left = x.Left - 5 - mario.Width;
+                            mario.Left = x.Left - 1 - mario.Width;
                         }
                         else if (mario.Left < x.Right && mario.Left > x.Right - 10)
                         {
-                            mario.Left = x.Right + 5;
+                            mario.Left = x.Right + 1;
                         }
                     }
 
@@ -289,6 +292,19 @@ namespace Projet_PURPLE
             }
         }
 
+        private void MovePlatform()
+        {
+            if (movingPlatform.Top - 2 >= movingPlatformArea.Top && movingPlatform.Bottom + 2 <= movingPlatformArea.Bottom)
+            {
+                movingPlatform.Top += movingPlatformSpeed;
+            }
+            else
+            {
+                movingPlatformSpeed = -movingPlatformSpeed;
+                movingPlatform.Top += movingPlatformSpeed;
+            }
+        }
+
         private void EndGame()
         {
             isGameOver = true;
@@ -319,6 +335,11 @@ namespace Projet_PURPLE
         private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             MoveEnemies();
+        }
+
+        private void platformTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            MovePlatform();
         }
     }
 }
