@@ -61,6 +61,7 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.enemiesTimer = new System.Timers.Timer();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.door1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -90,6 +91,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemiesTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.door1)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -261,7 +263,7 @@
             // plateformTimer
             // 
             this.plateformTimer.Enabled = true;
-            this.plateformTimer.Interval = 10D;
+            this.plateformTimer.Interval = 18D;
             this.plateformTimer.SynchronizingObject = this;
             this.plateformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.plateformTimer_Elapsed);
             // 
@@ -451,6 +453,20 @@
             this.pictureBox10.TabStop = false;
             this.pictureBox10.Tag = "spike";
             // 
+            // door1
+            // 
+            this.door1.BackColor = System.Drawing.Color.Transparent;
+            this.door1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.door1.Image = global::Projet_PURPLE.Properties.Resources.simple_door;
+            this.door1.Location = new System.Drawing.Point(51, 409);
+            this.door1.Name = "door1";
+            this.door1.Size = new System.Drawing.Size(41, 70);
+            this.door1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.door1.TabIndex = 101;
+            this.door1.TabStop = false;
+            this.door1.Tag = "door";
+            this.door1.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -459,6 +475,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 737);
+            this.Controls.Add(this.door1);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.pictureBox9);
             this.Controls.Add(this.pictureBox8);
@@ -494,7 +511,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "mario";
+            this.Text = "Mario";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
@@ -527,9 +544,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemiesTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.door1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox door1;
 
         private System.Windows.Forms.PictureBox pictureBox10;
 

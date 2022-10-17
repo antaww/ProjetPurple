@@ -80,6 +80,9 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
+      <Content Include="Resources\aqua_door.png" />
+      <Content Include="Resources\boss_door.png" />
+      <Content Include="Resources\box.png" />
       <Content Include="Resources\coin.gif" />
       <Content Include="Resources\mario_left.png" />
       <Content Include="Resources\mario_right.png" />
@@ -87,6 +90,8 @@
       <Content Include="Resources\mario_run_left.gif" />
       <Content Include="Resources\platform_long.png" />
       <Content Include="Resources\platform_short.png" />
+      <Content Include="Resources\question_block.png" />
+      <Content Include="Resources\simple_door.png" />
       <Content Include="Resources\spike.png" />
       <Content Include="Resources\water.png" />
     </ItemGroup>

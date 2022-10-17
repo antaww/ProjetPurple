@@ -30,9 +30,12 @@ namespace Projet_PURPLE
         int jumpSpeed;
         int force;
 
-        int gravity = 10;
+        bool isGameWon = false;
+        bool isGameLost = false;
+
+        int gravity = 11;
         int score = 0;
-        int marioSpeed = 3;
+        int marioSpeed = 5;
         int enemySpeed1 = 2, enemySpeed2 = 2, enemySpeed3 = 2;
 
         Point marioLocation;
@@ -58,6 +61,18 @@ namespace Projet_PURPLE
                 isJumping = true;
                 isOnGround = false;
                 force = gravity;
+                if (!CheckCoins())
+                {
+                    foreach (Control x in this.Controls)
+                    {
+                        if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "door" && x.Visible == true)
+                        {
+                            isJumping = false;
+                            isGameWon = true;
+                            EndGame();
+                        }
+                    }
+                }
             }
         }
 
@@ -89,17 +104,10 @@ namespace Projet_PURPLE
         private void ResetGame()
         {
             endLabel.Visible = false;
-            foreach (Control x in this.Controls)
-            {
-                if (x is PictureBox)
-                {
-                    x.Visible = true;
-                }
-            }
 
             foreach (Control x in this.Controls)
             {
-                if (x is PictureBox && x.Tag == "coin")
+                if (x is PictureBox && x.Tag != "door")
                 {
                     x.Visible = true;
                 }
@@ -109,6 +117,8 @@ namespace Projet_PURPLE
             isRight = false;
             isLeft = false;
             isJumping = false;
+            isGameLost = false;
+            isGameWon = false;
             force = 0;
             score = 0;
             mario.Location = marioLocation;
@@ -125,26 +135,19 @@ namespace Projet_PURPLE
         {
             index++;
 
+            if (!CheckCoins())
+            {
+                door1.Visible = true;
+            }
+
+
             scoreLabel.Text = "Score : " + score;
 
-            foreach (Control x in this.Controls)
-            {
-                if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "enemy")
-                {
-                    isGameOver = true;
-                    EndGame();
-                }
-
-                if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "spike")
-                {
-                    isGameOver = true;
-                    EndGame();
-                }
-            }
+            CheckLose();
 
             if (mario.Top > this.ClientSize.Height)
             {
-                isGameOver = true;
+                isGameLost = true;
                 EndGame();
             }
 
@@ -175,7 +178,7 @@ namespace Projet_PURPLE
             if (!isOnGround)
             {
                 mario.Top -= force;
-                if (index % 3 == 0 && force > -10)
+                if (index % 2 == 0 && force > -5)
                 {
                     force -= 1;
                 }
@@ -229,6 +232,40 @@ namespace Projet_PURPLE
             this.isOnGround = isOnTemporaryGround;
         }
 
+        private bool CheckCoins()
+        {
+            foreach (Control x in this.Controls)
+            {
+                if (x is PictureBox && x.Tag == "coin")
+                {
+                    if (x.Visible == true)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private void CheckLose()
+        {
+            foreach (Control x in this.Controls)
+            {
+                if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "enemy")
+                {
+                    isGameLost = true;
+                    EndGame();
+                }
+
+                if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "spike")
+                {
+                    isGameLost = true;
+                    EndGame();
+                }
+            }
+        }
+
         private void MoveEnemies()
         {
             if (enemy2.Left - 2 >= enemyPlatform2.Left && enemy2.Right + 2 <= enemyPlatform2.Right)
@@ -240,7 +277,7 @@ namespace Projet_PURPLE
                 enemySpeed2 = -enemySpeed2;
                 enemy2.Left += enemySpeed2;
             }
-            
+
             if (enemy3.Left - 2 >= enemyPlatform3.Left && enemy3.Right + 2 <= enemyPlatform3.Right)
             {
                 enemy3.Left += enemySpeed3;
@@ -254,6 +291,7 @@ namespace Projet_PURPLE
 
         private void EndGame()
         {
+            isGameOver = true;
             foreach (Control x in this.Controls)
             {
                 if (x is PictureBox)
@@ -267,7 +305,15 @@ namespace Projet_PURPLE
             endLabel.AutoSize = false;
             endLabel.TextAlign = ContentAlignment.MiddleCenter;
             endLabel.Dock = DockStyle.Fill;
-            endLabel.Text = "Game Over ! \n Your score is : " + score + "\n Press Space to restart";
+
+            if (isGameLost)
+            {
+                endLabel.Text = "Game Over ! \n Your score is : " + score + "\n Press Space to restart";
+            }
+            else if (isGameWon)
+            {
+                endLabel.Text = "You won ! \n Press Space to play next level";
+            }
         }
 
         private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e)
