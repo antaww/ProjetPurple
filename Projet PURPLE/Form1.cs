@@ -38,7 +38,7 @@ namespace Projet_PURPLE
         int score = 0;
         int marioSpeed = 5;
         int enemySpeed1 = 2, enemySpeed2 = 2, enemySpeed3 = 2;
-        int movingPlatformSpeed = 2;
+        int movingPlatformSpeed = 1;
 
         Point marioLocation;
         Point enemyOneLocation;
@@ -212,10 +212,12 @@ namespace Projet_PURPLE
                         else if (mario.Right > x.Left && mario.Right < x.Left + 10)
                         {
                             mario.Left = x.Left - 1 - mario.Width;
+                            isRight = false;
                         }
                         else if (mario.Left < x.Right && mario.Left > x.Right - 10)
                         {
                             mario.Left = x.Right + 1;
+                            isLeft = false;
                         }
                     }
 

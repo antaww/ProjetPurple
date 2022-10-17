@@ -490,7 +490,7 @@
             this.movingPlatformArea.BackColor = System.Drawing.Color.Transparent;
             this.movingPlatformArea.Location = new System.Drawing.Point(838, 12);
             this.movingPlatformArea.Name = "movingPlatformArea";
-            this.movingPlatformArea.Size = new System.Drawing.Size(174, 713);
+            this.movingPlatformArea.Size = new System.Drawing.Size(21, 713);
             this.movingPlatformArea.TabIndex = 106;
             this.movingPlatformArea.TabStop = false;
             this.movingPlatformArea.Tag = "movingPlatformArea";
