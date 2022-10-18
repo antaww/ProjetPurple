@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,9 @@ namespace Projet_PURPLE
 
         int jumpSpeed;
         int force;
+        
+        bool blockLabelMoving = false;
+        int counter;
 
         bool isGameWon = false;
         bool isGameLost = false;
@@ -125,6 +129,7 @@ namespace Projet_PURPLE
             isJumping = false;
             isGameLost = false;
             isGameWon = false;
+            blockLabel.Visible = false;
             force = 0;
             score = 0;
             mario.Location = marioLocation;
@@ -144,6 +149,20 @@ namespace Projet_PURPLE
             if (!CheckCoins())
             {
                 door1.Visible = true;
+            }
+            
+            if (counter == 15)
+            {
+                blockLabelMoving = false;
+                blockLabel.Visible = false;
+            }
+            if(blockLabelMoving)
+            {
+                if(index % 2 == 0)
+                {
+                    counter++;
+                }
+                blockLabel.Location = new Point(blockLabel.Location.X, blockLabel.Location.Y - 1);
             }
 
 
@@ -218,6 +237,10 @@ namespace Projet_PURPLE
                                     questionBlock.Image = Properties.Resources.question_block_empty;
                                     questionBlock.BackgroundImage = Properties.Resources.question_block_empty;
                                     x.BackgroundImageLayout = ImageLayout.Stretch;
+                                    blockLabel.Visible = true;
+                                    counter = 0;
+                                    blockLabelMoving = true;
+                                    
                                 }
                             }
                             mario.Top = x.Bottom + 1;
@@ -354,9 +377,10 @@ namespace Projet_PURPLE
             MoveEnemies();
         }
 
-        private void platformTimer_Elapsed(object sender, ElapsedEventArgs e)
+        private void movingPlatformTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             MovePlatform();
         }
+
     }
 }
