@@ -31,7 +31,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.scoreLabel = new System.Windows.Forms.Label();
-            this.mario = new System.Windows.Forms.PictureBox();
+            this.mario = new Projet_PURPLE.Mario();
             this.coin4 = new System.Windows.Forms.PictureBox();
             this.coin7 = new System.Windows.Forms.PictureBox();
             this.coin5 = new System.Windows.Forms.PictureBox();
@@ -634,15 +634,13 @@
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.Label blockLabel;
-
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label blockLabel;
 
         private System.Windows.Forms.PictureBox pictureBox8;
 
-        private System.Windows.Forms.PictureBox coinBlock;
+        public System.Windows.Forms.PictureBox coinBlock;
 
-        private System.Windows.Forms.PictureBox questionBlock;
+        public System.Windows.Forms.PictureBox questionBlock;
 
         private System.Timers.Timer movingPlatformTimer;
 
@@ -669,8 +667,6 @@
         private System.Windows.Forms.PictureBox pictureBox2;
 
         private System.Windows.Forms.Label endLabel;
-
-        private System.Windows.Forms.PictureBox pictureBox24;
 
         private System.Windows.Forms.PictureBox enemyPlatform3;
 
@@ -710,7 +706,7 @@
 
         private System.Windows.Forms.PictureBox coin4;
 
-        private System.Windows.Forms.PictureBox mario;
+        private Projet_PURPLE.Mario mario;
 
         private System.Windows.Forms.Label scoreLabel;
 

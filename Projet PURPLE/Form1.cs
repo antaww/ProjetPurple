@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 
@@ -17,64 +11,61 @@ namespace Projet_PURPLE
         public Form1()
         {
             InitializeComponent();
+            _marioLocation = mario.Location;
+            _enemyTwoLocation = enemy2.Location;
+            _enemyThreeLocation = enemy3.Location;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            marioLocation = mario.Location;
-            enemyTwoLocation = enemy2.Location;
-            enemyThreeLocation = enemy3.Location;
-            scoreLabel.Location = new Point((this.Width - scoreLabel.Width) / 2, scoreLabel.Location.Y);
+            scoreLabel.Location = new Point((Width - scoreLabel.Width) / 2, scoreLabel.Location.Y);
         }
 
-        bool isLeft, isRight, isJumping, isGameOver, isOnGround;
 
-        int jumpSpeed;
-        int force;
-        
-        bool blockLabelMoving = false;
-        int counter;
+        public bool IsLeft;
+        public bool IsRight;
+        private bool _isGameOver;
+        public bool BlockLabelMoving;
+        public int Counter;
+        private int _index;
 
-        bool isGameWon = false;
-        bool isGameLost = false;
 
-        int gravity = 11;
-        int score = 0;
-        int marioSpeed = 5;
-        int enemySpeed1 = 2, enemySpeed2 = 2, enemySpeed3 = 2;
-        int movingPlatformSpeed = 1;
+        private bool _isGameWon;
+        private bool _isGameLost;
 
-        Point marioLocation;
-        Point enemyOneLocation;
-        Point enemyTwoLocation;
-        Point enemyThreeLocation;
+
+        public int Score;
+        private int _enemySpeed2 = 2, _enemySpeed3 = 2;
+        private int _movingPlatformSpeed = 1;
+
+        private readonly Point _marioLocation;
+        private readonly Point _enemyTwoLocation;
+        private readonly Point _enemyThreeLocation;
 
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
             {
-                isLeft = true;
+                IsLeft = true;
             }
 
             if (e.KeyCode == Keys.Right)
             {
-                isRight = true;
+                IsRight = true;
             }
 
-            if (e.KeyCode == Keys.Up && !isJumping && isOnGround)
+            if (e.KeyCode == Keys.Up)
             {
-                isJumping = true;
-                isOnGround = false;
-                force = gravity;
+                mario.Jump();
                 if (!CheckCoins())
                 {
-                    foreach (Control x in this.Controls)
+                    foreach (Control x in Controls)
                     {
-                        if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "door" && x.Visible == true)
+                        if (mario.Bounds.IntersectsWith(x.Bounds) && (string)x.Tag == "door" && x.Visible)
                         {
-                            isJumping = false;
-                            isGameWon = true;
+                            mario.IsJumping = false;
+                            _isGameWon = true;
                             EndGame();
                         }
                         x.BringToFront();
@@ -83,18 +74,20 @@ namespace Projet_PURPLE
             }
         }
 
+        
+
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Left)
             {
-                isLeft = false;
-                mario.Image = Properties.Resources.mario_left;
+                IsLeft = false;
+                mario.SetLeftAnimation();
             }
 
             if (e.KeyCode == Keys.Right)
             {
-                isRight = false;
-                mario.Image = Properties.Resources.mario_right;
+                IsRight = false;
+                mario.SetRightAnimation();
             }
 
             if (e.KeyCode == Keys.Escape)
@@ -102,20 +95,23 @@ namespace Projet_PURPLE
                 Application.Exit();
             }
 
-            if (e.KeyCode == Keys.Space && isGameOver)
+            if (e.KeyCode == Keys.Space && _isGameOver)
             {
                 ResetGame();
             }
         }
+
+        
+
 
         private void ResetGame()
         {
             endLabel.Visible = false;
             scoreLabel.Visible = true;
 
-            foreach (Control x in this.Controls)
+            foreach (Control x in Controls)
             {
-                if (x is PictureBox && x.Tag != "door")
+                if (x is PictureBox && (string)x.Tag != "door")
                 {
                     x.Visible = true;
                 }
@@ -123,188 +119,125 @@ namespace Projet_PURPLE
 
             questionBlock.Image = Properties.Resources.question_block;
             questionBlock.BackgroundImage = null;
-            isGameOver = false;
-            isRight = false;
-            isLeft = false;
-            isJumping = false;
-            isGameLost = false;
-            isGameWon = false;
+            _isGameOver = false;
+            IsRight = false;
+            IsLeft = false;
+            _isGameLost = false;
+            _isGameWon = false;
             blockLabel.Visible = false;
-            force = 0;
-            score = 0;
-            mario.Location = marioLocation;
-            enemy2.Location = enemyTwoLocation;
-            enemy3.Location = enemyThreeLocation;
-            scoreLabel.Text = "Score: " + score;
+            ResetMario();
+            Score = 0;
+            enemy2.Location = _enemyTwoLocation;
+            enemy3.Location = _enemyThreeLocation;
+            scoreLabel.Text = $"Score: {Score}";
             plateformTimer.Start();
         }
 
-
-        private int index;
-
         private void plateformTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            index++;
+            _index++;
 
             if (!CheckCoins())
             {
                 door1.Visible = true;
             }
             
-            if (counter == 15)
+            if (Counter == 15)
             {
-                blockLabelMoving = false;
+                BlockLabelMoving = false;
                 blockLabel.Visible = false;
             }
-            if(blockLabelMoving)
+            if(BlockLabelMoving)
             {
-                if(index % 2 == 0)
+                if(_index % 2 == 0)
                 {
-                    counter++;
+                    Counter++;
                 }
-                blockLabel.Location = new Point(blockLabel.Location.X, blockLabel.Location.Y - 1);
+                blockLabel.Location = blockLabel.Location with { Y = blockLabel.Location.Y - 1 };
             }
 
 
-            scoreLabel.Text = "Score : " + score;
+            scoreLabel.Text = "Score : " + Score;
 
             CheckLose();
 
-            if (mario.Top > this.ClientSize.Height)
+            if (mario.Top > ClientSize.Height)
             {
-                isGameLost = true;
+                _isGameLost = true;
                 EndGame();
             }
 
-            if (isLeft)
+            if (IsLeft)
             {
                 if (mario.Left > 0)
                 {
-                    mario.Left -= marioSpeed;
-                    if (index % 9 == 0)
+                    mario.Left -= Mario.MarioSpeed;
+                    if (_index % 9 == 0)
                     {
                         mario.Image = Properties.Resources.mario_run_left;
                     }
                 }
             }
 
-            if (isRight)
+            if (IsRight)
             {
-                if (mario.Right < this.ClientSize.Width)
+                if (mario.Right < ClientSize.Width)
                 {
-                    mario.Left += marioSpeed;
-                    if (index % 9 == 0)
+                    mario.Left += Mario.MarioSpeed;
+                    if (_index % 9 == 0)
                     {
                         mario.Image = Properties.Resources.mario_run;
                     }
                 }
             }
 
-            if (!isOnGround)
-            {
-                mario.Top -= force;
-                if (index % 2 == 0 && force > -9)
-                {
-                    force -= 1;
-                }
-            }
-            else
-            {
-                force = 0;
-            }
+            mario.Fall(_index);
 
             var isOnTemporaryGround = false;
-            foreach (Control x in this.Controls)
+            foreach (Control x in Controls)
             {
-                if (x is PictureBox && x.Tag == "platform")
+                if (x is PictureBox && (string)x.Tag == "platform")
                 {
-                    if (mario.Bounds.IntersectsWith(x.Bounds))
-                    {
-                        if (mario.Bottom > x.Top && mario.Bottom < x.Top + 10)
-                        {
-                            isOnTemporaryGround = true;
-                            mario.Top = x.Top + 1 - mario.Height;
-                            isJumping = false;
-                        }
-                        else if (mario.Top < x.Bottom && mario.Top > x.Bottom - 10)
-                        {
-                            if (x == questionBlock)
-                            {
-                                if(x.BackgroundImage == null)
-                                {
-                                    score += 1;
-                                    coinBlock.Visible = false;
-                                    questionBlock.Image = Properties.Resources.question_block_empty;
-                                    questionBlock.BackgroundImage = Properties.Resources.question_block_empty;
-                                    x.BackgroundImageLayout = ImageLayout.Stretch;
-                                    blockLabel.Visible = true;
-                                    counter = 0;
-                                    blockLabelMoving = true;
-                                    
-                                }
-                            }
-                            mario.Top = x.Bottom + 1;
-                            force = 0;
-                        }
-                        else if (mario.Right > x.Left && mario.Right < x.Left + 10)
-                        {
-                            mario.Left = x.Left - 1 - mario.Width;
-                            isRight = false;
-                        }
-                        else if (mario.Left < x.Right && mario.Left > x.Right - 10)
-                        {
-                            mario.Left = x.Right + 1;
-                            isLeft = false;
-                        }
-                    }
+                    if(mario.HandleCollisions(x, this)) isOnTemporaryGround = true;
 
                     x.BringToFront();
                 }
 
-                if (x is PictureBox && x.Tag == "coin")
-                {
-                    if (mario.Bounds.IntersectsWith(x.Bounds) && x.Visible)
-                    {
-                        x.Visible = false;
-                        score++;
-                    }
-                }
+                if (x is not PictureBox || (string)x.Tag != "coin") continue;
+                if (!mario.Bounds.IntersectsWith(x.Bounds) || !x.Visible) continue;
+                    
+                x.Visible = false;
+                Score++;
             }
 
-            this.isOnGround = isOnTemporaryGround;
+            mario.IsOnGround = isOnTemporaryGround;
         }
 
-        private bool CheckCoins()
+        private void ResetMario()
         {
-            foreach (Control x in this.Controls)
-            {
-                if (x is PictureBox && x.Tag == "coin")
-                {
-                    if (x.Visible == true)
-                    {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+            mario.IsJumping = false;
+            mario.Force = 0;
+            mario.Location = _marioLocation;
         }
+        
+        private bool CheckCoins() => Controls
+            .Cast<Control>()
+            .Where(x => x is PictureBox && (string)x.Tag == "coin")
+            .Any(x => x.Visible);
 
         private void CheckLose()
         {
-            foreach (Control x in this.Controls)
+            foreach (Control x in Controls)
             {
-                if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "enemy")
+                if (mario.Bounds.IntersectsWith(x.Bounds) && (string)x.Tag == "enemy")
                 {
-                    isGameLost = true;
+                    _isGameLost = true;
                     EndGame();
                 }
 
-                if (mario.Bounds.IntersectsWith(x.Bounds) && x.Tag == "spike")
-                {
-                    isGameLost = true;
-                    EndGame();
-                }
+                if (!mario.Bounds.IntersectsWith(x.Bounds) || (string)x.Tag != "spike") continue;
+                _isGameLost = true;
+                EndGame();
             }
         }
 
@@ -312,22 +245,22 @@ namespace Projet_PURPLE
         {
             if (enemy2.Left - 2 >= enemyPlatform2.Left && enemy2.Right + 2 <= enemyPlatform2.Right)
             {
-                enemy2.Left += enemySpeed2;
+                enemy2.Left += _enemySpeed2;
             }
             else
             {
-                enemySpeed2 = -enemySpeed2;
-                enemy2.Left += enemySpeed2;
+                _enemySpeed2 = -_enemySpeed2;
+                enemy2.Left += _enemySpeed2;
             }
 
             if (enemy3.Left - 2 >= enemyPlatform3.Left && enemy3.Right + 2 <= enemyPlatform3.Right)
             {
-                enemy3.Left += enemySpeed3;
+                enemy3.Left += _enemySpeed3;
             }
             else
             {
-                enemySpeed3 = -enemySpeed3;
-                enemy3.Left += enemySpeed3;
+                _enemySpeed3 = -_enemySpeed3;
+                enemy3.Left += _enemySpeed3;
             }
         }
 
@@ -335,20 +268,20 @@ namespace Projet_PURPLE
         {
             if (movingPlatform.Top - 2 >= movingPlatformArea.Top && movingPlatform.Bottom + 2 <= movingPlatformArea.Bottom)
             {
-                movingPlatform.Top += movingPlatformSpeed;
+                movingPlatform.Top += _movingPlatformSpeed;
             }
             else
             {
-                movingPlatformSpeed = -movingPlatformSpeed;
-                movingPlatform.Top += movingPlatformSpeed;
+                _movingPlatformSpeed = -_movingPlatformSpeed;
+                movingPlatform.Top += _movingPlatformSpeed;
             }
         }
 
         private void EndGame()
         {
             scoreLabel.Visible = false;
-            isGameOver = true;
-            foreach (Control x in this.Controls)
+            _isGameOver = true;
+            foreach (Control x in Controls)
             {
                 if (x is PictureBox)
                 {
@@ -362,25 +295,18 @@ namespace Projet_PURPLE
             endLabel.TextAlign = ContentAlignment.MiddleCenter;
             endLabel.Dock = DockStyle.Fill;
 
-            if (isGameLost)
+            if (_isGameLost)
             {
-                endLabel.Text = "Game Over ! \n Your score is : " + score + "\n Press Space to restart";
+                endLabel.Text = "Game Over ! \n Your score is : " + Score + "\n Press Space to restart";
             }
-            else if (isGameWon)
+            else if (_isGameWon)
             {
                 endLabel.Text = "You won ! \n Press Space to play next level";
             }
         }
 
-        private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            MoveEnemies();
-        }
+        private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e) => MoveEnemies();
 
-        private void movingPlatformTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            MovePlatform();
-        }
-
+        private void movingPlatformTimer_Elapsed(object sender, ElapsedEventArgs e) => MovePlatform();
     }
 }
