@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Timers;
 using System.Windows.Forms;
@@ -14,11 +15,17 @@ namespace Projet_PURPLE
             _marioLocation = mario.Location;
             _enemyTwoLocation = enemy2.Location;
             _enemyThreeLocation = enemy3.Location;
+            scoreLabel.Location = new Point((Width - scoreLabel.Width) / 2, scoreLabel.Location.Y);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            scoreLabel.Location = new Point((Width - scoreLabel.Width) / 2, scoreLabel.Location.Y);
+            PrivateFontCollection pfc = new PrivateFontCollection();
+            pfc.AddFontFile("../../Resources/SuperMario256.ttf");
+            foreach (var label in Controls.OfType<Label>())
+            {
+                label.Font = new Font(pfc.Families[0], 10); //todo:bug
+            }
         }
 
 
