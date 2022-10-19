@@ -9,3 +9,4 @@ C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet PURPLE
 C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.exe
 C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.pdb
 C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.Form1.resources
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.Menu.resources

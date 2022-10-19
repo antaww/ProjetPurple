@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System.Media;
+using System.Windows.Forms;
 
 namespace Projet_PURPLE
 {
@@ -15,6 +16,7 @@ namespace Projet_PURPLE
             IsJumping = true;
             IsOnGround = false;
             Force = Gravity;
+            PlayJumpSound();
         }
         
         public void SetLeftAnimation()
@@ -30,7 +32,7 @@ namespace Projet_PURPLE
         public bool HandleCollisions(Control x, Form1 form)
         {
             if (!Bounds.IntersectsWith(x.Bounds)) return false;
-            if (Bottom > x.Top && Bottom < x.Top + 10)
+            if (Bottom > x.Top && Bottom < x.Top + x.Height)
             {
                 Top = x.Top + 1 - Height;
                 IsJumping = false;
@@ -38,7 +40,7 @@ namespace Projet_PURPLE
                 return true;
             }
                 
-            if (Top < x.Bottom && Top > x.Bottom - 10)
+            if (Top < x.Bottom && Top > x.Bottom - x.Height)
             {
                 if (x.Name == "questionBlock")
                 {
@@ -52,21 +54,25 @@ namespace Projet_PURPLE
                         form.blockLabel.Visible = true;
                         form.Counter = 0;
                         form.BlockLabelMoving = true;
+                        PlayCoinSound();
                     }
                 }
 
-                Top = x.Bottom + 1;
+                Top = x.Bottom;
                 Force = 0;
+                PlayBumpSound();
             }
             else if (Right > x.Left && Right < x.Left + 10)
             {
                 Left = x.Left - 1 - Width;
                 form.IsRight = false;
+                PlayBumpSound();
             }
             else if (Left < x.Right && Left > x.Right - 10)
             {
                 Left = x.Right + 1;
                 form.IsLeft = false;
+                PlayBumpSound();
             }
 
             return false;
@@ -86,6 +92,30 @@ namespace Projet_PURPLE
             {
                 Force = 0;
             }
+        }
+        
+        private static void PlayBumpSound()
+        {
+            var player = new SoundPlayer(@"../../Resources/smb_bump.wav");
+            player.Play();
+        }
+
+        public void PlayCoinSound()
+        {
+            var player = new SoundPlayer(@"../../Resources/smb_coin.wav");
+            player.Play();
+        }
+        
+        private static void PlayJumpSound()
+        {
+            var player = new SoundPlayer(@"../../Resources/smb_jump-small.wav");
+            player.Play();
+        }
+        
+        public void PlayDieSound()
+        {
+            var player = new SoundPlayer(@"../../Resources/smb_mariodie.wav");
+            player.Play();
         }
     }
 }

@@ -54,10 +54,19 @@
             <DependentUpon>Form1.cs</DependentUpon>
         </Compile>
         <Compile Include="mario.cs" />
+        <Compile Include="Menu.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Menu.Designer.cs">
+          <DependentUpon>Menu.cs</DependentUpon>
+        </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <EmbeddedResource Include="Form1.resx">
           <DependentUpon>Form1.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Menu.resx">
+          <DependentUpon>Menu.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
             <Generator>ResXFileCodeGenerator</Generator>
@@ -86,6 +95,9 @@
       <Content Include="Resources\boss_door.png" />
       <Content Include="Resources\box.png" />
       <Content Include="Resources\coin.gif" />
+      <Content Include="Resources\coin2.gif" />
+      <Content Include="Resources\coin3.gif" />
+      <Content Include="Resources\mario_background.jpg" />
       <Content Include="Resources\mario_left.png" />
       <Content Include="Resources\mario_right.png" />
       <Content Include="Resources\mario_run.gif" />
@@ -95,6 +107,7 @@
       <Content Include="Resources\platform_short.png" />
       <Content Include="Resources\question_block.png" />
       <Content Include="Resources\question_block_empty.png" />
+      <Content Include="Resources\scoreCoin.png" />
       <Content Include="Resources\simple_door.png" />
       <Content Include="Resources\spike.png" />
       <Content Include="Resources\water.png" />

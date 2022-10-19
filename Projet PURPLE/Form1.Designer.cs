@@ -68,6 +68,7 @@
             this.coinBlock = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.blockLabel = new System.Windows.Forms.Label();
+            this.scoreCoin = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -103,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.questionBlock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinBlock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreCoin)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -110,11 +112,11 @@
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.scoreLabel.Location = new System.Drawing.Point(442, 9);
+            this.scoreLabel.Location = new System.Drawing.Point(458, 9);
             this.scoreLabel.Name = "scoreLabel";
-            this.scoreLabel.Size = new System.Drawing.Size(100, 25);
+            this.scoreLabel.Size = new System.Drawing.Size(53, 25);
             this.scoreLabel.TabIndex = 0;
-            this.scoreLabel.Text = "Score : 0";
+            this.scoreLabel.Text = "x 00";
             this.scoreLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // mario
@@ -132,7 +134,7 @@
             // coin4
             // 
             this.coin4.BackColor = System.Drawing.Color.Transparent;
-            this.coin4.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin4.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin4.Location = new System.Drawing.Point(738, 401);
             this.coin4.Name = "coin4";
             this.coin4.Size = new System.Drawing.Size(34, 31);
@@ -144,7 +146,7 @@
             // coin7
             // 
             this.coin7.BackColor = System.Drawing.Color.Transparent;
-            this.coin7.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin7.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin7.Location = new System.Drawing.Point(957, 655);
             this.coin7.Name = "coin7";
             this.coin7.Size = new System.Drawing.Size(34, 31);
@@ -156,7 +158,7 @@
             // coin5
             // 
             this.coin5.BackColor = System.Drawing.Color.Transparent;
-            this.coin5.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin5.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin5.Location = new System.Drawing.Point(361, 401);
             this.coin5.Name = "coin5";
             this.coin5.Size = new System.Drawing.Size(34, 31);
@@ -168,7 +170,7 @@
             // coin8
             // 
             this.coin8.BackColor = System.Drawing.Color.Transparent;
-            this.coin8.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin8.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin8.Location = new System.Drawing.Point(82, 266);
             this.coin8.Name = "coin8";
             this.coin8.Size = new System.Drawing.Size(34, 31);
@@ -180,7 +182,7 @@
             // coin9
             // 
             this.coin9.BackColor = System.Drawing.Color.Transparent;
-            this.coin9.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin9.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin9.Location = new System.Drawing.Point(601, 71);
             this.coin9.Name = "coin9";
             this.coin9.Size = new System.Drawing.Size(34, 31);
@@ -192,7 +194,7 @@
             // coin10
             // 
             this.coin10.BackColor = System.Drawing.Color.Transparent;
-            this.coin10.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin10.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin10.Location = new System.Drawing.Point(1, 3);
             this.coin10.Name = "coin10";
             this.coin10.Size = new System.Drawing.Size(34, 31);
@@ -204,7 +206,7 @@
             // coin11
             // 
             this.coin11.BackColor = System.Drawing.Color.Transparent;
-            this.coin11.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin11.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin11.Location = new System.Drawing.Point(148, 50);
             this.coin11.Name = "coin11";
             this.coin11.Size = new System.Drawing.Size(34, 31);
@@ -216,7 +218,7 @@
             // coin6
             // 
             this.coin6.BackColor = System.Drawing.Color.Transparent;
-            this.coin6.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin6.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin6.Location = new System.Drawing.Point(1029, 24);
             this.coin6.Name = "coin6";
             this.coin6.Size = new System.Drawing.Size(34, 31);
@@ -228,7 +230,7 @@
             // coin1
             // 
             this.coin1.BackColor = System.Drawing.Color.Transparent;
-            this.coin1.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin1.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin1.Location = new System.Drawing.Point(189, 583);
             this.coin1.Name = "coin1";
             this.coin1.Size = new System.Drawing.Size(34, 31);
@@ -240,7 +242,7 @@
             // coin2
             // 
             this.coin2.BackColor = System.Drawing.Color.Transparent;
-            this.coin2.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin2.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin2.Location = new System.Drawing.Point(375, 149);
             this.coin2.Name = "coin2";
             this.coin2.Size = new System.Drawing.Size(34, 31);
@@ -252,7 +254,7 @@
             // coin3
             // 
             this.coin3.BackColor = System.Drawing.Color.Transparent;
-            this.coin3.Image = global::Projet_PURPLE.Properties.Resources.coin;
+            this.coin3.Image = global::Projet_PURPLE.Properties.Resources.coin3;
             this.coin3.Location = new System.Drawing.Point(469, 536);
             this.coin3.Name = "coin3";
             this.coin3.Size = new System.Drawing.Size(34, 31);
@@ -533,24 +535,38 @@
             // 
             // blockLabel
             // 
+            this.blockLabel.AutoSize = true;
             this.blockLabel.BackColor = System.Drawing.Color.Transparent;
             this.blockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.blockLabel.Location = new System.Drawing.Point(762, 102);
             this.blockLabel.Name = "blockLabel";
-            this.blockLabel.Size = new System.Drawing.Size(36, 23);
+            this.blockLabel.Size = new System.Drawing.Size(30, 20);
             this.blockLabel.TabIndex = 110;
             this.blockLabel.Text = "+1\r\n";
             this.blockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.blockLabel.Visible = false;
+            // 
+            // scoreCoin
+            // 
+            this.scoreCoin.BackColor = System.Drawing.Color.Transparent;
+            this.scoreCoin.Image = global::Projet_PURPLE.Properties.Resources.scoreCoin;
+            this.scoreCoin.Location = new System.Drawing.Point(428, 3);
+            this.scoreCoin.Name = "scoreCoin";
+            this.scoreCoin.Size = new System.Drawing.Size(34, 31);
+            this.scoreCoin.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.scoreCoin.TabIndex = 111;
+            this.scoreCoin.TabStop = false;
+            this.scoreCoin.Tag = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::Projet_PURPLE.Properties.Resources.mario_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.scoreCoin);
             this.Controls.Add(this.blockLabel);
             this.Controls.Add(this.pictureBox8);
             this.Controls.Add(this.coinBlock);
@@ -592,6 +608,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
@@ -630,9 +647,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.questionBlock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coinBlock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.scoreCoin)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox scoreCoin;
 
         public System.Windows.Forms.Label blockLabel;
 

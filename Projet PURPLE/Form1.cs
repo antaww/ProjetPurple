@@ -16,16 +16,12 @@ namespace Projet_PURPLE
             _enemyTwoLocation = enemy2.Location;
             _enemyThreeLocation = enemy3.Location;
             scoreLabel.Location = new Point((Width - scoreLabel.Width) / 2, scoreLabel.Location.Y);
+            scoreCoin.Location = new Point((Width - scoreCoin.Width*4) / 2, scoreCoin.Location.Y);
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            PrivateFontCollection pfc = new PrivateFontCollection();
-            pfc.AddFontFile("../../Resources/SuperMario256.ttf");
-            foreach (var label in Controls.OfType<Label>())
-            {
-                label.Font = new Font(pfc.Families[0], 10); //todo:bug
-            }
+
         }
 
 
@@ -136,13 +132,19 @@ namespace Projet_PURPLE
             Score = 0;
             enemy2.Location = _enemyTwoLocation;
             enemy3.Location = _enemyThreeLocation;
-            scoreLabel.Text = $"Score: {Score}";
+            scoreLabel.Text = Score < 10 ? "x0" + Score : "x" + Score;
             plateformTimer.Start();
         }
 
         private void plateformTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _index++;
+            
+            var pfc = new PrivateFontCollection();
+            pfc.AddFontFile("../../Resources/SuperMario256.ttf");
+            blockLabel.Font = new Font(pfc.Families[0], 13);
+            scoreLabel.Font = new Font(pfc.Families[0], 15);
+            endLabel.Font = new Font(pfc.Families[0], 30);
 
             if (!CheckCoins())
             {
@@ -164,13 +166,16 @@ namespace Projet_PURPLE
             }
 
 
-            scoreLabel.Text = "Score : " + Score;
+            scoreLabel.Text = Score < 10 ? "x0" + Score : "x" + Score;
+
+
 
             CheckLose();
 
             if (mario.Top > ClientSize.Height)
             {
                 _isGameLost = true;
+                mario.PlayDieSound();
                 EndGame();
             }
 
@@ -215,6 +220,7 @@ namespace Projet_PURPLE
                     
                 x.Visible = false;
                 Score++;
+                mario.PlayCoinSound();
             }
 
             mario.IsOnGround = isOnTemporaryGround;
@@ -239,11 +245,13 @@ namespace Projet_PURPLE
                 if (mario.Bounds.IntersectsWith(x.Bounds) && (string)x.Tag == "enemy")
                 {
                     _isGameLost = true;
+                    mario.PlayDieSound();
                     EndGame();
                 }
 
                 if (!mario.Bounds.IntersectsWith(x.Bounds) || (string)x.Tag != "spike") continue;
                 _isGameLost = true;
+                mario.PlayDieSound();
                 EndGame();
             }
         }
@@ -315,5 +323,6 @@ namespace Projet_PURPLE
         private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e) => MoveEnemies();
 
         private void movingPlatformTimer_Elapsed(object sender, ElapsedEventArgs e) => MovePlatform();
+
     }
 }
