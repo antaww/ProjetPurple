@@ -69,6 +69,7 @@
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.blockLabel = new System.Windows.Forms.Label();
             this.scoreCoin = new System.Windows.Forms.PictureBox();
+            this.blockLabel2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -112,6 +113,7 @@
             this.scoreLabel.AutoSize = true;
             this.scoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.scoreLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.scoreLabel.ForeColor = System.Drawing.Color.White;
             this.scoreLabel.Location = new System.Drawing.Point(458, 9);
             this.scoreLabel.Name = "scoreLabel";
             this.scoreLabel.Size = new System.Drawing.Size(53, 25);
@@ -353,11 +355,12 @@
             // endLabel
             // 
             this.endLabel.AutoSize = true;
-            this.endLabel.BackColor = System.Drawing.Color.Transparent;
             this.endLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.endLabel.ForeColor = System.Drawing.Color.White;
             this.endLabel.Location = new System.Drawing.Point(738, 673);
             this.endLabel.Name = "endLabel";
-            this.endLabel.Size = new System.Drawing.Size(60, 69);
+            this.endLabel.Padding = new System.Windows.Forms.Padding(4);
+            this.endLabel.Size = new System.Drawing.Size(68, 77);
             this.endLabel.TabIndex = 91;
             this.endLabel.Text = "x";
             this.endLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -538,12 +541,15 @@
             this.blockLabel.AutoSize = true;
             this.blockLabel.BackColor = System.Drawing.Color.Transparent;
             this.blockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.blockLabel.Location = new System.Drawing.Point(762, 102);
+            this.blockLabel.ForeColor = System.Drawing.Color.White;
+            this.blockLabel.Location = new System.Drawing.Point(777, 105);
+            this.blockLabel.Margin = new System.Windows.Forms.Padding(0);
             this.blockLabel.Name = "blockLabel";
-            this.blockLabel.Size = new System.Drawing.Size(30, 20);
-            this.blockLabel.TabIndex = 110;
-            this.blockLabel.Text = "+1\r\n";
+            this.blockLabel.Size = new System.Drawing.Size(16, 25);
+            this.blockLabel.TabIndex = 113;
+            this.blockLabel.Text = "1";
             this.blockLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.blockLabel.UseCompatibleTextRendering = true;
             this.blockLabel.Visible = false;
             // 
             // scoreCoin
@@ -558,6 +564,22 @@
             this.scoreCoin.TabStop = false;
             this.scoreCoin.Tag = "";
             // 
+            // blockLabel2
+            // 
+            this.blockLabel2.AutoSize = true;
+            this.blockLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.blockLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.blockLabel2.ForeColor = System.Drawing.Color.White;
+            this.blockLabel2.Location = new System.Drawing.Point(760, 105);
+            this.blockLabel2.Margin = new System.Windows.Forms.Padding(0);
+            this.blockLabel2.Name = "blockLabel2";
+            this.blockLabel2.Size = new System.Drawing.Size(17, 25);
+            this.blockLabel2.TabIndex = 112;
+            this.blockLabel2.Text = "+";
+            this.blockLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.blockLabel2.UseCompatibleTextRendering = true;
+            this.blockLabel2.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -566,6 +588,7 @@
             this.BackgroundImage = global::Projet_PURPLE.Properties.Resources.mario_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.blockLabel2);
             this.Controls.Add(this.scoreCoin);
             this.Controls.Add(this.blockLabel);
             this.Controls.Add(this.pictureBox8);
@@ -603,6 +626,7 @@
             this.Controls.Add(this.mario);
             this.Controls.Add(this.scoreLabel);
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(15, 15);
             this.MaximizeBox = false;
@@ -651,6 +675,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        public System.Windows.Forms.Label blockLabel2;
 
         private System.Windows.Forms.PictureBox scoreCoin;
 

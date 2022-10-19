@@ -15,6 +15,8 @@ namespace Projet_PURPLE
             _marioLocation = mario.Location;
             _enemyTwoLocation = enemy2.Location;
             _enemyThreeLocation = enemy3.Location;
+            _blockLabelLocation = blockLabel.Location;
+            _blockLabel2Location = blockLabel2.Location;
             scoreLabel.Location = new Point((Width - scoreLabel.Width) / 2, scoreLabel.Location.Y);
             scoreCoin.Location = new Point((Width - scoreCoin.Width*4) / 2, scoreCoin.Location.Y);
         }
@@ -44,6 +46,8 @@ namespace Projet_PURPLE
         private readonly Point _marioLocation;
         private readonly Point _enemyTwoLocation;
         private readonly Point _enemyThreeLocation;
+        private Point _blockLabelLocation;
+        private Point _blockLabel2Location;
 
 
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -128,10 +132,13 @@ namespace Projet_PURPLE
             _isGameLost = false;
             _isGameWon = false;
             blockLabel.Visible = false;
+            blockLabel2.Visible = false;
             ResetMario();
             Score = 0;
             enemy2.Location = _enemyTwoLocation;
             enemy3.Location = _enemyThreeLocation;
+            blockLabel.Location = _blockLabelLocation;
+            blockLabel2.Location = _blockLabel2Location;
             scoreLabel.Text = Score < 10 ? "x0" + Score : "x" + Score;
             plateformTimer.Start();
         }
@@ -143,8 +150,11 @@ namespace Projet_PURPLE
             var pfc = new PrivateFontCollection();
             pfc.AddFontFile("../../Resources/SuperMario256.ttf");
             blockLabel.Font = new Font(pfc.Families[0], 13);
+            blockLabel2.Font = new Font(pfc.Families[0], 17); //+ is not managed by the font, so I had to use a bigger font size
+            
             scoreLabel.Font = new Font(pfc.Families[0], 15);
             endLabel.Font = new Font(pfc.Families[0], 30);
+
 
             if (!CheckCoins())
             {
@@ -155,6 +165,7 @@ namespace Projet_PURPLE
             {
                 BlockLabelMoving = false;
                 blockLabel.Visible = false;
+                blockLabel2.Visible = false;
             }
             if(BlockLabelMoving)
             {
@@ -163,6 +174,7 @@ namespace Projet_PURPLE
                     Counter++;
                 }
                 blockLabel.Location = blockLabel.Location with { Y = blockLabel.Location.Y - 1 };
+                blockLabel2.Location = blockLabel2.Location with { Y = blockLabel2.Location.Y - 1 };
             }
 
 
@@ -306,6 +318,7 @@ namespace Projet_PURPLE
 
             plateformTimer.Stop();
             endLabel.Visible = true;
+            endLabel.BackColor = Color.Black;
             endLabel.AutoSize = false;
             endLabel.TextAlign = ContentAlignment.MiddleCenter;
             endLabel.Dock = DockStyle.Fill;

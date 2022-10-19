@@ -52,6 +52,7 @@ namespace Projet_PURPLE
                         form.questionBlock.BackgroundImage = Properties.Resources.question_block_empty;
                         x.BackgroundImageLayout = ImageLayout.Stretch;
                         form.blockLabel.Visible = true;
+                        form.blockLabel2.Visible = true;
                         form.Counter = 0;
                         form.BlockLabelMoving = true;
                         PlayCoinSound();
