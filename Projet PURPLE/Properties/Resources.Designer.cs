@@ -72,6 +72,16 @@ namespace Projet_PURPLE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow {
+            get {
+                object obj = ResourceManager.GetObject("arrow", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap boss_door {
             get {
                 object obj = ResourceManager.GetObject("boss_door", resourceCulture);
@@ -245,6 +255,16 @@ namespace Projet_PURPLE.Properties {
         internal static System.Drawing.Bitmap spike {
             get {
                 object obj = ResourceManager.GetObject("spike", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap start_screen3 {
+            get {
+                object obj = ResourceManager.GetObject("start_screen3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

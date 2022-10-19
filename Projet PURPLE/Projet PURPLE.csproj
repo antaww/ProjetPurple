@@ -92,6 +92,7 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="Resources\aqua_door.png" />
+      <Content Include="Resources\arrow.png" />
       <Content Include="Resources\boss_door.png" />
       <Content Include="Resources\box.png" />
       <Content Include="Resources\coin.gif" />
@@ -110,6 +111,7 @@
       <Content Include="Resources\scoreCoin.png" />
       <Content Include="Resources\simple_door.png" />
       <Content Include="Resources\spike.png" />
+      <Content Include="Resources\start_screen3.jpg" />
       <Content Include="Resources\water.png" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
