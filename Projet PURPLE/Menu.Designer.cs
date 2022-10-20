@@ -57,11 +57,14 @@ partial class Menu
         this.quitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         this.quitLabel.UseCompatibleTextRendering = true;
         this.quitLabel.Click += new System.EventHandler(this.quitLabel_Click);
+        this.quitLabel.MouseHover += new System.EventHandler(this.quitLabel_MouseHover);
         // 
         // menuTimer
         // 
+        this.menuTimer.Enabled = true;
         this.menuTimer.Interval = 20D;
         this.menuTimer.SynchronizingObject = this;
+        this.menuTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.menuTimer_Elapsed);
         // 
         // helpLabel
         // 
@@ -79,6 +82,7 @@ partial class Menu
         this.helpLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         this.helpLabel.UseCompatibleTextRendering = true;
         this.helpLabel.Click += new System.EventHandler(this.helpLabel_Click);
+        this.helpLabel.MouseHover += new System.EventHandler(this.helpLabel_MouseHover);
         // 
         // startLabel
         // 
@@ -96,6 +100,7 @@ partial class Menu
         this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         this.startLabel.UseCompatibleTextRendering = true;
         this.startLabel.Click += new System.EventHandler(this.startLabel_Click);
+        this.startLabel.MouseHover += new System.EventHandler(this.startLabel_MouseHover);
         // 
         // menuArrow
         // 
