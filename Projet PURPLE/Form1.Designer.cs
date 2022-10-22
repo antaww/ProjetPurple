@@ -70,6 +70,9 @@
             this.blockLabel = new System.Windows.Forms.Label();
             this.scoreCoin = new System.Windows.Forms.PictureBox();
             this.blockLabel2 = new System.Windows.Forms.Label();
+            this.pauseResumeLabel = new System.Windows.Forms.Label();
+            this.pauseQuitLabel = new System.Windows.Forms.Label();
+            this.pauseMenuTimer = new System.Timers.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -106,6 +109,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.coinBlock)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreCoin)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pauseMenuTimer)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -277,7 +281,6 @@
             // 
             // plateformTimer
             // 
-            this.plateformTimer.Enabled = true;
             this.plateformTimer.Interval = 18D;
             this.plateformTimer.SynchronizingObject = this;
             this.plateformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.plateformTimer_Elapsed);
@@ -404,7 +407,6 @@
             // 
             // enemiesTimer
             // 
-            this.enemiesTimer.Enabled = true;
             this.enemiesTimer.Interval = 30D;
             this.enemiesTimer.SynchronizingObject = this;
             this.enemiesTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.enemiesTimer_Elapsed);
@@ -496,7 +498,6 @@
             // 
             // movingPlatformTimer
             // 
-            this.movingPlatformTimer.Enabled = true;
             this.movingPlatformTimer.Interval = 30D;
             this.movingPlatformTimer.SynchronizingObject = this;
             this.movingPlatformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.movingPlatformTimer_Elapsed);
@@ -580,6 +581,39 @@
             this.blockLabel2.UseCompatibleTextRendering = true;
             this.blockLabel2.Visible = false;
             // 
+            // pauseResumeLabel
+            // 
+            this.pauseResumeLabel.AutoSize = true;
+            this.pauseResumeLabel.BackColor = System.Drawing.Color.Black;
+            this.pauseResumeLabel.ForeColor = System.Drawing.Color.White;
+            this.pauseResumeLabel.Location = new System.Drawing.Point(381, 277);
+            this.pauseResumeLabel.Name = "pauseResumeLabel";
+            this.pauseResumeLabel.Size = new System.Drawing.Size(55, 17);
+            this.pauseResumeLabel.TabIndex = 114;
+            this.pauseResumeLabel.Text = "resume";
+            this.pauseResumeLabel.Click += new System.EventHandler(this.pauseResumeLabel_Click);
+            this.pauseResumeLabel.MouseHover += new System.EventHandler(this.pauseResumeLabel_MouseHover);
+            // 
+            // pauseQuitLabel
+            // 
+            this.pauseQuitLabel.AutoSize = true;
+            this.pauseQuitLabel.BackColor = System.Drawing.Color.Black;
+            this.pauseQuitLabel.ForeColor = System.Drawing.Color.White;
+            this.pauseQuitLabel.Location = new System.Drawing.Point(381, 306);
+            this.pauseQuitLabel.Name = "pauseQuitLabel";
+            this.pauseQuitLabel.Size = new System.Drawing.Size(31, 17);
+            this.pauseQuitLabel.TabIndex = 115;
+            this.pauseQuitLabel.Text = "quit";
+            this.pauseQuitLabel.Click += new System.EventHandler(this.pauseQuitLabel_Click);
+            this.pauseQuitLabel.MouseHover += new System.EventHandler(this.pauseQuitLabel_MouseHover);
+            // 
+            // pauseMenuTimer
+            // 
+            this.pauseMenuTimer.Enabled = true;
+            this.pauseMenuTimer.Interval = 10D;
+            this.pauseMenuTimer.SynchronizingObject = this;
+            this.pauseMenuTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.pauseMenuTimer_Elapsed);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -588,6 +622,8 @@
             this.BackgroundImage = global::Projet_PURPLE.Properties.Resources.mario_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.pauseQuitLabel);
+            this.Controls.Add(this.pauseResumeLabel);
             this.Controls.Add(this.blockLabel2);
             this.Controls.Add(this.scoreCoin);
             this.Controls.Add(this.blockLabel);
@@ -672,9 +708,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.coinBlock)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreCoin)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pauseMenuTimer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Timers.Timer pauseMenuTimer;
+
+        private System.Windows.Forms.Label pauseQuitLabel;
+
+        private System.Windows.Forms.Label pauseResumeLabel;
 
         public System.Windows.Forms.Label blockLabel2;
 

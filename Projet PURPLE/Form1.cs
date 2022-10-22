@@ -2,8 +2,10 @@
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Media;
 using System.Timers;
 using System.Windows.Forms;
+using Timer = System.Windows.Forms.Timer;
 
 namespace Projet_PURPLE
 {
@@ -12,6 +14,11 @@ namespace Projet_PURPLE
         public Form1()
         {
             InitializeComponent();
+            movingPlatformTimer.Enabled = true;
+            enemiesTimer.Enabled = true;
+            plateformTimer.Enabled = true;
+            pauseMenuTimer.Enabled = true;
+
             _marioLocation = mario.Location;
             _enemyTwoLocation = enemy2.Location;
             _enemyThreeLocation = enemy3.Location;
@@ -19,18 +26,38 @@ namespace Projet_PURPLE
             _blockLabel2Location = blockLabel2.Location;
             scoreLabel.Location = scoreLabel.Location with { X = (Width - scoreLabel.Width) / 2 };
             scoreCoin.Location = scoreCoin.Location with { X = (Width - scoreCoin.Width * 4) / 2 };
+
+            pauseResumeLabel.Location = pauseResumeLabel.Location with { X = (Width - pauseResumeLabel.Width) / 2 };
+            pauseResumeLabel.Location = pauseResumeLabel.Location with { Y = (Height - pauseResumeLabel.Height) / 2 };
+            pauseQuitLabel.Location = pauseResumeLabel.Location with
+            {
+                Y = pauseResumeLabel.Location.Y + pauseResumeLabel.Height + 10
+            };
+            pauseQuitLabel.Padding = new Padding(pauseResumeLabel.Width - pauseQuitLabel.Width / 2, 0,
+                pauseResumeLabel.Width - pauseQuitLabel.Width / 2, 0);
+
+            pauseResumeLabel.Visible = false;
+            pauseQuitLabel.Visible = false;
+            pauseResumeLabel.BackColor = Color.FromArgb(128, 0, 0, 0);
+            pauseQuitLabel.BackColor = Color.FromArgb(128, 0, 0, 0);
+
+            pauseQuitLabel.BringToFront();
+            pauseResumeLabel.BringToFront();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
         }
 
+        public bool IsGamePaused;
         public bool IsLeft;
         public bool IsRight;
-        private bool _isGameOver;
         public bool BlockLabelMoving;
+        private bool _isGameOver;
         private bool _isGameWon;
         private bool _isGameLost;
+
+        private string _selectedLabel;
 
         public int Counter;
         private int _index;
@@ -47,6 +74,40 @@ namespace Projet_PURPLE
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
+            if (IsGamePaused)
+            {
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (_selectedLabel == pauseResumeLabel.Name)
+                        ResumeGame();
+                    else if (_selectedLabel == pauseQuitLabel.Name)
+                        QuitGame();
+                }
+
+                if (e.KeyCode == Keys.Up)
+                {
+                    if(_selectedLabel == pauseQuitLabel.Name)
+                        _selectedLabel = pauseResumeLabel.Name;
+                    else
+                    {
+                        _selectedLabel = pauseQuitLabel.Name;
+                    }
+                    PlaySwitchSound();
+                }
+                
+                if (e.KeyCode == Keys.Down)
+                {
+                    if(_selectedLabel == pauseResumeLabel.Name)
+                        _selectedLabel = pauseQuitLabel.Name;
+                    else
+                    {
+                        _selectedLabel = pauseResumeLabel.Name;
+                    }
+                    PlaySwitchSound();
+                }
+                return;
+            }
+
             if (e.KeyCode == Keys.Left)
             {
                 IsLeft = true;
@@ -75,27 +136,69 @@ namespace Projet_PURPLE
 
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Left)
+            if (!IsGamePaused)
             {
-                IsLeft = false;
-                mario.SetLeftAnimation();
-            }
+                if (e.KeyCode == Keys.Left)
+                {
+                    IsLeft = false;
+                    mario.SetLeftAnimation();
+                }
 
-            if (e.KeyCode == Keys.Right)
-            {
-                IsRight = false;
-                mario.SetRightAnimation();
+                if (e.KeyCode == Keys.Right)
+                {
+                    IsRight = false;
+                    mario.SetRightAnimation();
+                }
             }
 
             if (e.KeyCode == Keys.Escape)
             {
-                Application.Exit();
+                if (!_isGameOver)
+                {
+                    if (!IsGamePaused)
+                    {
+                        PauseGame();
+                    }
+                    else
+                    {
+                        ResumeGame();
+                    }
+                }
             }
 
             if (e.KeyCode == Keys.Space && _isGameOver)
             {
                 ResetGame();
             }
+        }
+        
+        private static void PlaySwitchSound()
+        {
+            var player = new SoundPlayer(@"../../Resources/smb_fireball.wav");
+            player.Play();
+        }
+
+        private void PauseGame()
+        {
+            _selectedLabel = "pauseResumeLabel";
+            IsGamePaused = true;
+            pauseQuitLabel.Visible = true;
+            pauseResumeLabel.Visible = true;
+            plateformTimer.Stop();
+            enemiesTimer.Stop();
+            movingPlatformTimer.Stop();
+            pauseMenuTimer.Start();
+        }
+
+        private void ResumeGame()
+        {
+            IsGamePaused = false;
+            pauseQuitLabel.Visible = false;
+            pauseResumeLabel.Visible = false;
+            plateformTimer.Start();
+            enemiesTimer.Start();
+            movingPlatformTimer.Start();
+            pauseMenuTimer.Stop();
         }
 
 
@@ -140,15 +243,7 @@ namespace Projet_PURPLE
         {
             _index++;
 
-            var pfc = new PrivateFontCollection();
-            pfc.AddFontFile("../../Resources/SuperMario256.ttf");
-            blockLabel.Font = new Font(pfc.Families[0], 13);
-            blockLabel2.Font =
-                new Font(pfc.Families[0], 17); //+ is not managed by the font, so I had to use a bigger font size
-
-            scoreLabel.Font = new Font(pfc.Families[0], 15);
-            endLabel.Font = new Font(pfc.Families[0], 30);
-
+            SetFont();
 
             if (!CheckCoins())
             {
@@ -231,6 +326,19 @@ namespace Projet_PURPLE
             }
 
             mario.IsOnGround = isOnTemporaryGround;
+        }
+
+        private void SetFont()
+        {
+            var pfc = new PrivateFontCollection();
+            pfc.AddFontFile("../../Resources/SuperMario256.ttf");
+            blockLabel.Font = new Font(pfc.Families[0], 13);
+            blockLabel2.Font =
+                new Font(pfc.Families[0], 17); //+ is not managed by the font, so I had to use a bigger font size
+            scoreLabel.Font = new Font(pfc.Families[0], 15);
+            endLabel.Font = new Font(pfc.Families[0], 30);
+            pauseResumeLabel.Font = new Font(pfc.Families[0], 20);
+            pauseQuitLabel.Font = new Font(pfc.Families[0], 20);
         }
 
         private void ResetMario()
@@ -334,5 +442,41 @@ namespace Projet_PURPLE
         private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e) => MoveEnemies();
 
         private void movingPlatformTimer_Elapsed(object sender, ElapsedEventArgs e) => MovePlatform();
+
+        private void pauseResumeLabel_Click(object sender, EventArgs e)
+        {
+            ResumeGame();
+        }
+
+        private void pauseQuitLabel_Click(object sender, EventArgs e)
+        {
+            QuitGame();
+        }
+
+        private static void QuitGame()
+        {
+            Application.Exit();
+        }
+
+        private void pauseResumeLabel_MouseHover(object sender, EventArgs e)
+        {
+            _selectedLabel = "pauseResumeLabel";
+        }
+
+        private void pauseQuitLabel_MouseHover(object sender, EventArgs e)
+        {
+            _selectedLabel = "pauseQuitLabel";
+        }
+
+        private void pauseMenuTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            SetFont();
+            foreach (Control control in Controls)
+            {
+                control.ForeColor = Equals(control, Controls[_selectedLabel])
+                    ? ColorTranslator.FromHtml("#eec905")
+                    : Color.White;
+            }
+        }
     }
 }
