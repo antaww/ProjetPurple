@@ -53,6 +53,12 @@
         <Compile Include="Form1.Designer.cs">
             <DependentUpon>Form1.cs</DependentUpon>
         </Compile>
+        <Compile Include="Form2.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Form2.Designer.cs">
+          <DependentUpon>Form2.cs</DependentUpon>
+        </Compile>
         <Compile Include="mario.cs" />
         <Compile Include="Menu.cs">
           <SubType>Form</SubType>
@@ -64,6 +70,9 @@
         <Compile Include="Properties\AssemblyInfo.cs" />
         <EmbeddedResource Include="Form1.resx">
           <DependentUpon>Form1.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Form2.resx">
+          <DependentUpon>Form2.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="Menu.resx">
           <DependentUpon>Menu.cs</DependentUpon>
@@ -94,10 +103,22 @@
       <Content Include="Resources\aqua_door.png" />
       <Content Include="Resources\arrow.png" />
       <Content Include="Resources\boss_door.png" />
+      <Content Include="Resources\bottom_brick.png" />
+      <Content Include="Resources\bottom_brick2.png" />
       <Content Include="Resources\box.png" />
       <Content Include="Resources\coin.gif" />
       <Content Include="Resources\coin2.gif" />
       <Content Include="Resources\coin3.gif" />
+      <Content Include="Resources\goomba_walking.gif" />
+      <Content Include="Resources\goomba_walking_right.gif" />
+      <Content Include="Resources\lava_background.png" />
+      <Content Include="Resources\lava_bottom.png" />
+      <Content Include="Resources\lava_high_column.png" />
+      <Content Include="Resources\lava_platform_long.jpg" />
+      <Content Include="Resources\lava_platform_long1.jpg" />
+      <Content Include="Resources\lava_platform_long2.png" />
+      <Content Include="Resources\lava_platform_short.png" />
+      <Content Include="Resources\lava_spike.png" />
       <Content Include="Resources\mario_background.jpg" />
       <Content Include="Resources\mario_left.png" />
       <Content Include="Resources\mario_right.png" />

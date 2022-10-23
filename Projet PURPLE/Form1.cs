@@ -5,7 +5,6 @@ using System.Linq;
 using System.Media;
 using System.Timers;
 using System.Windows.Forms;
-using Timer = System.Windows.Forms.Timer;
 
 namespace Projet_PURPLE
 {
@@ -49,13 +48,15 @@ namespace Projet_PURPLE
         {
         }
 
-        public bool IsGamePaused;
+        private bool _isGamePaused;
         public bool IsLeft;
         public bool IsRight;
         public bool BlockLabelMoving;
         private bool _isGameOver;
         private bool _isGameWon;
         private bool _isGameLost;
+        private bool _enemy2Left;
+        private bool _enemy3Left;
 
         private string _selectedLabel;
 
@@ -74,7 +75,7 @@ namespace Projet_PURPLE
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (IsGamePaused)
+            if (_isGamePaused)
             {
                 if (e.KeyCode == Keys.Enter)
                 {
@@ -86,25 +87,28 @@ namespace Projet_PURPLE
 
                 if (e.KeyCode == Keys.Up)
                 {
-                    if(_selectedLabel == pauseQuitLabel.Name)
+                    if (_selectedLabel == pauseQuitLabel.Name)
                         _selectedLabel = pauseResumeLabel.Name;
                     else
                     {
                         _selectedLabel = pauseQuitLabel.Name;
                     }
+
                     PlaySwitchSound();
                 }
-                
+
                 if (e.KeyCode == Keys.Down)
                 {
-                    if(_selectedLabel == pauseResumeLabel.Name)
+                    if (_selectedLabel == pauseResumeLabel.Name)
                         _selectedLabel = pauseQuitLabel.Name;
                     else
                     {
                         _selectedLabel = pauseResumeLabel.Name;
                     }
+
                     PlaySwitchSound();
                 }
+
                 return;
             }
 
@@ -136,7 +140,7 @@ namespace Projet_PURPLE
 
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            if (!IsGamePaused)
+            if (!_isGamePaused)
             {
                 if (e.KeyCode == Keys.Left)
                 {
@@ -155,7 +159,7 @@ namespace Projet_PURPLE
             {
                 if (!_isGameOver)
                 {
-                    if (!IsGamePaused)
+                    if (!_isGamePaused)
                     {
                         PauseGame();
                     }
@@ -168,10 +172,24 @@ namespace Projet_PURPLE
 
             if (e.KeyCode == Keys.Space && _isGameOver)
             {
-                ResetGame();
+                if (_isGameWon)
+                {
+                    LoadLevel2();
+                }
+                else
+                {
+                    ResetGame();
+                }
             }
         }
-        
+
+        private void LoadLevel2()
+        {
+            var form2 = new Form2();
+            form2.Show();
+            Hide();
+        }
+
         private static void PlaySwitchSound()
         {
             var player = new SoundPlayer(@"../../Resources/smb_fireball.wav");
@@ -181,7 +199,7 @@ namespace Projet_PURPLE
         private void PauseGame()
         {
             _selectedLabel = "pauseResumeLabel";
-            IsGamePaused = true;
+            _isGamePaused = true;
             pauseQuitLabel.Visible = true;
             pauseResumeLabel.Visible = true;
             plateformTimer.Stop();
@@ -192,7 +210,7 @@ namespace Projet_PURPLE
 
         private void ResumeGame()
         {
-            IsGamePaused = false;
+            _isGamePaused = false;
             pauseQuitLabel.Visible = false;
             pauseResumeLabel.Visible = false;
             plateformTimer.Start();
@@ -245,7 +263,7 @@ namespace Projet_PURPLE
 
             SetFont();
 
-            if (!CheckCoins())
+            if (!CheckCoins() && !endLabel.Visible)
             {
                 door1.Visible = true;
             }
@@ -302,6 +320,20 @@ namespace Projet_PURPLE
                     {
                         mario.Image = Properties.Resources.mario_run;
                     }
+                }
+            }
+            
+            if(_enemy2Left)
+            {
+                if (_index % 3 == 0)
+                {
+                    enemy2.Image = Properties.Resources.goomba_walking;
+                }
+            } else
+            {
+                if (_index % 3 == 0)
+                {
+                    enemy2.Image = Properties.Resources.goomba_walking_right;
                 }
             }
 
@@ -376,11 +408,13 @@ namespace Projet_PURPLE
             if (enemy2.Left - 2 >= enemyPlatform2.Left && enemy2.Right + 2 <= enemyPlatform2.Right)
             {
                 enemy2.Left += _enemySpeed2;
+                _enemy2Left = true;
             }
             else
             {
                 _enemySpeed2 = -_enemySpeed2;
                 enemy2.Left += _enemySpeed2;
+                _enemy2Left = false;
             }
 
             if (enemy3.Left - 2 >= enemyPlatform3.Left && enemy3.Right + 2 <= enemyPlatform3.Right)

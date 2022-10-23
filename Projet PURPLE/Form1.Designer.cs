@@ -271,10 +271,12 @@
             // 
             // enemy2
             // 
-            this.enemy2.BackColor = System.Drawing.Color.Red;
-            this.enemy2.Location = new System.Drawing.Point(695, 392);
+            this.enemy2.BackColor = System.Drawing.Color.Transparent;
+            this.enemy2.Image = global::Projet_PURPLE.Properties.Resources.goomba_walking;
+            this.enemy2.Location = new System.Drawing.Point(683, 401);
             this.enemy2.Name = "enemy2";
-            this.enemy2.Size = new System.Drawing.Size(28, 50);
+            this.enemy2.Size = new System.Drawing.Size(39, 39);
+            this.enemy2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.enemy2.TabIndex = 42;
             this.enemy2.TabStop = false;
             this.enemy2.Tag = "enemy";
@@ -287,10 +289,12 @@
             // 
             // enemy3
             // 
-            this.enemy3.BackColor = System.Drawing.Color.Red;
-            this.enemy3.Location = new System.Drawing.Point(25, 43);
+            this.enemy3.BackColor = System.Drawing.Color.Transparent;
+            this.enemy3.Image = global::Projet_PURPLE.Properties.Resources.goomba_walking;
+            this.enemy3.Location = new System.Drawing.Point(39, 50);
             this.enemy3.Name = "enemy3";
-            this.enemy3.Size = new System.Drawing.Size(28, 50);
+            this.enemy3.Size = new System.Drawing.Size(39, 39);
+            this.enemy3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.enemy3.TabIndex = 44;
             this.enemy3.TabStop = false;
             this.enemy3.Tag = "enemy";
@@ -585,6 +589,7 @@
             // 
             this.pauseResumeLabel.AutoSize = true;
             this.pauseResumeLabel.BackColor = System.Drawing.Color.Black;
+            this.pauseResumeLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pauseResumeLabel.ForeColor = System.Drawing.Color.White;
             this.pauseResumeLabel.Location = new System.Drawing.Point(381, 277);
             this.pauseResumeLabel.Name = "pauseResumeLabel";
@@ -598,6 +603,7 @@
             // 
             this.pauseQuitLabel.AutoSize = true;
             this.pauseQuitLabel.BackColor = System.Drawing.Color.Black;
+            this.pauseQuitLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pauseQuitLabel.ForeColor = System.Drawing.Color.White;
             this.pauseQuitLabel.Location = new System.Drawing.Point(381, 306);
             this.pauseQuitLabel.Name = "pauseQuitLabel";

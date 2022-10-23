@@ -152,6 +152,8 @@ public partial class Menu : Form
     {
         var form1 = new Form1();
         form1.Show();
+        // var form2 = new Form2();
+        // form2.Show();
         Hide();
     }
 
