@@ -82,6 +82,26 @@ namespace Projet_PURPLE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bones_walking {
+            get {
+                object obj = ResourceManager.GetObject("bones_walking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap bones_walking_right {
+            get {
+                object obj = ResourceManager.GetObject("bones_walking_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap boss_door {
             get {
                 object obj = ResourceManager.GetObject("boss_door", resourceCulture);
@@ -152,6 +172,26 @@ namespace Projet_PURPLE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ghost_walking {
+            get {
+                object obj = ResourceManager.GetObject("ghost_walking", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ghost_walking_right {
+            get {
+                object obj = ResourceManager.GetObject("ghost_walking_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap goomba_walking {
             get {
                 object obj = ResourceManager.GetObject("goomba_walking", resourceCulture);
@@ -195,6 +235,16 @@ namespace Projet_PURPLE.Properties {
         internal static System.Drawing.Bitmap lava_high_column {
             get {
                 object obj = ResourceManager.GetObject("lava_high_column", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap lava_high_column2 {
+            get {
+                object obj = ResourceManager.GetObject("lava_high_column2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

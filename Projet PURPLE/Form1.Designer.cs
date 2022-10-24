@@ -273,9 +273,9 @@
             // 
             this.enemy2.BackColor = System.Drawing.Color.Transparent;
             this.enemy2.Image = global::Projet_PURPLE.Properties.Resources.goomba_walking;
-            this.enemy2.Location = new System.Drawing.Point(683, 401);
+            this.enemy2.Location = new System.Drawing.Point(679, 391);
             this.enemy2.Name = "enemy2";
-            this.enemy2.Size = new System.Drawing.Size(39, 39);
+            this.enemy2.Size = new System.Drawing.Size(43, 49);
             this.enemy2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.enemy2.TabIndex = 42;
             this.enemy2.TabStop = false;
@@ -291,9 +291,9 @@
             // 
             this.enemy3.BackColor = System.Drawing.Color.Transparent;
             this.enemy3.Image = global::Projet_PURPLE.Properties.Resources.goomba_walking;
-            this.enemy3.Location = new System.Drawing.Point(39, 50);
+            this.enemy3.Location = new System.Drawing.Point(39, 38);
             this.enemy3.Name = "enemy3";
-            this.enemy3.Size = new System.Drawing.Size(39, 39);
+            this.enemy3.Size = new System.Drawing.Size(43, 49);
             this.enemy3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.enemy3.TabIndex = 44;
             this.enemy3.TabStop = false;

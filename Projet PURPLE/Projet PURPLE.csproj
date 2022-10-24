@@ -134,6 +134,8 @@
     <ItemGroup>
       <Content Include="Resources\aqua_door.png" />
       <Content Include="Resources\arrow.png" />
+      <Content Include="Resources\bones_walking.gif" />
+      <Content Include="Resources\bones_walking_right.gif" />
       <Content Include="Resources\boss_door.png" />
       <Content Include="Resources\bottom_brick.png" />
       <Content Include="Resources\bottom_brick2.png" />
@@ -141,11 +143,14 @@
       <Content Include="Resources\coin.gif" />
       <Content Include="Resources\coin2.gif" />
       <Content Include="Resources\coin3.gif" />
+      <Content Include="Resources\ghost_walking.gif" />
+      <Content Include="Resources\ghost_walking_right.gif" />
       <Content Include="Resources\goomba_walking.gif" />
       <Content Include="Resources\goomba_walking_right.gif" />
       <Content Include="Resources\lava_background.png" />
       <Content Include="Resources\lava_bottom.png" />
       <Content Include="Resources\lava_high_column.png" />
+      <Content Include="Resources\lava_high_column2.png" />
       <Content Include="Resources\lava_platform_long.jpg" />
       <Content Include="Resources\lava_platform_long1.jpg" />
       <Content Include="Resources\lava_platform_long2.png" />
