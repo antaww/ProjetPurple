@@ -11,3 +11,18 @@ C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE
 C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.Form1.resources
 C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.Menu.resources
 C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet_PURPLE.Form2.resources
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\Microsoft.Win32.Registry.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\NAudio.Asio.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\NAudio.Core.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\NAudio.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\NAudio.Midi.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\NAudio.Wasapi.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\NAudio.WinForms.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\NAudio.WinMM.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\System.Security.AccessControl.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\System.Security.Principal.Windows.dll
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\Microsoft.Win32.Registry.xml
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\NAudio.xml
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\System.Security.AccessControl.xml
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\bin\Debug\System.Security.Principal.Windows.xml
+C:\Users\antap\RiderProjects\Projet PURPLE\Projet PURPLE\obj\Debug\Projet PURPLE.csproj.CopyComplete

@@ -2,9 +2,11 @@
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Media;
 using System.Timers;
 using System.Windows.Forms;
+using NAudio.Wave;
 
 namespace Projet_PURPLE
 {
@@ -15,7 +17,7 @@ namespace Projet_PURPLE
             InitializeComponent();
             movingPlatformTimer.Enabled = true;
             enemiesTimer.Enabled = true;
-            plateformTimer.Enabled = true;
+            globalTimer.Enabled = true;
             pauseMenuTimer.Enabled = true;
 
             _marioLocation = mario.Location;
@@ -42,11 +44,16 @@ namespace Projet_PURPLE
 
             pauseQuitLabel.BringToFront();
             pauseResumeLabel.BringToFront();
+
+            door1.Visible = false;
+
+            _fireball = new AudioFileReader(@"../../Resources/smb_fireball.wav");
+            _fireballOut = new();
+            _fireballOut.Init(_fireball);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-        }
+        private WaveStream _fireball;
+        private WaveOut _fireballOut;
 
         private bool _isGamePaused;
         public bool IsLeft;
@@ -57,6 +64,10 @@ namespace Projet_PURPLE
         private bool _isGameLost;
         private bool _enemy2Left;
         private bool _enemy3Left;
+        private bool _enemy2AnimLeft;
+        private bool _enemy2AnimRight;
+        private bool _enemy3AnimLeft;
+        private bool _enemy3AnimRight;
 
         private string _selectedLabel;
 
@@ -72,6 +83,160 @@ namespace Projet_PURPLE
         private readonly Point _blockLabelLocation;
         private readonly Point _blockLabel2Location;
 
+        //
+        //TIMERS
+        //
+
+        private void globalTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            _index++;
+
+            SetFont();
+
+            if (!CheckCoins() && !endLabel.Visible)
+            {
+                door1.Visible = true;
+            }
+
+            if (Counter == 15)
+            {
+                BlockLabelMoving = false;
+                blockLabel.Visible = false;
+                blockLabel2.Visible = false;
+            }
+
+            if (BlockLabelMoving)
+            {
+                if (_index % 2 == 0)
+                {
+                    Counter++;
+                }
+
+                blockLabel.Location = blockLabel.Location with { Y = blockLabel.Location.Y - 1 };
+                blockLabel2.Location = blockLabel2.Location with { Y = blockLabel2.Location.Y - 1 };
+            }
+
+
+            scoreLabel.Text = Score < 10 ? "x0" + Score : "x" + Score;
+
+
+            CheckLose();
+
+            if (mario.Top > ClientSize.Height)
+            {
+                _isGameLost = true;
+                mario.PlayDieSound();
+                EndGame();
+            }
+
+            if (IsLeft)
+            {
+                if (mario.Left > 0)
+                {
+                    mario.Left -= Mario.MarioSpeed;
+                    if (_index % 9 == 0)
+                    {
+                        mario.Image = Properties.Resources.mario_run_left;
+                    }
+                }
+            }
+
+            if (IsRight)
+            {
+                if (mario.Right < ClientSize.Width)
+                {
+                    mario.Left += Mario.MarioSpeed;
+                    if (_index % 9 == 0)
+                    {
+                        mario.Image = Properties.Resources.mario_run;
+                    }
+                }
+            }
+
+            AnimEnemies();
+
+            mario.Fall(_index);
+
+            var isOnTemporaryGround = false;
+            foreach (Control x in Controls)
+            {
+                if (x is PictureBox && (string)x.Tag == "platform")
+                {
+                    if (mario.HandleCollisions(x, this)) isOnTemporaryGround = true;
+
+                    x.BringToFront();
+                }
+
+                if (x is not PictureBox || (string)x.Tag != "coin") continue;
+                if (!mario.Bounds.IntersectsWith(x.Bounds) || !x.Visible) continue;
+
+                x.Visible = false;
+                Score++;
+                mario.PlayCoinSound();
+            }
+
+            mario.IsOnGround = isOnTemporaryGround;
+        }
+
+        private void AnimEnemies()
+        {
+            if (_enemy2Left)
+            {
+                if (!_enemy2AnimLeft)
+                {
+                    _enemy2AnimLeft = true;
+                    _enemy2AnimRight = false;
+                    enemy2.Image = Properties.Resources.goomba_walking;
+                }
+            }
+            else
+            {
+                if (!_enemy2AnimRight)
+                {
+                    _enemy2AnimLeft = false;
+                    _enemy2AnimRight = true;
+                    enemy2.Image = Properties.Resources.goomba_walking_right;
+                }
+            }
+
+            if (_enemy3Left)
+            {
+                if (!_enemy3AnimLeft)
+                {
+                    _enemy3AnimLeft = true;
+                    _enemy3AnimRight = false;
+                    enemy3.Image = Properties.Resources.goomba_walking;
+                }
+            }
+            else
+            {
+                if (!_enemy3AnimRight)
+                {
+                    _enemy3AnimLeft = false;
+                    _enemy3AnimRight = true;
+                    enemy3.Image = Properties.Resources.goomba_walking_right;
+                }
+            }
+        }
+
+        private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e) => MoveEnemies();
+
+        private void movingPlatformTimer_Elapsed(object sender, ElapsedEventArgs e) => MovePlatform();
+
+        private void pauseMenuTimer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            SetFont();
+            foreach (Control control in Controls)
+            {
+                control.ForeColor = Equals(control, Controls[_selectedLabel])
+                    ? ColorTranslator.FromHtml("#eec905")
+                    : Color.White;
+            }
+        }
+
+        //
+        //KEYBOARD EVENTS
+        //
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
@@ -137,7 +302,6 @@ namespace Projet_PURPLE
             }
         }
 
-
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
             if (!_isGamePaused)
@@ -183,6 +347,24 @@ namespace Projet_PURPLE
             }
         }
 
+        //
+        //CLICK EVENTS
+        //
+
+        private void pauseResumeLabel_Click(object sender, EventArgs e)
+        {
+            ResumeGame();
+        }
+
+        private void pauseQuitLabel_Click(object sender, EventArgs e)
+        {
+            QuitGame();
+        }
+
+        //
+        //METHODS
+        //
+
         private void LoadLevel2()
         {
             var form2 = new Form2();
@@ -190,10 +372,12 @@ namespace Projet_PURPLE
             Hide();
         }
 
-        private static void PlaySwitchSound()
+
+        private void PlaySwitchSound()
         {
-            var player = new SoundPlayer(@"../../Resources/smb_fireball.wav");
-            player.Play();
+            if (_fireballOut.PlaybackState == PlaybackState.Playing) _fireballOut.Stop();
+            _fireball.CurrentTime = new TimeSpan(0L);
+            _fireballOut.Play();
         }
 
         private void PauseGame()
@@ -202,7 +386,7 @@ namespace Projet_PURPLE
             _isGamePaused = true;
             pauseQuitLabel.Visible = true;
             pauseResumeLabel.Visible = true;
-            plateformTimer.Stop();
+            globalTimer.Stop();
             enemiesTimer.Stop();
             movingPlatformTimer.Stop();
             pauseMenuTimer.Start();
@@ -213,12 +397,11 @@ namespace Projet_PURPLE
             _isGamePaused = false;
             pauseQuitLabel.Visible = false;
             pauseResumeLabel.Visible = false;
-            plateformTimer.Start();
+            globalTimer.Start();
             enemiesTimer.Start();
             movingPlatformTimer.Start();
             pauseMenuTimer.Stop();
         }
-
 
         private void ResetGame()
         {
@@ -254,110 +437,7 @@ namespace Projet_PURPLE
             blockLabel.Location = _blockLabelLocation;
             blockLabel2.Location = _blockLabel2Location;
             scoreLabel.Text = Score < 10 ? "x0" + Score : "x" + Score;
-            plateformTimer.Start();
-        }
-
-        private void plateformTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            _index++;
-
-            SetFont();
-
-            if (!CheckCoins() && !endLabel.Visible)
-            {
-                door1.Visible = true;
-            }
-
-            if (Counter == 15)
-            {
-                BlockLabelMoving = false;
-                blockLabel.Visible = false;
-                blockLabel2.Visible = false;
-            }
-
-            if (BlockLabelMoving)
-            {
-                if (_index % 2 == 0)
-                {
-                    Counter++;
-                }
-
-                blockLabel.Location = blockLabel.Location with { Y = blockLabel.Location.Y - 1 };
-                blockLabel2.Location = blockLabel2.Location with { Y = blockLabel2.Location.Y - 1 };
-            }
-
-
-            scoreLabel.Text = Score < 10 ? "x0" + Score : "x" + Score;
-
-
-            CheckLose();
-
-            if (mario.Top > ClientSize.Height)
-            {
-                _isGameLost = true;
-                mario.PlayDieSound();
-                EndGame();
-            }
-
-            if (IsLeft)
-            {
-                if (mario.Left > 0)
-                {
-                    mario.Left -= Mario.MarioSpeed;
-                    if (_index % 9 == 0)
-                    {
-                        mario.Image = Properties.Resources.mario_run_left;
-                    }
-                }
-            }
-
-            if (IsRight)
-            {
-                if (mario.Right < ClientSize.Width)
-                {
-                    mario.Left += Mario.MarioSpeed;
-                    if (_index % 9 == 0)
-                    {
-                        mario.Image = Properties.Resources.mario_run;
-                    }
-                }
-            }
-            
-            if(_enemy2Left)
-            {
-                if (_index % 3 == 0)
-                {
-                    enemy2.Image = Properties.Resources.goomba_walking;
-                }
-            } else
-            {
-                if (_index % 3 == 0)
-                {
-                    enemy2.Image = Properties.Resources.goomba_walking_right;
-                }
-            }
-
-            mario.Fall(_index);
-
-            var isOnTemporaryGround = false;
-            foreach (Control x in Controls)
-            {
-                if (x is PictureBox && (string)x.Tag == "platform")
-                {
-                    if (mario.HandleCollisions(x, this)) isOnTemporaryGround = true;
-
-                    x.BringToFront();
-                }
-
-                if (x is not PictureBox || (string)x.Tag != "coin") continue;
-                if (!mario.Bounds.IntersectsWith(x.Bounds) || !x.Visible) continue;
-
-                x.Visible = false;
-                Score++;
-                mario.PlayCoinSound();
-            }
-
-            mario.IsOnGround = isOnTemporaryGround;
+            globalTimer.Start();
         }
 
         private void SetFont()
@@ -380,10 +460,18 @@ namespace Projet_PURPLE
             mario.Location = _marioLocation;
         }
 
-        private bool CheckCoins() => Controls
-            .Cast<Control>()
-            .Where(x => x is PictureBox && (string)x.Tag == "coin")
-            .Any(x => x.Visible);
+        private bool CheckCoins()
+        {
+            foreach (Control x in Controls)
+            {
+                if (x is PictureBox && (string)x.Tag == "coin" && x.Visible)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
 
         private void CheckLose()
         {
@@ -405,26 +493,38 @@ namespace Projet_PURPLE
 
         private void MoveEnemies()
         {
-            if (enemy2.Left - 2 >= enemyPlatform2.Left && enemy2.Right + 2 <= enemyPlatform2.Right)
+            if (_enemy2Left)
             {
-                enemy2.Left += _enemySpeed2;
-                _enemy2Left = true;
+                enemy2.Left -= 2;
+                if (enemy2.Left < enemyPlatform2.Left)
+                {
+                    _enemy2Left = false;
+                }
             }
             else
             {
-                _enemySpeed2 = -_enemySpeed2;
-                enemy2.Left += _enemySpeed2;
-                _enemy2Left = false;
+                enemy2.Left += 2;
+                if (enemy2.Left + enemy2.Width > enemyPlatform2.Left + enemyPlatform2.Width)
+                {
+                    _enemy2Left = true;
+                }
             }
-
-            if (enemy3.Left - 2 >= enemyPlatform3.Left && enemy3.Right + 2 <= enemyPlatform3.Right)
+            
+            if (_enemy3Left)
             {
-                enemy3.Left += _enemySpeed3;
+                enemy3.Left -= 2;
+                if (enemy3.Left < enemyPlatform3.Left)
+                {
+                    _enemy3Left = false;
+                }
             }
             else
             {
-                _enemySpeed3 = -_enemySpeed3;
-                enemy3.Left += _enemySpeed3;
+                enemy3.Left += 2;
+                if (enemy3.Left + enemy3.Width > enemyPlatform3.Left + enemyPlatform3.Width)
+                {
+                    _enemy3Left = true;
+                }
             }
         }
 
@@ -456,7 +556,7 @@ namespace Projet_PURPLE
 
             door1.Visible = false;
 
-            plateformTimer.Stop();
+            globalTimer.Stop();
             endLabel.Visible = true;
             endLabel.BackColor = Color.Black;
             endLabel.AutoSize = false;
@@ -473,24 +573,14 @@ namespace Projet_PURPLE
             }
         }
 
-        private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e) => MoveEnemies();
-
-        private void movingPlatformTimer_Elapsed(object sender, ElapsedEventArgs e) => MovePlatform();
-
-        private void pauseResumeLabel_Click(object sender, EventArgs e)
-        {
-            ResumeGame();
-        }
-
-        private void pauseQuitLabel_Click(object sender, EventArgs e)
-        {
-            QuitGame();
-        }
-
         private static void QuitGame()
         {
             Application.Exit();
         }
+
+        //
+        //HOVER EVENTS
+        //
 
         private void pauseResumeLabel_MouseHover(object sender, EventArgs e)
         {
@@ -500,17 +590,6 @@ namespace Projet_PURPLE
         private void pauseQuitLabel_MouseHover(object sender, EventArgs e)
         {
             _selectedLabel = "pauseQuitLabel";
-        }
-
-        private void pauseMenuTimer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            SetFont();
-            foreach (Control control in Controls)
-            {
-                control.ForeColor = Equals(control, Controls[_selectedLabel])
-                    ? ColorTranslator.FromHtml("#eec905")
-                    : Color.White;
-            }
         }
     }
 }

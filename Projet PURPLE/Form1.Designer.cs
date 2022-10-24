@@ -44,7 +44,7 @@
             this.coin2 = new System.Windows.Forms.PictureBox();
             this.coin3 = new System.Windows.Forms.PictureBox();
             this.enemy2 = new System.Windows.Forms.PictureBox();
-            this.plateformTimer = new System.Timers.Timer();
+            this.globalTimer = new System.Timers.Timer();
             this.enemy3 = new System.Windows.Forms.PictureBox();
             this.enemyPlatform1 = new System.Windows.Forms.PictureBox();
             this.pictureBox28 = new System.Windows.Forms.PictureBox();
@@ -86,7 +86,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.coin2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plateformTimer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.globalTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).BeginInit();
@@ -281,11 +281,11 @@
             this.enemy2.TabStop = false;
             this.enemy2.Tag = "enemy";
             // 
-            // plateformTimer
+            // globalTimer
             // 
-            this.plateformTimer.Interval = 18D;
-            this.plateformTimer.SynchronizingObject = this;
-            this.plateformTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.plateformTimer_Elapsed);
+            this.globalTimer.Interval = 18D;
+            this.globalTimer.SynchronizingObject = this;
+            this.globalTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.globalTimer_Elapsed);
             // 
             // enemy3
             // 
@@ -431,10 +431,10 @@
             // 
             this.door1.BackColor = System.Drawing.Color.Transparent;
             this.door1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.door1.Image = global::Projet_PURPLE.Properties.Resources.simple_door;
-            this.door1.Location = new System.Drawing.Point(51, 409);
+            this.door1.Image = global::Projet_PURPLE.Properties.Resources.boss_door;
+            this.door1.Location = new System.Drawing.Point(50, 359);
             this.door1.Name = "door1";
-            this.door1.Size = new System.Drawing.Size(41, 70);
+            this.door1.Size = new System.Drawing.Size(86, 120);
             this.door1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.door1.TabIndex = 101;
             this.door1.TabStop = false;
@@ -675,7 +675,6 @@
             this.MinimizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
             ((System.ComponentModel.ISupportInitialize)(this.mario)).EndInit();
@@ -691,7 +690,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.coin2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.plateformTimer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.globalTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemyPlatform1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox28)).EndInit();
@@ -775,7 +774,7 @@
 
         private System.Windows.Forms.PictureBox enemy3;
 
-        private System.Timers.Timer plateformTimer;
+        private System.Timers.Timer globalTimer;
 
         private System.Windows.Forms.PictureBox enemy2;
 

@@ -31,6 +31,24 @@ public partial class Menu : Form
 
     private string _selectedLabel;
 
+    //
+    //TIMER
+    //
+
+    private void menuTimer_Elapsed(object sender, ElapsedEventArgs e)
+    {
+        foreach (Control control in Controls)
+        {
+            control.ForeColor = Equals(control, Controls[_selectedLabel])
+                ? ColorTranslator.FromHtml("#eec905")
+                : Color.White;
+        }
+    }
+
+    //
+    //KEYBOARD EVENTS
+    //
+
     private void Menu_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Escape)
@@ -105,18 +123,8 @@ public partial class Menu : Form
         }
     }
 
-    private void menuTimer_Elapsed(object sender, ElapsedEventArgs e)
-    {
-        foreach (Control control in Controls)
-        {
-            control.ForeColor = Equals(control, Controls[_selectedLabel])
-                ? ColorTranslator.FromHtml("#eec905")
-                : Color.White;
-        }
-    }
-
     //
-    //CLICKS
+    //CLICK EVENTS
     //
 
     private void quitLabel_Click(object sender, EventArgs e)
@@ -164,7 +172,7 @@ public partial class Menu : Form
     }
 
     //
-    //HOVER
+    //HOVER EVENTS
     //
 
     private void startLabel_MouseHover(object sender, EventArgs e)

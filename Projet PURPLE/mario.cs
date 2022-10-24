@@ -1,5 +1,7 @@
-﻿using System.Media;
+﻿using System;
+using System.Media;
 using System.Windows.Forms;
+using NAudio.Wave;
 
 namespace Projet_PURPLE
 {
@@ -9,6 +11,16 @@ namespace Projet_PURPLE
         public int Force;
         private const int Gravity = 11;
         public const int MarioSpeed = 5;
+        
+        private WaveStream _bump;
+        private WaveOut _bumpOut;
+        private WaveStream _jump;
+        private WaveOut _jumpOut;
+        private WaveStream _coin;
+        private WaveOut _coinOut;
+        private WaveStream _death;
+        private WaveOut _deathOut;
+
 
         public void Jump()
         {
@@ -95,28 +107,45 @@ namespace Projet_PURPLE
             }
         }
         
-        private static void PlayBumpSound()
+        private void PlayBumpSound()
         {
-            var player = new SoundPlayer(@"../../Resources/smb_bump.wav");
-            player.Play();
+            _bump = new AudioFileReader(@"../../Resources/smb_bump.wav");
+            _bumpOut = new();
+            _bumpOut.Init(_bump);
+            if(_bumpOut.PlaybackState == PlaybackState.Playing) _bumpOut.Stop();
+            _bump.CurrentTime = new TimeSpan(0L);
+            _bumpOut.Play();
         }
 
         public void PlayCoinSound()
         {
-            var player = new SoundPlayer(@"../../Resources/smb_coin.wav");
-            player.Play();
+            _coin = new AudioFileReader(@"../../Resources/smb_coin.wav");
+            _coinOut = new();
+            _coinOut.Init(_coin);
+            if(_coinOut.PlaybackState == PlaybackState.Playing) _coinOut.Stop();
+            _coin.CurrentTime = new TimeSpan(0L);
+            _coinOut.Play();
         }
         
-        private static void PlayJumpSound()
+        private void PlayJumpSound()
         {
-            var player = new SoundPlayer(@"../../Resources/smb_jump-small.wav");
-            player.Play();
+            _jump = new AudioFileReader(@"../../Resources/smb_jump-small.wav");
+            _jumpOut = new();
+            _jumpOut.Init(_jump);
+            if(_jumpOut.PlaybackState == PlaybackState.Playing) _jumpOut.Stop();
+            _jump.CurrentTime = new TimeSpan(0L);
+            _jumpOut.Play();
+            
         }
         
         public void PlayDieSound()
         {
-            var player = new SoundPlayer(@"../../Resources/smb_mariodie.wav");
-            player.Play();
+            _death = new AudioFileReader(@"../../Resources/smb_mariodie.wav");
+            _deathOut = new();
+            _deathOut.Init(_death);
+            if(_deathOut.PlaybackState == PlaybackState.Playing) _deathOut.Stop();
+            _death.CurrentTime = new TimeSpan(0L);
+            _deathOut.Play();
         }
     }
 }
