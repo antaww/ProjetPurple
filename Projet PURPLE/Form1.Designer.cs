@@ -73,6 +73,8 @@
             this.pauseResumeLabel = new System.Windows.Forms.Label();
             this.pauseQuitLabel = new System.Windows.Forms.Label();
             this.pauseMenuTimer = new System.Timers.Timer();
+            this.lifeHead = new System.Windows.Forms.PictureBox();
+            this.lifeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -110,6 +112,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreCoin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pauseMenuTimer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -620,6 +623,31 @@
             this.pauseMenuTimer.SynchronizingObject = this;
             this.pauseMenuTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.pauseMenuTimer_Elapsed);
             // 
+            // lifeHead
+            // 
+            this.lifeHead.BackColor = System.Drawing.Color.Transparent;
+            this.lifeHead.Image = global::Projet_PURPLE.Properties.Resources.life_icon;
+            this.lifeHead.Location = new System.Drawing.Point(530, 3);
+            this.lifeHead.Name = "lifeHead";
+            this.lifeHead.Size = new System.Drawing.Size(38, 40);
+            this.lifeHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.lifeHead.TabIndex = 117;
+            this.lifeHead.TabStop = false;
+            this.lifeHead.Tag = "";
+            // 
+            // lifeLabel
+            // 
+            this.lifeLabel.AutoSize = true;
+            this.lifeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.lifeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lifeLabel.ForeColor = System.Drawing.Color.White;
+            this.lifeLabel.Location = new System.Drawing.Point(565, 9);
+            this.lifeLabel.Name = "lifeLabel";
+            this.lifeLabel.Size = new System.Drawing.Size(53, 25);
+            this.lifeLabel.TabIndex = 116;
+            this.lifeLabel.Text = "x 00";
+            this.lifeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -628,6 +656,8 @@
             this.BackgroundImage = global::Projet_PURPLE.Properties.Resources.mario_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.lifeHead);
+            this.Controls.Add(this.lifeLabel);
             this.Controls.Add(this.pauseQuitLabel);
             this.Controls.Add(this.pauseResumeLabel);
             this.Controls.Add(this.blockLabel2);
@@ -714,9 +744,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.scoreCoin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pauseMenuTimer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox lifeHead;
+        private System.Windows.Forms.Label lifeLabel;
 
         private System.Timers.Timer pauseMenuTimer;
 

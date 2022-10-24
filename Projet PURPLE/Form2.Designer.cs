@@ -66,6 +66,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.movingGhostArea = new System.Windows.Forms.PictureBox();
             this.enemy4 = new System.Windows.Forms.PictureBox();
+            this.lifeHead = new System.Windows.Forms.PictureBox();
+            this.lifeLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -96,6 +98,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.movingGhostArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).BeginInit();
             this.SuspendLayout();
             // 
             // mario
@@ -530,6 +533,31 @@
             this.enemy4.TabStop = false;
             this.enemy4.Tag = "enemy";
             // 
+            // lifeHead
+            // 
+            this.lifeHead.BackColor = System.Drawing.Color.Transparent;
+            this.lifeHead.Image = global::Projet_PURPLE.Properties.Resources.life_icon;
+            this.lifeHead.Location = new System.Drawing.Point(543, 3);
+            this.lifeHead.Name = "lifeHead";
+            this.lifeHead.Size = new System.Drawing.Size(38, 40);
+            this.lifeHead.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.lifeHead.TabIndex = 134;
+            this.lifeHead.TabStop = false;
+            this.lifeHead.Tag = "";
+            // 
+            // lifeLabel
+            // 
+            this.lifeLabel.AutoSize = true;
+            this.lifeLabel.BackColor = System.Drawing.Color.Transparent;
+            this.lifeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lifeLabel.ForeColor = System.Drawing.Color.White;
+            this.lifeLabel.Location = new System.Drawing.Point(578, 9);
+            this.lifeLabel.Name = "lifeLabel";
+            this.lifeLabel.Size = new System.Drawing.Size(53, 25);
+            this.lifeLabel.TabIndex = 133;
+            this.lifeLabel.Text = "x 00";
+            this.lifeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -538,6 +566,8 @@
             this.BackgroundImage = global::Projet_PURPLE.Properties.Resources.lava_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.lifeHead);
+            this.Controls.Add(this.lifeLabel);
             this.Controls.Add(this.enemy4);
             this.Controls.Add(this.movingGhostArea);
             this.Controls.Add(this.pictureBox1);
@@ -610,9 +640,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.movingGhostArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox lifeHead;
+        private System.Windows.Forms.Label lifeLabel;
 
         private System.Windows.Forms.PictureBox enemy4;
 

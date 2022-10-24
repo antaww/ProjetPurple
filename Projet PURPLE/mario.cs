@@ -20,6 +20,10 @@ namespace Projet_PURPLE
         private WaveOut _coinOut;
         private WaveStream _death;
         private WaveOut _deathOut;
+        private WaveStream _gameOver;
+        private WaveOut _gameOverOut;
+        private WaveStream _win;
+        private WaveOut _winOut;
 
 
         public void Jump()
@@ -139,8 +143,7 @@ namespace Projet_PURPLE
 
             return false;
         }
-
-
+        
         public void Fall(int index)
         {
             if (!IsOnGround)
@@ -195,6 +198,26 @@ namespace Projet_PURPLE
             if (_deathOut.PlaybackState == PlaybackState.Playing) _deathOut.Stop();
             _death.CurrentTime = new TimeSpan(0L);
             _deathOut.Play();
+        }
+
+        public void PlayGameOverSound()
+        {
+            _gameOver = new AudioFileReader(@"../../Resources/smb_gameover.wav");
+            _gameOverOut = new();
+            _gameOverOut.Init(_gameOver);
+            if (_gameOverOut.PlaybackState == PlaybackState.Playing) _gameOverOut.Stop();
+            _gameOver.CurrentTime = new TimeSpan(0L);
+            _gameOverOut.Play();
+        }
+        
+        public void PlayWinSound()
+        {
+            _win = new AudioFileReader(@"../../Resources/smb_stage_clear.wav");
+            _winOut = new();
+            _winOut.Init(_win);
+            if (_winOut.PlaybackState == PlaybackState.Playing) _winOut.Stop();
+            _win.CurrentTime = new TimeSpan(0L);
+            _winOut.Play();
         }
     }
 }

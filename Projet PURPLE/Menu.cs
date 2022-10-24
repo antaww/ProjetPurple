@@ -4,6 +4,7 @@ using System.Drawing.Text;
 using System.Media;
 using System.Timers;
 using System.Windows.Forms;
+using NAudio.Wave;
 
 namespace Projet_PURPLE;
 
@@ -23,7 +24,20 @@ public partial class Menu : Form
         menuArrow.Location = new Point(startLabel.Location.X - menuArrow.Width,
             startLabel.Location.Y + startLabel.Height / 2 - menuArrow.Height / 2);
         _selectedLabel = "startLabel";
+        
+        _fireball = new AudioFileReader(@"../../Resources/smb_fireball.wav");
+        _fireballOut = new();
+        _fireballOut.Init(_fireball);
+        _mainTheme = new AudioFileReader(@"../../Resources/Menu_Theme.wav");
+        _mainThemeOut = new();
+        _mainThemeOut.Init(_mainTheme);
+        PlayMenuTheme();
     }
+    
+    private WaveStream _fireball;
+    private WaveOut _fireballOut;
+    private WaveStream _mainTheme;
+    private WaveOut _mainThemeOut;
 
     Point _startLabelLocation;
     Point _quitLabelLocation;
@@ -158,6 +172,7 @@ public partial class Menu : Form
 
     private void StartGame()
     {
+        _mainThemeOut.Stop();
         // var form1 = new Form1();
         // form1.Show();
         var form2 = new Form2();
@@ -165,10 +180,18 @@ public partial class Menu : Form
         Hide();
     }
 
-    private static void PlaySwitchSound()
+    private void PlaySwitchSound()
     {
-        var player = new SoundPlayer(@"../../Resources/smb_fireball.wav");
-        player.Play();
+        if (_fireballOut.PlaybackState == PlaybackState.Playing) _fireballOut.Stop();
+        _fireball.CurrentTime = new TimeSpan(0L);
+        _fireballOut.Play();
+    }
+
+    private void PlayMenuTheme()
+    {
+        if(_mainThemeOut.PlaybackState == PlaybackState.Playing) _mainThemeOut.Stop();
+        _mainTheme.CurrentTime = new TimeSpan(0L);
+        _mainThemeOut.Play();
     }
 
     //

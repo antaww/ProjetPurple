@@ -143,6 +143,7 @@
       <Content Include="Resources\coin.gif" />
       <Content Include="Resources\coin2.gif" />
       <Content Include="Resources\coin3.gif" />
+      <Content Include="Resources\coin4.gif" />
       <Content Include="Resources\ghost_walking.gif" />
       <Content Include="Resources\ghost_walking_right.gif" />
       <Content Include="Resources\goomba_walking.gif" />
@@ -156,6 +157,7 @@
       <Content Include="Resources\lava_platform_long2.png" />
       <Content Include="Resources\lava_platform_short.png" />
       <Content Include="Resources\lava_spike.png" />
+      <Content Include="Resources\life_icon.png" />
       <Content Include="Resources\mario_background.jpg" />
       <Content Include="Resources\mario_left.png" />
       <Content Include="Resources\mario_right.png" />

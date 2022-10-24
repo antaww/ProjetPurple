@@ -2,7 +2,6 @@
 using System.Drawing;
 using System.Drawing.Text;
 using System.Linq;
-using System.Text;
 using System.Timers;
 using System.Windows.Forms;
 using NAudio.Wave;
@@ -31,6 +30,14 @@ public partial class Form2 : Form
         _blockLabel2Location = blockLabel2.Location;
         scoreLabel.Location = scoreLabel.Location with { X = (Width - scoreLabel.Width) / 2 };
         scoreCoin.Location = scoreCoin.Location with { X = (Width - scoreCoin.Width * 4) / 2 };
+        lifeLabel.Location = lifeLabel.Location with
+        {
+            X = (Width - lifeLabel.Width) / 2 + (scoreLabel.Width + scoreCoin.Width + 50)
+        };
+        lifeHead.Location = lifeHead.Location with
+        {
+            X = (Width - lifeHead.Width * 4) / 2 + (scoreLabel.Width + scoreCoin.Width + 50)
+        };
 
         pauseQuitLabel.Padding = new Padding(pauseResumeLabel.Width - pauseQuitLabel.Width / 2, 0,
             pauseResumeLabel.Width - pauseQuitLabel.Width / 2, 0);
@@ -94,6 +101,7 @@ public partial class Form2 : Form
     public int Counter;
     private int _index;
     public int Score;
+    private int _life = 2;
     private int _enemySpeed2 = 1, _enemySpeed3 = 2, _enemySpeed4 = 3;
 
     private readonly Point _marioLocation;
@@ -148,16 +156,14 @@ public partial class Form2 : Form
             blockLabel2.Location = blockLabel2.Location with { Y = blockLabel2.Location.Y - 1 };
         }
 
-
         scoreLabel.Text = Score < 10 ? "x0" + Score : "x" + Score;
-
+        lifeLabel.Text = _life < 10 ? "x0" + _life : "x" + _life;
 
         CheckLose();
 
         if (mario.Top > ClientSize.Height)
         {
             _isGameLost = true;
-            mario.PlayDieSound();
             EndGame();
         }
 
@@ -418,6 +424,7 @@ public partial class Form2 : Form
         
         endLabel.Visible = false;
         scoreLabel.Visible = true;
+        lifeLabel.Visible = true;
 
         foreach (Control x in Controls)
         {
@@ -440,6 +447,7 @@ public partial class Form2 : Form
         blockLabel2.Visible = false;
         ResetMario();
         Score = 0;
+        _life = 2;
         enemy2.Location = _enemyTwoLocation;
         enemy3.Location = _enemyThreeLocation;
         enemy4.Location = _enemyFourLocation;
@@ -458,6 +466,7 @@ public partial class Form2 : Form
         endLabel.Font = new Font(_pfc.Families[0], 30);
         pauseResumeLabel.Font = new Font(_pfc.Families[0], 20);
         pauseQuitLabel.Font = new Font(_pfc.Families[0], 20);
+        lifeLabel.Font = new Font(_pfc.Families[0], 15);
     }
 
     private void ResetMario()
@@ -487,21 +496,18 @@ public partial class Form2 : Form
             if (mario.Bounds.IntersectsWith(x.Bounds) && (string)x.Tag == "enemy")
             {
                 _isGameLost = true;
-                mario.PlayDieSound();
                 EndGame();
             }
 
             if (mario.Bounds.IntersectsWith(x.Bounds) && (string)x.Tag == "spike")
             {
                 _isGameLost = true;
-                mario.PlayDieSound();
                 EndGame();
             }
 
             if (mario.Bounds.IntersectsWith(x.Bounds) && (string)x.Tag == "lava")
             {
                 _isGameLost = true;
-                mario.PlayDieSound();
                 EndGame();
             }
         }
@@ -623,33 +629,46 @@ public partial class Form2 : Form
 
     private void EndGame()
     {
-        _mainThemeOut.Stop();
-        scoreLabel.Visible = false;
-        _isGameOver = true;
-        foreach (Control x in Controls)
+        if (_life > 0)
         {
-            if (x is PictureBox)
+            mario.PlayDieSound();
+            _life--;
+            ResetMario();
+            _isGameLost = false;
+        }
+        else
+        {
+            _mainThemeOut.Stop();
+            scoreLabel.Visible = false;
+            lifeLabel.Visible = false;
+            _isGameOver = true;
+            foreach (Control x in Controls)
             {
-                x.Visible = false;
+                if (x is PictureBox)
+                {
+                    x.Visible = false;
+                }
             }
-        }
 
-        door2.Visible = false;
+            door2.Visible = false;
 
-        globalTimer.Stop();
-        endLabel.Visible = true;
-        endLabel.BackColor = Color.Black;
-        endLabel.AutoSize = false;
-        endLabel.TextAlign = ContentAlignment.MiddleCenter;
-        endLabel.Dock = DockStyle.Fill;
+            globalTimer.Stop();
+            endLabel.Visible = true;
+            endLabel.BackColor = Color.Black;
+            endLabel.AutoSize = false;
+            endLabel.TextAlign = ContentAlignment.MiddleCenter;
+            endLabel.Dock = DockStyle.Fill;
 
-        if (_isGameLost)
-        {
-            endLabel.Text = "Game Over ! \n Your score is : " + Score + "\n Press Space to restart";
-        }
-        else if (_isGameWon)
-        {
-            endLabel.Text = "You won ! \n Press Space to play next level";
+            if (_isGameLost)
+            {
+                mario.PlayGameOverSound();
+                endLabel.Text = "Game Over ! \n Your score is : " + Score + "\n Press Space to restart";
+            }
+            else if (_isGameWon)
+            {
+                mario.PlayWinSound();
+                endLabel.Text = "You won ! \n Press Space to play next level";
+            }
         }
     }
 
