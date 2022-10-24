@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Text;
-using System.Media;
 using System.Timers;
 using System.Windows.Forms;
 using NAudio.Wave;
@@ -173,10 +172,10 @@ public partial class Menu : Form
     private void StartGame()
     {
         _mainThemeOut.Stop();
-        // var form1 = new Form1();
-        // form1.Show();
-        var form2 = new Form2();
-        form2.Show();
+        var form1 = new Form1();
+        form1.Show();
+        // var form2 = new Form2();
+        // form2.Show();
         Hide();
     }
 
