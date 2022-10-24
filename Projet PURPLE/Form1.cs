@@ -113,7 +113,7 @@ public partial class Form1 : Form
     private void globalTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         _index++;
-
+        
         if (!_isGameWon)
         {
             door1.Visible = false;
@@ -190,7 +190,7 @@ public partial class Form1 : Form
 
         AnimEnemies();
 
-        mario.Fall(_index);
+        mario.Fall();
 
         var isOnTemporaryGround = false;
         foreach (Control x in Controls)
@@ -598,7 +598,7 @@ public partial class Form1 : Form
 
     private void EndGame()
     {
-        if (_life > 0)
+        if (_life > 0 && !_isGameWon)
         {
             mario.PlayDieSound();
             _life--;

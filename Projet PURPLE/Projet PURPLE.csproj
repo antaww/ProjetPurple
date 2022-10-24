@@ -148,6 +148,11 @@
       <Content Include="Resources\ghost_walking_right.gif" />
       <Content Include="Resources\goomba_walking.gif" />
       <Content Include="Resources\goomba_walking_right.gif" />
+      <Content Include="Resources\keyboard_arrow_down.png" />
+      <Content Include="Resources\keyboard_arrow_left.png" />
+      <Content Include="Resources\keyboard_arrow_right.png" />
+      <Content Include="Resources\keyboard_arrow_up.png" />
+      <Content Include="Resources\keyboard_arrow_up2.png" />
       <Content Include="Resources\lava_background.png" />
       <Content Include="Resources\lava_bottom.png" />
       <Content Include="Resources\lava_high_column.png" />

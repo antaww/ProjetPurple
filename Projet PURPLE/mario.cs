@@ -144,12 +144,12 @@ namespace Projet_PURPLE
             return false;
         }
         
-        public void Fall(int index)
+        public void Fall()
         {
             if (!IsOnGround)
             {
                 Top -= Force;
-                if (index % 2 == 0 && Force > -9)
+                if (Force > -9)
                 {
                     Force -= 1;
                 }

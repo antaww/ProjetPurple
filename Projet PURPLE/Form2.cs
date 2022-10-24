@@ -193,7 +193,7 @@ public partial class Form2 : Form
 
         AnimEnemies();
 
-        mario.Fall(_index);
+        mario.Fall();
 
         var isOnTemporaryGround = false;
         foreach (Control x in Controls)
@@ -368,7 +368,7 @@ public partial class Form2 : Form
         // form3.Show();
         var menu = new Menu();
         menu.Show();
-        Dispose();
+        Hide();
     }
 
     private void PlaySwitchSound()
@@ -629,7 +629,7 @@ public partial class Form2 : Form
 
     private void EndGame()
     {
-        if (_life > 0)
+        if (_life > 0 && !_isGameWon)
         {
             mario.PlayDieSound();
             _life--;

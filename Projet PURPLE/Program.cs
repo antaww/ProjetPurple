@@ -13,7 +13,10 @@ namespace Projet_PURPLE
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menu());
+            if (Application.OpenForms["Menu"] == null)
+            {
+                Application.Run(new Menu());
+            }
         }
     }
 }

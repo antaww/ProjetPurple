@@ -68,6 +68,8 @@
             this.enemy4 = new System.Windows.Forms.PictureBox();
             this.lifeHead = new System.Windows.Forms.PictureBox();
             this.lifeLabel = new System.Windows.Forms.Label();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -99,6 +101,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.movingGhostArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // mario
@@ -143,7 +147,7 @@
             this.pictureBox4.Image = global::Projet_PURPLE.Properties.Resources.lava_platform_short;
             this.pictureBox4.Location = new System.Drawing.Point(346, 434);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(203, 54);
+            this.pictureBox4.Size = new System.Drawing.Size(235, 54);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox4.TabIndex = 70;
             this.pictureBox4.TabStop = false;
@@ -165,9 +169,9 @@
             // 
             this.enemyPlatform3.BackColor = System.Drawing.Color.Transparent;
             this.enemyPlatform3.Image = global::Projet_PURPLE.Properties.Resources.lava_platform_short;
-            this.enemyPlatform3.Location = new System.Drawing.Point(732, 380);
+            this.enemyPlatform3.Location = new System.Drawing.Point(723, 380);
             this.enemyPlatform3.Name = "enemyPlatform3";
-            this.enemyPlatform3.Size = new System.Drawing.Size(203, 54);
+            this.enemyPlatform3.Size = new System.Drawing.Size(212, 54);
             this.enemyPlatform3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.enemyPlatform3.TabIndex = 72;
             this.enemyPlatform3.TabStop = false;
@@ -177,7 +181,7 @@
             // 
             this.pictureBox7.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox7.Image = global::Projet_PURPLE.Properties.Resources.lava_platform_short;
-            this.pictureBox7.Location = new System.Drawing.Point(732, 202);
+            this.pictureBox7.Location = new System.Drawing.Point(732, 189);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(203, 54);
             this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -189,7 +193,7 @@
             // 
             this.enemyPlatform2.BackColor = System.Drawing.Color.Transparent;
             this.enemyPlatform2.Image = global::Projet_PURPLE.Properties.Resources.lava_platform_short;
-            this.enemyPlatform2.Location = new System.Drawing.Point(282, 137);
+            this.enemyPlatform2.Location = new System.Drawing.Point(358, 171);
             this.enemyPlatform2.Name = "enemyPlatform2";
             this.enemyPlatform2.Size = new System.Drawing.Size(203, 54);
             this.enemyPlatform2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -213,7 +217,7 @@
             // 
             this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox9.Image = global::Projet_PURPLE.Properties.Resources.coin3;
-            this.pictureBox9.Location = new System.Drawing.Point(816, 165);
+            this.pictureBox9.Location = new System.Drawing.Point(816, 152);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(34, 31);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -249,7 +253,7 @@
             // 
             this.pictureBox12.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox12.Image = global::Projet_PURPLE.Properties.Resources.coin3;
-            this.pictureBox12.Location = new System.Drawing.Point(388, 202);
+            this.pictureBox12.Location = new System.Drawing.Point(547, 236);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(34, 31);
             this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -261,7 +265,7 @@
             // 
             this.pictureBox13.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox13.Image = global::Projet_PURPLE.Properties.Resources.coin3;
-            this.pictureBox13.Location = new System.Drawing.Point(367, 100);
+            this.pictureBox13.Location = new System.Drawing.Point(443, 134);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(34, 31);
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -273,7 +277,7 @@
             // 
             this.pictureBox14.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox14.Image = global::Projet_PURPLE.Properties.Resources.lava_spike;
-            this.pictureBox14.Location = new System.Drawing.Point(332, 190);
+            this.pictureBox14.Location = new System.Drawing.Point(408, 224);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(50, 25);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -384,9 +388,9 @@
             // 
             this.enemy3.BackColor = System.Drawing.Color.Transparent;
             this.enemy3.Image = global::Projet_PURPLE.Properties.Resources.bones_walking;
-            this.enemy3.Location = new System.Drawing.Point(769, 321);
+            this.enemy3.Location = new System.Drawing.Point(769, 335);
             this.enemy3.Name = "enemy3";
-            this.enemy3.Size = new System.Drawing.Size(46, 59);
+            this.enemy3.Size = new System.Drawing.Size(36, 45);
             this.enemy3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.enemy3.TabIndex = 121;
             this.enemy3.TabStop = false;
@@ -396,9 +400,9 @@
             // 
             this.enemy2.BackColor = System.Drawing.Color.Transparent;
             this.enemy2.Image = global::Projet_PURPLE.Properties.Resources.bones_walking;
-            this.enemy2.Location = new System.Drawing.Point(320, 78);
+            this.enemy2.Location = new System.Drawing.Point(396, 126);
             this.enemy2.Name = "enemy2";
-            this.enemy2.Size = new System.Drawing.Size(46, 59);
+            this.enemy2.Size = new System.Drawing.Size(36, 45);
             this.enemy2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.enemy2.TabIndex = 122;
             this.enemy2.TabStop = false;
@@ -408,7 +412,7 @@
             // 
             this.pictureBox16.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox16.Image = global::Projet_PURPLE.Properties.Resources.coin3;
-            this.pictureBox16.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox16.Location = new System.Drawing.Point(153, 189);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(34, 31);
             this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -422,7 +426,7 @@
             this.blockLabel2.BackColor = System.Drawing.Color.Transparent;
             this.blockLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.blockLabel2.ForeColor = System.Drawing.Color.White;
-            this.blockLabel2.Location = new System.Drawing.Point(280, 8);
+            this.blockLabel2.Location = new System.Drawing.Point(373, 18);
             this.blockLabel2.Margin = new System.Windows.Forms.Padding(0);
             this.blockLabel2.Name = "blockLabel2";
             this.blockLabel2.Size = new System.Drawing.Size(17, 25);
@@ -438,7 +442,7 @@
             this.blockLabel.BackColor = System.Drawing.Color.Transparent;
             this.blockLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.blockLabel.ForeColor = System.Drawing.Color.White;
-            this.blockLabel.Location = new System.Drawing.Point(297, 8);
+            this.blockLabel.Location = new System.Drawing.Point(390, 18);
             this.blockLabel.Margin = new System.Windows.Forms.Padding(0);
             this.blockLabel.Name = "blockLabel";
             this.blockLabel.Size = new System.Drawing.Size(16, 25);
@@ -451,7 +455,7 @@
             // coinBlock
             // 
             this.coinBlock.BackColor = System.Drawing.Color.Transparent;
-            this.coinBlock.Location = new System.Drawing.Point(295, 47);
+            this.coinBlock.Location = new System.Drawing.Point(388, 57);
             this.coinBlock.Name = "coinBlock";
             this.coinBlock.Size = new System.Drawing.Size(10, 11);
             this.coinBlock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -463,7 +467,7 @@
             // 
             this.questionBlock.BackColor = System.Drawing.Color.Transparent;
             this.questionBlock.Image = global::Projet_PURPLE.Properties.Resources.question_block;
-            this.questionBlock.Location = new System.Drawing.Point(282, 31);
+            this.questionBlock.Location = new System.Drawing.Point(375, 41);
             this.questionBlock.Name = "questionBlock";
             this.questionBlock.Size = new System.Drawing.Size(36, 36);
             this.questionBlock.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -476,7 +480,7 @@
             this.door2.BackColor = System.Drawing.Color.Transparent;
             this.door2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.door2.Image = global::Projet_PURPLE.Properties.Resources.aqua_door;
-            this.door2.Location = new System.Drawing.Point(880, 121);
+            this.door2.Location = new System.Drawing.Point(880, 108);
             this.door2.Name = "door2";
             this.door2.Size = new System.Drawing.Size(55, 81);
             this.door2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -512,9 +516,9 @@
             // movingGhostArea
             // 
             this.movingGhostArea.BackColor = System.Drawing.Color.Transparent;
-            this.movingGhostArea.Location = new System.Drawing.Point(25, 273);
+            this.movingGhostArea.Location = new System.Drawing.Point(81, 273);
             this.movingGhostArea.Name = "movingGhostArea";
-            this.movingGhostArea.Size = new System.Drawing.Size(1037, 15);
+            this.movingGhostArea.Size = new System.Drawing.Size(981, 15);
             this.movingGhostArea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.movingGhostArea.TabIndex = 131;
             this.movingGhostArea.TabStop = false;
@@ -527,7 +531,7 @@
             this.enemy4.Image = global::Projet_PURPLE.Properties.Resources.ghost_walking;
             this.enemy4.Location = new System.Drawing.Point(471, 380);
             this.enemy4.Name = "enemy4";
-            this.enemy4.Size = new System.Drawing.Size(46, 46);
+            this.enemy4.Size = new System.Drawing.Size(40, 40);
             this.enemy4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.enemy4.TabIndex = 132;
             this.enemy4.TabStop = false;
@@ -558,6 +562,30 @@
             this.lifeLabel.Text = "x 00";
             this.lifeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox6.Image = global::Projet_PURPLE.Properties.Resources.lava_platform_short;
+            this.pictureBox6.Location = new System.Drawing.Point(653, 534);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(117, 54);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 135;
+            this.pictureBox6.TabStop = false;
+            this.pictureBox6.Tag = "platform";
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox8.Image = global::Projet_PURPLE.Properties.Resources.lava_platform_short;
+            this.pictureBox8.Location = new System.Drawing.Point(997, 283);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(203, 54);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox8.TabIndex = 136;
+            this.pictureBox8.TabStop = false;
+            this.pictureBox8.Tag = "platform";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -566,6 +594,8 @@
             this.BackgroundImage = global::Projet_PURPLE.Properties.Resources.lava_background;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1087, 737);
+            this.Controls.Add(this.pictureBox8);
+            this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.lifeHead);
             this.Controls.Add(this.lifeLabel);
             this.Controls.Add(this.enemy4);
@@ -641,9 +671,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.movingGhostArea)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemy4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.PictureBox pictureBox8;
+
+        private System.Windows.Forms.PictureBox pictureBox6;
 
         private System.Windows.Forms.PictureBox lifeHead;
         private System.Windows.Forms.Label lifeLabel;

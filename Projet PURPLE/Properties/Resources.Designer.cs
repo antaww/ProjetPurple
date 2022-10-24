@@ -222,6 +222,56 @@ namespace Projet_PURPLE.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap keyboard_arrow_down {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_down", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap keyboard_arrow_left {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_left", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap keyboard_arrow_right {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_right", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap keyboard_arrow_up {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_up", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap keyboard_arrow_up2 {
+            get {
+                object obj = ResourceManager.GetObject("keyboard_arrow_up2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap lava_background {
             get {
                 object obj = ResourceManager.GetObject("lava_background", resourceCulture);
