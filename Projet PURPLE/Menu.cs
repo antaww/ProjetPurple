@@ -158,10 +158,10 @@ public partial class Menu : Form
 
     private void StartGame()
     {
-        var form1 = new Form1();
-        form1.Show();
-        // var form2 = new Form2();
-        // form2.Show();
+        // var form1 = new Form1();
+        // form1.Show();
+        var form2 = new Form2();
+        form2.Show();
         Hide();
     }
 

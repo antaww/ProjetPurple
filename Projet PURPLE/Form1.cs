@@ -53,11 +53,18 @@ public partial class Form1 : Form
         _fireball = new AudioFileReader(@"../../Resources/smb_fireball.wav");
         _fireballOut = new();
         _fireballOut.Init(_fireball);
+        _mainTheme = new AudioFileReader(@"../../Resources/Overworld_Theme.wav");
+        _mainThemeOut = new();
+        _mainThemeOut.Init(_mainTheme);
+        
         movingPlatform.SendToBack();
+        PlayMainTheme();
     }
 
     private WaveStream _fireball;
     private WaveOut _fireballOut;
+    private WaveStream _mainTheme;
+    private WaveOut _mainThemeOut;
 
     private bool _isGamePaused;
     public bool IsLeft;
@@ -349,7 +356,13 @@ public partial class Form1 : Form
         Hide();
     }
 
-
+    private void PlayMainTheme()
+    {
+        if(_mainThemeOut.PlaybackState == PlaybackState.Playing) _mainThemeOut.Stop();
+        _mainTheme.CurrentTime = new TimeSpan(0L);
+        _mainThemeOut.Play();
+    }
+    
     private void PlaySwitchSound()
     {
         if (_fireballOut.PlaybackState == PlaybackState.Playing) _fireballOut.Stop();
@@ -382,6 +395,10 @@ public partial class Form1 : Form
 
     private void ResetGame()
     {
+        _mainThemeOut.Stop();
+        _mainTheme.CurrentTime = new TimeSpan(0L);
+        _mainThemeOut.Play();
+        
         endLabel.Visible = false;
         scoreLabel.Visible = true;
 
@@ -558,6 +575,7 @@ public partial class Form1 : Form
 
     private void EndGame()
     {
+        _mainThemeOut.Stop();
         scoreLabel.Visible = false;
         _isGameOver = true;
         foreach (Control x in Controls)
