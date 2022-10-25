@@ -70,6 +70,7 @@
             this.lifeLabel = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.musicTimer = new System.Timers.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -103,6 +104,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musicTimer)).BeginInit();
             this.SuspendLayout();
             // 
             // mario
@@ -516,9 +518,9 @@
             // movingGhostArea
             // 
             this.movingGhostArea.BackColor = System.Drawing.Color.Transparent;
-            this.movingGhostArea.Location = new System.Drawing.Point(81, 273);
+            this.movingGhostArea.Location = new System.Drawing.Point(117, 273);
             this.movingGhostArea.Name = "movingGhostArea";
-            this.movingGhostArea.Size = new System.Drawing.Size(981, 15);
+            this.movingGhostArea.Size = new System.Drawing.Size(945, 15);
             this.movingGhostArea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.movingGhostArea.TabIndex = 131;
             this.movingGhostArea.TabStop = false;
@@ -585,6 +587,12 @@
             this.pictureBox8.TabIndex = 136;
             this.pictureBox8.TabStop = false;
             this.pictureBox8.Tag = "platform";
+            // 
+            // musicTimer
+            // 
+            this.musicTimer.Enabled = true;
+            this.musicTimer.SynchronizingObject = this;
+            this.musicTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.musicTimer_Elapsed);
             // 
             // Form2
             // 
@@ -673,9 +681,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musicTimer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Timers.Timer musicTimer;
 
         private System.Windows.Forms.PictureBox pictureBox8;
 

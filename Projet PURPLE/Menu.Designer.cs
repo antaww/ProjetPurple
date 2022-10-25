@@ -41,12 +41,16 @@ partial class Menu
         this.arrowLeft = new System.Windows.Forms.PictureBox();
         this.arrowRight = new System.Windows.Forms.PictureBox();
         this.arrowDown = new System.Windows.Forms.PictureBox();
+        this.pictureBox1 = new System.Windows.Forms.PictureBox();
+        this.musicTimer = new System.Timers.Timer();
         ((System.ComponentModel.ISupportInitialize)(this.menuTimer)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.menuArrow)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowUp)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowLeft)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowRight)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowDown)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.musicTimer)).BeginInit();
         this.SuspendLayout();
         // 
         // quitLabel
@@ -173,6 +177,24 @@ partial class Menu
         this.arrowDown.Tag = "helpKey";
         this.arrowDown.Visible = false;
         // 
+        // pictureBox1
+        // 
+        this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+        this.pictureBox1.Location = new System.Drawing.Point(310, 104);
+        this.pictureBox1.Name = "pictureBox1";
+        this.pictureBox1.Size = new System.Drawing.Size(61, 55);
+        this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+        this.pictureBox1.TabIndex = 109;
+        this.pictureBox1.TabStop = false;
+        this.pictureBox1.Tag = "helpKey";
+        this.pictureBox1.Visible = false;
+        // 
+        // musicTimer
+        // 
+        this.musicTimer.Enabled = true;
+        this.musicTimer.SynchronizingObject = this;
+        this.musicTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.musicTimer_Elapsed);
+        // 
         // Menu
         // 
         this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -181,6 +203,7 @@ partial class Menu
         this.BackgroundImage = global::Projet_PURPLE.Properties.Resources.start_screen3;
         this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
         this.ClientSize = new System.Drawing.Size(1087, 737);
+        this.Controls.Add(this.pictureBox1);
         this.Controls.Add(this.arrowDown);
         this.Controls.Add(this.arrowRight);
         this.Controls.Add(this.arrowLeft);
@@ -201,9 +224,15 @@ partial class Menu
         ((System.ComponentModel.ISupportInitialize)(this.arrowLeft)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowRight)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowDown)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.musicTimer)).EndInit();
         this.ResumeLayout(false);
         this.PerformLayout();
     }
+
+    private System.Timers.Timer musicTimer;
+
+    private System.Windows.Forms.PictureBox pictureBox1;
 
     private System.Windows.Forms.PictureBox arrowDown;
 

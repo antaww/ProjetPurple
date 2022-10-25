@@ -75,6 +75,7 @@
             this.pauseMenuTimer = new System.Timers.Timer();
             this.lifeHead = new System.Windows.Forms.PictureBox();
             this.lifeLabel = new System.Windows.Forms.Label();
+            this.musicTimer = new System.Timers.Timer();
             ((System.ComponentModel.ISupportInitialize)(this.mario)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.coin7)).BeginInit();
@@ -113,6 +114,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.scoreCoin)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pauseMenuTimer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musicTimer)).BeginInit();
             this.SuspendLayout();
             // 
             // scoreLabel
@@ -648,6 +650,12 @@
             this.lifeLabel.Text = "x 00";
             this.lifeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // musicTimer
+            // 
+            this.musicTimer.Enabled = true;
+            this.musicTimer.SynchronizingObject = this;
+            this.musicTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.musicTimer_Elapsed);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -745,9 +753,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.scoreCoin)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pauseMenuTimer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lifeHead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.musicTimer)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Timers.Timer musicTimer;
 
         private System.Windows.Forms.PictureBox lifeHead;
         private System.Windows.Forms.Label lifeLabel;

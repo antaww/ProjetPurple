@@ -20,6 +20,7 @@ public partial class Form1 : Form
         enemiesTimer.Enabled = true;
         globalTimer.Enabled = true;
         pauseMenuTimer.Enabled = true;
+        musicTimer.Enabled = true;
 
         _marioLocation = mario.Location;
         _enemyTwoLocation = enemy2.Location;
@@ -67,6 +68,7 @@ public partial class Form1 : Form
         _pauseSoundOut.Init(_pauseSound);
 
         movingPlatform.SendToBack();
+        musicTimer.Interval = (int)_mainTheme.TotalTime.TotalMilliseconds;
         PlayMainTheme();
     }
 
@@ -228,6 +230,12 @@ public partial class Form1 : Form
                 ? ColorTranslator.FromHtml("#eec905")
                 : Color.White;
         }
+    }
+    
+    private void musicTimer_Elapsed(object sender, ElapsedEventArgs e)
+    {
+        _mainThemeOut.Stop();
+        PlayMainTheme();
     }
 
     //
