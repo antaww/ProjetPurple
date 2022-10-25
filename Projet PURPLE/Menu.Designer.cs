@@ -41,16 +41,21 @@ partial class Menu
         this.arrowLeft = new System.Windows.Forms.PictureBox();
         this.arrowRight = new System.Windows.Forms.PictureBox();
         this.arrowDown = new System.Windows.Forms.PictureBox();
-        this.pictureBox1 = new System.Windows.Forms.PictureBox();
+        this.enter = new System.Windows.Forms.PictureBox();
         this.musicTimer = new System.Timers.Timer();
+        this.escape = new System.Windows.Forms.PictureBox();
+        this.space = new System.Windows.Forms.PictureBox();
+        this.explicationLabel = new System.Windows.Forms.Label();
         ((System.ComponentModel.ISupportInitialize)(this.menuTimer)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.menuArrow)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowUp)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowLeft)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowRight)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowDown)).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.enter)).BeginInit();
         ((System.ComponentModel.ISupportInitialize)(this.musicTimer)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.escape)).BeginInit();
+        ((System.ComponentModel.ISupportInitialize)(this.space)).BeginInit();
         this.SuspendLayout();
         // 
         // quitLabel
@@ -141,6 +146,7 @@ partial class Menu
         // arrowLeft
         // 
         this.arrowLeft.BackColor = System.Drawing.Color.Transparent;
+        this.arrowLeft.Cursor = System.Windows.Forms.Cursors.Hand;
         this.arrowLeft.Image = global::Projet_PURPLE.Properties.Resources.keyboard_arrow_left;
         this.arrowLeft.Location = new System.Drawing.Point(72, 104);
         this.arrowLeft.Name = "arrowLeft";
@@ -150,6 +156,8 @@ partial class Menu
         this.arrowLeft.TabStop = false;
         this.arrowLeft.Tag = "helpKey";
         this.arrowLeft.Visible = false;
+        this.arrowLeft.Click += new System.EventHandler(this.arrowLeft_Click);
+        this.arrowLeft.MouseHover += new System.EventHandler(this.arrowLeft_Hover);
         // 
         // arrowRight
         // 
@@ -177,23 +185,66 @@ partial class Menu
         this.arrowDown.Tag = "helpKey";
         this.arrowDown.Visible = false;
         // 
-        // pictureBox1
+        // enter
         // 
-        this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-        this.pictureBox1.Location = new System.Drawing.Point(310, 104);
-        this.pictureBox1.Name = "pictureBox1";
-        this.pictureBox1.Size = new System.Drawing.Size(61, 55);
-        this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-        this.pictureBox1.TabIndex = 109;
-        this.pictureBox1.TabStop = false;
-        this.pictureBox1.Tag = "helpKey";
-        this.pictureBox1.Visible = false;
+        this.enter.BackColor = System.Drawing.Color.Transparent;
+        this.enter.Image = global::Projet_PURPLE.Properties.Resources.keyboard_enter;
+        this.enter.Location = new System.Drawing.Point(287, 104);
+        this.enter.Name = "enter";
+        this.enter.Size = new System.Drawing.Size(128, 55);
+        this.enter.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+        this.enter.TabIndex = 109;
+        this.enter.TabStop = false;
+        this.enter.Tag = "helpKey";
+        this.enter.Visible = false;
         // 
         // musicTimer
         // 
         this.musicTimer.Enabled = true;
         this.musicTimer.SynchronizingObject = this;
         this.musicTimer.Elapsed += new System.Timers.ElapsedEventHandler(this.musicTimer_Elapsed);
+        // 
+        // escape
+        // 
+        this.escape.BackColor = System.Drawing.Color.Transparent;
+        this.escape.Image = global::Projet_PURPLE.Properties.Resources.keyboard_escape;
+        this.escape.Location = new System.Drawing.Point(300, 47);
+        this.escape.Name = "escape";
+        this.escape.Size = new System.Drawing.Size(97, 55);
+        this.escape.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+        this.escape.TabIndex = 110;
+        this.escape.TabStop = false;
+        this.escape.Tag = "helpKey";
+        this.escape.Visible = false;
+        // 
+        // space
+        // 
+        this.space.BackColor = System.Drawing.Color.Transparent;
+        this.space.Image = global::Projet_PURPLE.Properties.Resources.keyboard_space;
+        this.space.Location = new System.Drawing.Point(447, 104);
+        this.space.Name = "space";
+        this.space.Size = new System.Drawing.Size(140, 55);
+        this.space.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+        this.space.TabIndex = 111;
+        this.space.TabStop = false;
+        this.space.Tag = "helpKey";
+        this.space.Visible = false;
+        // 
+        // explicationLabel
+        // 
+        this.explicationLabel.AutoSize = true;
+        this.explicationLabel.BackColor = System.Drawing.Color.Transparent;
+        this.explicationLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+        this.explicationLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+        this.explicationLabel.ForeColor = System.Drawing.Color.White;
+        this.explicationLabel.Location = new System.Drawing.Point(645, 57);
+        this.explicationLabel.Margin = new System.Windows.Forms.Padding(0);
+        this.explicationLabel.Name = "explicationLabel";
+        this.explicationLabel.Size = new System.Drawing.Size(198, 45);
+        this.explicationLabel.TabIndex = 112;
+        this.explicationLabel.Text = "hover a key!";
+        this.explicationLabel.UseCompatibleTextRendering = true;
+        this.explicationLabel.Visible = false;
         // 
         // Menu
         // 
@@ -203,7 +254,10 @@ partial class Menu
         this.BackgroundImage = global::Projet_PURPLE.Properties.Resources.start_screen3;
         this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
         this.ClientSize = new System.Drawing.Size(1087, 737);
-        this.Controls.Add(this.pictureBox1);
+        this.Controls.Add(this.explicationLabel);
+        this.Controls.Add(this.space);
+        this.Controls.Add(this.escape);
+        this.Controls.Add(this.enter);
         this.Controls.Add(this.arrowDown);
         this.Controls.Add(this.arrowRight);
         this.Controls.Add(this.arrowLeft);
@@ -224,15 +278,23 @@ partial class Menu
         ((System.ComponentModel.ISupportInitialize)(this.arrowLeft)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowRight)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.arrowDown)).EndInit();
-        ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.enter)).EndInit();
         ((System.ComponentModel.ISupportInitialize)(this.musicTimer)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.escape)).EndInit();
+        ((System.ComponentModel.ISupportInitialize)(this.space)).EndInit();
         this.ResumeLayout(false);
         this.PerformLayout();
     }
 
+    private System.Windows.Forms.Label explicationLabel;
+
+    private System.Windows.Forms.PictureBox space;
+
+    private System.Windows.Forms.PictureBox escape;
+
     private System.Timers.Timer musicTimer;
 
-    private System.Windows.Forms.PictureBox pictureBox1;
+    private System.Windows.Forms.PictureBox enter;
 
     private System.Windows.Forms.PictureBox arrowDown;
 

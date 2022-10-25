@@ -374,6 +374,7 @@ public partial class Form2 : Form
     {
         // var form3 = new Form3();
         // form3.Show();
+        musicTimer.Stop();
         var menu = new Menu();
         menu.Show();
         Hide();

@@ -371,6 +371,7 @@ public partial class Form1 : Form
 
     private void LoadLevel2()
     {
+        musicTimer.Stop();
         var form2 = new Form2();
         form2.Show();
         Hide();

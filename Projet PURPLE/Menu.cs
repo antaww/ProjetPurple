@@ -17,6 +17,7 @@ public partial class Menu : Form
         quitLabel.Font = new Font(pfc.Families[0], 18);
         startLabel.Font = new Font(pfc.Families[0], 18);
         helpLabel.Font = new Font(pfc.Families[0], 18);
+        explicationLabel.Font = new Font(pfc.Families[0], 10);
         _startLabelLocation = startLabel.Location;
         _quitLabelLocation = quitLabel.Location;
         _helpLabelLocation = helpLabel.Location;
@@ -48,6 +49,8 @@ public partial class Menu : Form
     Point _helpLabelLocation;
 
     private string _selectedLabel;
+    
+    private bool _isHelpSelected;
 
     //
     //TIMER
@@ -80,6 +83,14 @@ public partial class Menu : Form
             Application.Exit();
         }
 
+        if (_isHelpSelected && e.KeyCode == Keys.Left)
+        {
+            _isHelpSelected = false;
+            ShowMenu();
+            HideHelpKeys();
+        }
+
+        if (_isHelpSelected) return;
         if (e.KeyCode == Keys.Enter && _selectedLabel != null)
         {
             switch (_selectedLabel)
@@ -165,14 +176,63 @@ public partial class Menu : Form
     {
         HelpDisplay();
     }
+    
+    private void arrowLeft_Click(object sender, EventArgs e)
+    {
+        _isHelpSelected = false;
+        ShowMenu();
+        HideHelpKeys();
+    }
 
     //
     //METHODS
     //
 
-    private static void HelpDisplay()
+    private void HelpDisplay()
     {
-        MessageBox.Show("help btn");
+        _isHelpSelected = true;
+        HideMenu();
+        ShowHelpKeys();
+    }
+
+    private void ShowHelpKeys()
+    {
+        explicationLabel.Visible = true;
+        foreach (Control control in Controls)
+        {
+            if (control is PictureBox && !Equals(control, menuArrow))
+            {
+                control.Visible = true;
+            }
+        }
+    }
+    
+    private void HideHelpKeys()
+    {
+        explicationLabel.Visible = false;
+        foreach (Control control in Controls)
+        {
+            if (control is PictureBox && !Equals(control, menuArrow))
+            {
+                control.Visible = false;
+            }
+        }
+    }
+
+    private void HideMenu()
+    {
+        startLabel.Visible = false;
+        quitLabel.Visible = false;
+        helpLabel.Visible = false;
+        menuArrow.Visible = false;
+    }
+    
+    private void ShowMenu()
+    {
+        startLabel.Visible = true;
+        quitLabel.Visible = true;
+        helpLabel.Visible = true;
+        menuArrow.Visible = true;
     }
 
     private static void LeaveApp()
@@ -182,6 +242,7 @@ public partial class Menu : Form
 
     private void StartGame()
     {
+        musicTimer.Stop();
         _mainThemeOut.Stop();
         var form1 = new Form1();
         form1.Show();
@@ -228,5 +289,9 @@ public partial class Menu : Form
             quitLabel.Location.Y + quitLabel.Height / 2 - menuArrow.Height / 2);
         _selectedLabel = "quitLabel";
     }
-    
+
+    private void arrowLeft_Hover(object sender, EventArgs e)
+    {
+        explicationLabel.Text = "- Go back to the menu\n- Move left";
+    }
 }

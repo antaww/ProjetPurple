@@ -153,6 +153,9 @@
       <Content Include="Resources\keyboard_arrow_right.png" />
       <Content Include="Resources\keyboard_arrow_up.png" />
       <Content Include="Resources\keyboard_arrow_up2.png" />
+      <Content Include="Resources\keyboard_enter.png" />
+      <Content Include="Resources\keyboard_escape.png" />
+      <Content Include="Resources\keyboard_space.png" />
       <Content Include="Resources\lava_background.png" />
       <Content Include="Resources\lava_bottom.png" />
       <Content Include="Resources\lava_high_column.png" />
