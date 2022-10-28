@@ -1,7 +1,7 @@
 # <img src="https://i.imgur.com/YxgFdHy.jpg" height="40" alt="Icon" title="Mario Form Game"> Mario Form Game
 
 Mario Form Game is a game based on the world of mario, recreated through the Windows Form App in C#.
-This project was conducted in an academic environment.
+This project was conducted in an educational environment.
 
 -------
 
