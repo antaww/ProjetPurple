@@ -26,6 +26,13 @@ namespace Projet_PURPLE
         private WaveOut _winOut;
 
 
+        /// <summary>
+        /// If the player is not jumping and is on the ground, then set the player to jumping, set the player to not on the
+        /// ground, set the force to the gravity, and play the jump sound
+        /// </summary>
+        /// <returns>
+        /// Nothing is being returned.
+        /// </returns>
         public void Jump()
         {
             if (IsJumping || !IsOnGround) return;
@@ -35,16 +42,30 @@ namespace Projet_PURPLE
             PlayJumpSound();
         }
 
+        /// <summary>
+        /// This function sets the image of the player to the left facing image
+        /// </summary>
         public void SetLeftAnimation()
         {
             Image = Properties.Resources.mario_left;
         }
 
+        /// <summary>
+        /// This function sets the image of the player to the right facing image
+        /// </summary>
         public void SetRightAnimation()
         {
             Image = Properties.Resources.mario_right;
         }
 
+        /// <summary>
+        /// If the player collides with a block, the player will stop moving in that direction
+        /// </summary>
+        /// <param name="Control">The control that the player is colliding with.</param>
+        /// <param name="Form1">The form that the game is running on.</param>
+        /// <returns>
+        /// A boolean value.
+        /// </returns>
         public bool HandleCollisions(Control x, Form1 form)
         {
             if (!Bounds.IntersectsWith(x.Bounds)) return false;
@@ -94,6 +115,14 @@ namespace Projet_PURPLE
             return false;
         }
 
+        /// <summary>
+        /// If the player collides with a block, the player will stop moving in that direction
+        /// </summary>
+        /// <param name="Control">The control that the player is colliding with.</param>
+        /// <param name="Form2">The form that the game is running on.</param>
+        /// <returns>
+        /// A boolean value.
+        /// </returns>
         public bool HandleCollisions2(Control x, Form2 form)
         {
             if (!Bounds.IntersectsWith(x.Bounds)) return false;
@@ -144,6 +173,9 @@ namespace Projet_PURPLE
             return false;
         }
         
+        /// <summary>
+        /// If the player is not on the ground, then the player will fall down until they hit the ground
+        /// </summary>
         public void Fall()
         {
             if (!IsOnGround)
@@ -160,6 +192,9 @@ namespace Projet_PURPLE
             }
         }
 
+        /// <summary>
+        /// > Play the sound file "smb_bump.wav" from the Resources folder
+        /// </summary>
         private void PlayBumpSound()
         {
             _bump = new AudioFileReader(@"../../Resources/smb_bump.wav");
@@ -170,6 +205,9 @@ namespace Projet_PURPLE
             _bumpOut.Play();
         }
 
+        /// <summary>
+        /// > Play the sound file "smb_coin.wav" from the Resources folder
+        /// </summary>
         public void PlayCoinSound()
         {
             _coin = new AudioFileReader(@"../../Resources/smb_coin.wav");
@@ -180,6 +218,9 @@ namespace Projet_PURPLE
             _coinOut.Play();
         }
 
+        /// <summary>
+        /// > Play the sound file "smb_jump-small.wav" from the Resources folder
+        /// </summary>
         private void PlayJumpSound()
         {
             _jump = new AudioFileReader(@"../../Resources/smb_jump-small.wav");
@@ -190,6 +231,9 @@ namespace Projet_PURPLE
             _jumpOut.Play();
         }
 
+        /// <summary>
+        /// > Play the sound file "smb_marioedie.wav" from the Resources folder
+        /// </summary>
         public void PlayDieSound()
         {
             _death = new AudioFileReader(@"../../Resources/smb_mariodie.wav");
@@ -200,6 +244,9 @@ namespace Projet_PURPLE
             _deathOut.Play();
         }
 
+        /// <summary>
+        /// > Play the sound file "smb_gameover.wav" from the Resources folder
+        /// </summary>
         public void PlayGameOverSound()
         {
             _gameOver = new AudioFileReader(@"../../Resources/smb_gameover.wav");
@@ -210,6 +257,9 @@ namespace Projet_PURPLE
             _gameOverOut.Play();
         }
         
+        /// <summary>
+        /// > Play the sound file "smb_stage_clear.wav" from the Resources folder
+        /// </summary>
         public void PlayWinSound()
         {
             _win = new AudioFileReader(@"../../Resources/smb_stage_clear.wav");

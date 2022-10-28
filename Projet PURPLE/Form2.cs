@@ -12,6 +12,10 @@ public partial class Form2 : Form
 {
     
     private readonly PrivateFontCollection _pfc = new();
+    
+    /// <summary> The Form2 function is the main function of the game. It creates all of the objects and sets up
+    /// their initial locations, then starts a timer that moves them.</summary>
+    /// <returns> A form.</returns>
     public Form2()
     {
         _pfc.AddFontFile("../../Resources/SuperMario256.ttf");
@@ -117,6 +121,11 @@ public partial class Form2 : Form
     //TIMERS
     //
 
+    /// <summary>
+    /// It is the main timer of the game. It is used to update the game every globalTimer.Interval milliseconds.
+    /// </summary>
+    /// <param name="sender"> The object that raised the event. </param>
+    /// <param name="ElapsedEventArgs">This is the event that is triggered when the timer has elapsed.</param>
     private void globalTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         _index++;
@@ -220,8 +229,19 @@ public partial class Form2 : Form
         mario.IsOnGround = isOnTemporaryGround;
     }
 
+    /// <summary>
+    /// > The `MoveEnemies()` function is called every time the `enemiesTimer` ticks
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="ElapsedEventArgs">This is the event that is triggered when the timer has elapsed.</param>
     private void enemiesTimer_Elapsed(object sender, ElapsedEventArgs e) => MoveEnemies();
 
+    
+    /// <summary>
+    /// It sets the font of the labels in the pause menu to the font that was selected in the options menu
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="ElapsedEventArgs">The event arguments for the Elapsed event.</param>
     private void pauseMenuTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         SetFont();
@@ -233,6 +253,11 @@ public partial class Form2 : Form
         }
     }
     
+    /// <summary>
+    /// When the timer elapses, stop the current main theme and play a new one
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="ElapsedEventArgs">The event arguments that are passed to the event handler.</param>
     private void musicTimer_Elapsed(object sender, ElapsedEventArgs e)
     {
         _mainThemeOut.Stop();
@@ -243,6 +268,16 @@ public partial class Form2 : Form
     //KEYBOARD EVENTS
     //
 
+    /// <summary>
+    /// If the game is paused, the user can press the up and down arrow keys to select the resume or quit option, and then
+    /// press enter to resume or quit the game. If the game is not paused, the user can press the left and right arrow keys
+    /// to move Mario left or right, and the up arrow key to make Mario jump
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="KeyEventArgs">The KeyEventArgs class contains information about a key press.</param>
+    /// <returns>
+    /// The method is returning the value of the variable _isGameWon.
+    /// </returns>
     private void KeyIsDown(object sender, KeyEventArgs e)
     {
         if (_isGamePaused)
@@ -307,6 +342,14 @@ public partial class Form2 : Form
         }
     }
 
+    /// <summary>
+    /// If the game is not paused, and the left or right arrow keys are released, then set the corresponding boolean to
+    /// false and set the animation to the corresponding direction. If the escape key is released, then pause or resume the
+    /// game depending on whether or not the game is already paused. If the space bar is released and the game is over, then
+    /// reset the game
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="KeyEventArgs">This is the event that is triggered when a key is pressed.</param>
     private void KeyIsUp(object sender, KeyEventArgs e)
     {
         if (!_isGamePaused)
@@ -356,11 +399,21 @@ public partial class Form2 : Form
     //CLICK EVENTS
     //
 
+    /// <summary>
+    /// If the game is paused, resume it
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="EventArgs">This is a class that contains the event data.</param>
     private void pauseResumeLabel_Click(object sender, EventArgs e)
     {
         ResumeGame();
     }
 
+    /// <summary>
+    /// When the user clicks on the pauseQuitLabel, the QuitGame() function is called
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="EventArgs">This is a class that contains information about the event.</param>
     private void pauseQuitLabel_Click(object sender, EventArgs e)
     {
         QuitGame();
@@ -370,6 +423,9 @@ public partial class Form2 : Form
     //METHODS
     //
 
+    /// <summary>
+    /// Loads the level 3 (menu cause the level 3 is not implemented yet)
+    /// </summary>
     private void LoadLevel3()
     {
         // var form3 = new Form3();
@@ -380,6 +436,9 @@ public partial class Form2 : Form
         Hide();
     }
 
+    /// <summary>
+    /// If the fireballOut sound is playing, stop it, set the fireball sound to the beginning, and play it
+    /// </summary>
     private void PlaySwitchSound()
     {
         if (_fireballOut.PlaybackState == PlaybackState.Playing) _fireballOut.Stop();
@@ -387,6 +446,9 @@ public partial class Form2 : Form
         _fireballOut.Play();
     }
     
+    /// <summary>
+    /// If the main theme is playing, stop it, set the current time to 0, and play it
+    /// </summary>
     private void PlayMainTheme()
     {
         if(_mainThemeOut.PlaybackState == PlaybackState.Playing) _mainThemeOut.Stop();
@@ -394,6 +456,9 @@ public partial class Form2 : Form
         _mainThemeOut.Play();
     }
 
+    /// <summary>
+    /// If the pause sound is playing, stop it, set the current time to 0, and play it
+    /// </summary>
     private void PlayPauseSound()
     {
         if(_pauseSoundOut.PlaybackState == PlaybackState.Playing) _pauseSoundOut.Stop();
@@ -401,6 +466,10 @@ public partial class Form2 : Form
         _pauseSoundOut.Play();
     }
 
+    /// <summary>
+    /// It pauses the game, plays a sound, sets the selected label to "pauseResumeLabel", sets the pause menu labels to
+    /// visible, stops the global timer, stops the enemies timer, and starts the pause menu timer
+    /// </summary>
     private void PauseGame()
     {
         PlayPauseSound();
@@ -414,6 +483,10 @@ public partial class Form2 : Form
         pauseMenuTimer.Start();
     }
 
+    /// <summary>
+    /// This function resumes the game by playing the main theme out, setting the game to unpaused, hiding the pause menu
+    /// labels, starting the global timer, starting the enemies timer, and stopping the pause menu timer.
+    /// </summary>
     private void ResumeGame()
     {
         _mainThemeOut.Play();
@@ -425,6 +498,9 @@ public partial class Form2 : Form
         pauseMenuTimer.Stop();
     }
 
+    /// <summary>
+    /// This function resets the game to its original state
+    /// </summary>
     private void ResetGame()
     {
         _mainThemeOut.Stop();
@@ -466,6 +542,9 @@ public partial class Form2 : Form
         globalTimer.Start();
     }
 
+    /// <summary>
+    /// It sets the font of the labels to the font I downloaded
+    /// </summary>
     private void SetFont()
     {
         blockLabel.Font = new Font(_pfc.Families[0], 13);
@@ -478,6 +557,9 @@ public partial class Form2 : Form
         lifeLabel.Font = new Font(_pfc.Families[0], 15);
     }
 
+    /// <summary>
+    /// > ResetMario() resets Mario's location and state
+    /// </summary>
     private void ResetMario()
     {
         mario.IsJumping = false;
@@ -485,6 +567,12 @@ public partial class Form2 : Form
         mario.Location = _marioLocation;
     }
 
+    /// <summary>
+    /// If there is a picturebox with a tag of "coin" and it is visible, return true. Otherwise, return false
+    /// </summary>
+    /// <returns>
+    /// A boolean value.
+    /// </returns>
     private bool CheckCoins()
     {
         foreach (Control x in Controls)
@@ -498,6 +586,9 @@ public partial class Form2 : Form
         return false;
     }
 
+    /// <summary>
+    /// If Mario intersects with an enemy, spike, or lava, the game is lost
+    /// </summary>
     private void CheckLose()
     {
         foreach (Control x in Controls)
@@ -522,6 +613,9 @@ public partial class Form2 : Form
         }
     }
 
+    /// <summary>
+    /// If the enemy is moving left, move it left, and if it's moving right, move it right
+    /// </summary>
     private void MoveEnemies()
     {
         if (_enemy2Left)
@@ -576,6 +670,9 @@ public partial class Form2 : Form
         }
     }
 
+    /// <summary>
+    /// If the enemy is moving left, and the enemy is not already animating left, then animate the enemy left
+    /// </summary>
     private void AnimEnemies()
     {
         if (_enemy2Left)
@@ -636,6 +733,10 @@ public partial class Form2 : Form
         }
     }
 
+    /// <summary>
+    /// This function is called when the game is over. It checks if the player has lost or won the game and displays the
+    /// appropriate message
+    /// </summary>
     private void EndGame()
     {
         if (_life > 0 && !_isGameWon)
@@ -681,6 +782,9 @@ public partial class Form2 : Form
         }
     }
 
+    /// <summary>
+    /// QuitGame() is a function that quits the game
+    /// </summary>
     private static void QuitGame()
     {
         Application.Exit();
@@ -690,11 +794,21 @@ public partial class Form2 : Form
     //HOVER EVENTS
     //
 
+    /// <summary>
+    /// When the mouse hovers over the pauseResumeLabel, the _selectedLabel variable is set to "pauseResumeLabel"
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="EventArgs">The EventArgs class is the base class for classes containing event data.</param>
     private void pauseResumeLabel_MouseHover(object sender, EventArgs e)
     {
         _selectedLabel = "pauseResumeLabel";
     }
 
+    /// <summary>
+    /// When the mouse hovers over the pauseQuitLabel, the _selectedLabel variable is set to "pauseQuitLabel"
+    /// </summary>
+    /// <param name="sender">The object that raised the event.</param>
+    /// <param name="EventArgs">The EventArgs class is the base class for classes containing event data.</param>
     private void pauseQuitLabel_MouseHover(object sender, EventArgs e)
     {
         _selectedLabel = "pauseQuitLabel";

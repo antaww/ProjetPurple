@@ -142,6 +142,7 @@ partial class Menu
         this.arrowUp.TabStop = false;
         this.arrowUp.Tag = "helpKey";
         this.arrowUp.Visible = false;
+        this.arrowUp.MouseHover += new System.EventHandler(this.arrowUp_MouseHover);
         // 
         // arrowLeft
         // 
@@ -171,6 +172,7 @@ partial class Menu
         this.arrowRight.TabStop = false;
         this.arrowRight.Tag = "helpKey";
         this.arrowRight.Visible = false;
+        this.arrowRight.MouseHover += new System.EventHandler(this.arrowRight_MouseHover);
         // 
         // arrowDown
         // 
@@ -184,6 +186,7 @@ partial class Menu
         this.arrowDown.TabStop = false;
         this.arrowDown.Tag = "helpKey";
         this.arrowDown.Visible = false;
+        this.arrowDown.MouseHover += new System.EventHandler(this.arrowDown_MouseHover);
         // 
         // enter
         // 
@@ -197,6 +200,7 @@ partial class Menu
         this.enter.TabStop = false;
         this.enter.Tag = "helpKey";
         this.enter.Visible = false;
+        this.enter.MouseLeave += new System.EventHandler(this.enter_MouseLeave);
         // 
         // musicTimer
         // 
@@ -216,6 +220,7 @@ partial class Menu
         this.escape.TabStop = false;
         this.escape.Tag = "helpKey";
         this.escape.Visible = false;
+        this.escape.MouseHover += new System.EventHandler(this.escape_MouseHover);
         // 
         // space
         // 
@@ -229,6 +234,7 @@ partial class Menu
         this.space.TabStop = false;
         this.space.Tag = "helpKey";
         this.space.Visible = false;
+        this.space.MouseHover += new System.EventHandler(this.space_MouseHover);
         // 
         // explicationLabel
         // 
