@@ -80,7 +80,8 @@ I solved my problems by doing long searches on the internet, comparing how thing
     * When broken spawns label "+1"
     * When broken changes texture
   * Moving platform
-  * Win / lose label 
+  * Win / lose label
+  * Door (cross to go next level)
 
 ## The keys
 
@@ -97,6 +98,7 @@ The whole game is playable keyboard only.
     * Navigate through the menus
   * Game
     * Jump
+    * Cross door
     
 * Arrow down
   * Navigate through the menus
